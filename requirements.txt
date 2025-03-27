@@ -1,11 +1,11 @@
 agency-swarm
-click==7.1.2
+click>=7.1.2
 Flask==2.0.0
 gunicorn==20.0.4
-itsdangerous==1.1.0
-Jinja2==2.11.3
-MarkupSafe==1.1.1
-Werkzeug==1.0.1
+itsdangerous>=2.0.0
+Jinja2>=3.0.0
+MarkupSafe>=2.0.0
+Werkzeug>=2.0.0
 inquirer==3.4.0
 pyperclip==1.9.0
 google-api-python-client==2.118.0
@@ -19,9 +19,8 @@ flask-limiter==3.5.0
 flask-talisman==1.0.0
 brotli==1.1.0
 pillow==10.0.0
-webp-converter==4.1.0 
+webp-converter==4.1.0
 # Asset optimization
-
 beautifulsoup4==4.12.2
 csscompressor==0.9.5
 jsmin==3.0.1
