@@ -9,4 +9,4 @@ Disallow: /*.json$
 Disallow: /*.py$
 
 # Replace with your actual GitHub Pages URL or custom domain
-Sitemap: https://yourusername.github.io/repository/sitemap.xml 
+Sitemap: https://Mr-Mastrianni.github.io/AI-Unplugged-Website/sitemap.xml 
