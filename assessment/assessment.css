@@ -1,0 +1,538 @@
+/* Assessment Page Styles */
+
+.assessment-header {
+    background-image: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.8)), url('../images/assessment-header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#assessment-intro {
+    padding: 4rem 0;
+}
+
+.assessment-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.benefit-item {
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-10px);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.assessment-start {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.assessment-start .btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.assessment-start .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Pulse animation for the start button */
+@keyframes pulse-border {
+    0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
+
+#start-assessment {
+    animation: pulse-border 2s infinite;
+}
+
+#assessment-form {
+    padding: 4rem 0;
+    background-color: var(--light-color);
+}
+
+.progress-container {
+    margin-bottom: 3rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.question-slide {
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.question-description {
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+}
+
+.question-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.checkbox-group, .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-item {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+    background: #ffffff !important; /* White background */
+    padding: 10px 15px !important;
+    border-radius: 5px !important;
+    border: 2px solid #007bff !important; /* More visible border */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+}
+
+.checkbox-item label, 
+.radio-item label {
+    color: #000000 !important; /* Black text */
+    font-weight: bold !important;
+    margin: 0 0 0 10px !important;
+    padding: 0 !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: static !important; /* Ensure it's not positioned absolutely */
+    z-index: 10 !important;
+    font-family: Arial, sans-serif !important; /* Web-safe font */
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    pointer-events: auto !important;
+    text-shadow: none !important;
+}
+
+.checkbox-item input[type="checkbox"],
+.radio-item input[type="radio"] {
+    margin: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: static !important;
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    appearance: checkbox !important;
+}
+
+.conditional-input {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    width: calc(100% - 2rem);
+}
+
+.process-selection, .tasks-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.process-item, .task-item {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.process-checkbox, .task-checkbox {
+    margin-bottom: 1rem;
+}
+
+.process-impact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.impact-field label, .task-hours label {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.department-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.department-item {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.department-barriers {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed #dee2e6;
+}
+
+.tech-current, .tech-adoption, .ai-understanding, .ai-benefits, .data-volume {
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.field-help {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+}
+
+/* Results Page Styles */
+#assessment-results {
+    padding: 4rem 0;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.readiness-score {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.score-graphic {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.score-label {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.score-description {
+    flex: 2;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.results-section {
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.confirmation-message {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--secondary-color);
+    transition: width var(--transition-medium) ease;
+    z-index: -1;
+}
+
+.btn-outline:hover {
+    color: var(--white-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline:hover::before {
+    width: 100%;
+}
+
+/* Glass button style for dark mode */
+.glass-button {
+    background: var(--glass-background) !important;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+}
+
+.solution-card {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.solution-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.solution-card ul {
+    margin-bottom: 1rem;
+}
+
+.roi-chart {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.roi-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.roi-label {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.roi-calculation {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+}
+
+.roi-formula {
+    font-family: monospace;
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.next-steps-list {
+    counter-reset: steps;
+    list-style: none;
+    padding-left: 0;
+}
+
+.next-steps-list li {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-left: 3rem;
+}
+
+.next-steps-list li::before {
+    counter-increment: steps;
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Next Steps CTA Styles */
+.next-steps-cta {
+    background-color: var(--light-color);
+    padding: 2.5rem;
+    border-radius: 10px;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.next-steps-cta h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.step-card {
+    background-color: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding-top: 3rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+}
+
+.step-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-card h4 {
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.step-card p {
+    margin-bottom: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.step-card .btn {
+    width: 100%;
+}
+
+.results-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #ddd;
+}
+
+.results-actions p {
+    margin-bottom: 1rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .readiness-score {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .process-impact {
+        grid-template-columns: 1fr;
+    }
+    
+    .question-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .question-navigation button {
+        width: 100%;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}

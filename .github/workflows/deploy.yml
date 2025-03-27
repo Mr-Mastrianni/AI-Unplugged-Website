@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set your default branch here if it's not main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run tests
+        run: python run_tests.py
+        
+      - name: Optimize assets
+        run: |
+          python optimize_assets.py --clean
+          python convert_to_webp.py --clean
+          
+      - name: Setup Node.js (for cwebp if needed)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Create CNAME file
+        run: |
+          # Uncomment and edit when you have your custom domain ready
+          # echo "aiunplugged.com" > dist/CNAME
+          
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+          clean: true 

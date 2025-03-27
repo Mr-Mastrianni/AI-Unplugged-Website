@@ -1,0 +1,33 @@
+agency-swarm
+click==7.1.2
+Flask==1.1.2
+gunicorn==20.0.4
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+Werkzeug==1.0.1
+inquirer==3.4.0
+pyperclip==1.9.0
+google-api-python-client==2.118.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+python-dotenv==1.0.1
+pandas==2.2.1
+# Security and optimization additions
+flask-cors==3.0.10
+flask-limiter==3.5.0
+flask-talisman==1.0.0
+brotli==1.1.0
+pillow==10.0.0
+webp-converter==1.0.0
+# Asset optimization
+beautifulsoup4==4.12.2
+csscompressor==0.9.5
+jsmin==3.0.1
+# Monitoring
+prometheus-client==0.17.1
+opentelemetry-api==1.20.0
+opentelemetry-sdk==1.20.0
+opentelemetry-exporter-otlp==1.20.0
+opentelemetry-instrumentation-flask==0.40b0
+opentelemetry-instrumentation-requests==0.40b0
