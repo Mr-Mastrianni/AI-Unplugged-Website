@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /tools/
+Disallow: /metrics
+Disallow: /.env
+Disallow: /.venv/
+Disallow: /*.json$
+Disallow: /*.py$
+
+# Replace with your actual GitHub Pages URL or custom domain
+Sitemap: https://Mr-Mastrianni.github.io/AI-Unplugged-Website/sitemap.xml 

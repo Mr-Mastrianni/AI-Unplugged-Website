@@ -1,0 +1,40 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+
+/*.html
+  Cache-Control: public, max-age=3600
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+/*.jpeg
+/*.png
+/*.gif
+/*.webp
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+/*.woff2
+/*.ttf
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.json
+  Cache-Control: public, max-age=3600
+
+/*.br
+  Content-Encoding: br
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.gz
+  Content-Encoding: gzip
+  Cache-Control: public, max-age=31536000, immutable 
