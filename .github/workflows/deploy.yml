@@ -63,8 +63,8 @@ jobs:
           
       - name: Create CNAME file
         run: |
-          # Uncomment and edit when you have your custom domain ready
-          # echo "aiunplugged.com" > dist/CNAME
+          # Your custom domain - update with your actual domain from Hostinger
+          echo "aiunplugged.com" > dist/CNAME
           
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
