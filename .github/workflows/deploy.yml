@@ -27,12 +27,20 @@ jobs:
       - name: Run tests
         run: python run_tests.py
         
+      - name: Create dist directory
+        run: mkdir -p dist
+        
+      - name: Copy static files to dist
+        run: |
+          cp -r *.html css js images dist/ || true
+          cp robots.txt sitemap.xml dist/ || true
+          
       - name: Optimize assets
         run: |
           python optimize_assets.py --clean
           python convert_to_webp.py --clean
           
-      - name: Setup Node.js (for cwebp if needed)
+      - name: Setup Node.js (for additional optimization tools)
         uses: actions/setup-node@v3
         with:
           node-version: '16'
