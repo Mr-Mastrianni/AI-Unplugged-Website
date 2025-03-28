@@ -65,7 +65,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="assessment/index.html">AI Assessment</a></li>
+                    <li><a href="tools.html">Tools</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html" class="btn-contact">Contact</a></li>
                 </ul>
@@ -410,6 +410,17 @@
                 </div>
             </div>
         </section>
+
+        <!-- Before/After ROI Visualizer Section -->
+        <section id="roi-visualizer-section" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2>See the Impact of AI on Your Business</h2>
+                    <p>Explore how AI solutions transform business processes, increase efficiency, and reduce costs.</p>
+                </div>
+                <div id="roi-visualizer"></div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -462,15 +473,23 @@
         </div>
     </footer>
 
-    <!-- Production minified JavaScript -->
-    <script src="js/script.min.js"></script>
-    <!-- Fallback for development -->
-    <script src="js/script.js" async></script>
-    <!-- Chatbot -->
+    <!-- Scripts -->
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/three-animations.js"></script>
     <script src="js/chatbot.js"></script>
-    <!-- Exit Popup -->
-    <script src="js/exit-popup.js"></script>
-    <!-- A/B Test -->
-    <script src="js/ab-test.js"></script>
+    <script src="js/solution-finder.js"></script>
+    <script src="js/roi-visualizer.js"></script>
+    <script src="js/roadmap-generator.js"></script>
+    <script src="js/content-calendar.js"></script>
+    <script>
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            // Initialize A/B Testing
+            if (typeof initABTesting === 'function') {
+                initABTesting();
+            }
+        });
+    </script>
 </body>
 </html>
