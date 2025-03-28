@@ -1,12 +1,21 @@
+# robots.txt for aiunplugged.pro
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /tools/
-Disallow: /metrics
-Disallow: /.env
-Disallow: /.venv/
-Disallow: /*.json$
-Disallow: /*.py$
 
-# Replace with your actual GitHub Pages URL or custom domain
-Sitemap: https://Mr-Mastrianni.github.io/AI-Unplugged-Website/sitemap.xml 
+# Disallow admin-related paths
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-includes/
+Disallow: /search
+Disallow: /*?s=*
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Allow media and asset directories
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap location
+Sitemap: https://aiunplugged.pro/sitemap.xml 

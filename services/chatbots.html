@@ -14,7 +14,7 @@
         <nav id="main-nav">
             <div class="container">
                 <div class="logo">
-                    <a href="../index.html"><img src="../images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
+                    <a href="../index.html"><img src="../images/ai-unplugged.png" alt="AI Unplugged Logo - Affordable AI Chatbot Solutions" loading="eager"></a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
@@ -34,11 +34,35 @@
     </header>
 
     <main>
+        <!-- Breadcrumbs with schema.org structured data -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../index.html">
+                            <span property="name">Home</span>
+                        </a>
+                        <meta property="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../services.html">
+                            <span property="name">Services</span>
+                        </a>
+                        <meta property="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <span property="name">AI Chatbots</span>
+                        <meta property="position" content="3">
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
         <!-- Page Header -->
-        <section id="page-header" class="service-header">
+        <section id="page-header" class="service-header chatbot-header">
             <div class="container">
                 <h1>AI Chatbots</h1>
-                <p>24/7 customer service and engagement for your business</p>
+                <p>Provide 24/7 customer support and engagement with intelligent, customizable chatbots.</p>
             </div>
         </section>
 
@@ -276,7 +300,7 @@
                             <a href="../blog/case-study-better-shoes.html" class="btn btn-secondary">Read Full Case Study</a>
                         </div>
                         <div class="case-study-image">
-                            <img src="../images/case-study-retail.jpg" alt="Retail store with AI chatbot implementation">
+                            <img src="../images/case-study-retail.jpg" alt="Retail success story: 24/7 customer support with AI chatbot reducing response time by 80%" loading="lazy">
                         </div>
                     </div>
                     <div class="case-study reverse">
@@ -292,7 +316,7 @@
                             <a href="../blog/case-study-metro-credit-union.html" class="btn btn-secondary">Read Full Case Study</a>
                         </div>
                         <div class="case-study-image">
-                            <img src="../images/case-study-finance.jpg" alt="Financial services with AI chatbot implementation">
+                            <img src="../images/case-study-finance.jpg" alt="Financial services success story: AI chatbot handling 75% of customer inquiries automatically" loading="lazy">
                         </div>
                     </div>
                 </div>

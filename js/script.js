@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add page transition effect
     document.body.classList.add('page-loaded');
     
+    // Back to Top Button - Moving initialization up before it's used
+    const backToTopButton = document.createElement('div');
+    backToTopButton.classList.add('back-to-top');
+    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTopButton);
+    
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
     // Add subtle parallax effect on mouse move
     document.addEventListener('mousemove', function(e) {
         const moveX = (e.clientX - window.innerWidth / 2) / 50;
@@ -139,19 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply glass effects on initial load
     applyGlassEffects(document.body.classList.contains('dark-mode'));
-    
-    // Back to Top Button
-    const backToTopButton = document.createElement('div');
-    backToTopButton.classList.add('back-to-top');
-    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(backToTopButton);
-    
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
     
     // Glassmorphism Header on scroll
     const header = document.querySelector('header');
@@ -465,4 +465,43 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
+    
+    // FAQ Accordion Functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon i');
+            
+            // Hide answers initially
+            answer.style.maxHeight = '0';
+            answer.style.overflow = 'hidden';
+            answer.style.transition = 'max-height 0.3s ease-out';
+            
+            question.addEventListener('click', () => {
+                // Toggle the active class
+                item.classList.toggle('active');
+                
+                // Toggle the icon
+                if (item.classList.contains('active')) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                    answer.style.maxHeight = '0';
+                }
+            });
+        });
+    }
+    
+    // Image Optimization: add loading="lazy" to non-critical images
+    // Only add to images below the fold
+    const lazyImages = document.querySelectorAll('.service-card img, .testimonial img, #about-brief img');
+    lazyImages.forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
 });

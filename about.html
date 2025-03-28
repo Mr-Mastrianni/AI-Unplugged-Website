@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About AI Unplugged - Learn our story and meet our team">
-    <title>About Us | AI Unplugged</title>
+    <meta name="description" content="Learn about AI Unplugged - We make AI technology accessible and affordable for small businesses through chatbots, predictive analytics, and automation solutions.">
+    <title>About Us | AI Solutions for Small Businesses | AI Unplugged</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aiunplugged.pro/about" />
+    
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,7 +18,7 @@
         <nav id="main-nav">
             <div class="container">
                 <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
+                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -34,6 +38,24 @@
     </header>
 
     <main>
+        <!-- Breadcrumbs with schema.org structured data -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="index.html">
+                            <span property="name">Home</span>
+                        </a>
+                        <meta property="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <span property="name">About Us</span>
+                        <meta property="position" content="2">
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
         <!-- Page Header -->
         <section id="page-header" class="about-header">
             <div class="container">

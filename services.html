@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Unplugged services - AI chatbots, predictive analytics, and business automation for small businesses">
-    <title>Services | AI Unplugged</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="Explore AI Unplugged's affordable AI solutions for small businesses: AI chatbots, predictive analytics, and business automation. Simple, effective technology with measurable ROI.">
+    <title>AI Solutions for Small Businesses | Chatbots, Analytics & Automation | AI Unplugged</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aiunplugged.pro/services" />
+    
+    <!-- Production minified CSS -->
+    <link rel="stylesheet" href="css/styles.min.css">
+    <!-- Fallback for development -->
+    <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -14,7 +21,7 @@
         <nav id="main-nav">
             <div class="container">
                 <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
+                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -34,11 +41,29 @@
     </header>
 
     <main>
+        <!-- Breadcrumbs with schema.org structured data -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="index.html">
+                            <span property="name">Home</span>
+                        </a>
+                        <meta property="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+                        <span property="name">Services</span>
+                        <meta property="position" content="2">
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
         <!-- Page Header -->
         <section id="page-header" class="services-header">
             <div class="container">
-                <h1>Our Services</h1>
-                <p>Tailored AI solutions to help your small business thrive.</p>
+                <h1>Our AI Solutions</h1>
+                <p>We offer a range of AI solutions designed to address specific business needs, all with a focus on simplicity, affordability, and measurable results.</p>
             </div>
         </section>
 
