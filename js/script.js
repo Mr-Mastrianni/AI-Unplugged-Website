@@ -38,10 +38,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
     
     if (hamburger) {
+        // Toggle menu on click
         hamburger.addEventListener('click', function() {
+            toggleMenu();
+        });
+        
+        // Toggle menu on keypress (Enter or Space)
+        hamburger.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+        
+        // Toggle menu function
+        function toggleMenu() {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-        });
+            
+            // Update ARIA attributes for accessibility
+            const expanded = navLinks.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', expanded);
+            
+            // If menu is expanded, set focus to the first navigation item
+            if (expanded) {
+                const firstLink = navLinks.querySelector('a');
+                if (firstLink) {
+                    setTimeout(() => {
+                        firstLink.focus();
+                    }, 100);
+                }
+            }
+        }
     }
     
     // Close menu when a link is clicked
@@ -50,7 +78,18 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', function() {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
         });
+    });
+    
+    // Close menu when Escape key is pressed
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.focus(); // Return focus to hamburger
+        }
     });
     
     // Dark Mode Toggle

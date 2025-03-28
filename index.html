@@ -55,13 +55,13 @@
 </head>
 <body>
     <header>
-        <nav id="main-nav">
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation">
             <div class="container">
                 <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses"></a>
+                    <a href="index.html" aria-label="AI Unplugged Home"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="how-it-works.html">How It Works</a></li>
@@ -69,7 +69,7 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html" class="btn-contact">Contact</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
                     <div class="line"></div>
                     <div class="line"></div>
                     <div class="line"></div>
@@ -91,6 +91,11 @@
                     </div>
                 </div>
                 <div class="hero-image">
+                    <picture>
+                        <source srcset="images/hero-image.webp" type="image/webp">
+                        <source srcset="images/hero-image.jpg" type="image/jpeg"> 
+                        <img src="images/hero-image.jpg" alt="AI solutions powering small business growth - visual representation of AI technology" loading="eager">
+                    </picture>
                     <div class="animated-hero">
                         <div class="business-building">
                             <div class="window"></div>
@@ -274,8 +279,21 @@
             <div class="container">
                 <h2>What Our Clients Say</h2>
                 <div class="testimonials-slider">
-                    <div class="testimonial">
-                        <p>"AI Unplugged transformed our customer service with their chatbot solution. We now provide 24/7 support with 80% fewer resources."</p>
+                    <div class="testimonial" itemscope itemtype="https://schema.org/Review">
+                        <meta itemprop="datePublished" content="2023-03-15"/>
+                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                            <meta itemprop="worstRating" content="1"/>
+                            <meta itemprop="bestRating" content="5"/>
+                            <meta itemprop="ratingValue" content="5"/>
+                            <div class="star-rating" aria-label="5 out of 5 stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p itemprop="reviewBody">"AI Unplugged transformed our customer service with their chatbot solution. We now provide 24/7 support with 80% fewer resources."</p>
                         <div class="client-info">
                             <div class="client-avatar-animation retail">
                                 <div class="avatar-circle"></div>
@@ -284,13 +302,26 @@
                                 <div class="avatar-pulse"></div>
                             </div>
                             <div>
-                                <h4>Sarah Johnson</h4>
+                                <h4 itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sarah Johnson</span></h4>
                                 <p>Retail Store Owner</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial">
-                        <p>"Their predictive analytics helped us optimize our inventory and reduce waste by 25%. The ROI has been incredible."</p>
+                    <div class="testimonial" itemscope itemtype="https://schema.org/Review">
+                        <meta itemprop="datePublished" content="2023-04-20"/>
+                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                            <meta itemprop="worstRating" content="1"/>
+                            <meta itemprop="bestRating" content="5"/>
+                            <meta itemprop="ratingValue" content="5"/>
+                            <div class="star-rating" aria-label="5 out of 5 stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p itemprop="reviewBody">"Their predictive analytics helped us optimize our inventory and reduce waste by 25%. The ROI has been incredible."</p>
                         <div class="client-info">
                             <div class="client-avatar-animation restaurant">
                                 <div class="avatar-circle"></div>
@@ -299,7 +330,7 @@
                                 <div class="avatar-pulse"></div>
                             </div>
                             <div>
-                                <h4>Michael Chen</h4>
+                                <h4 itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Michael Chen</span></h4>
                                 <p>Restaurant Manager</p>
                             </div>
                         </div>
@@ -435,5 +466,11 @@
     <script src="js/script.min.js"></script>
     <!-- Fallback for development -->
     <script src="js/script.js" async></script>
+    <!-- Chatbot -->
+    <script src="js/chatbot.js"></script>
+    <!-- Exit Popup -->
+    <script src="js/exit-popup.js"></script>
+    <!-- A/B Test -->
+    <script src="js/ab-test.js"></script>
 </body>
 </html>
