@@ -23,7 +23,6 @@ The About Us page tells our story and introduces our team:
 - **Our Story**: Learn about how AI Unplugged was founded and our mission
 - **Our Team**: Meet the experts behind our solutions
 - **Partners**: See the organizations we work with
-- **Awards**: View our industry recognitions and achievements
 
 ### Services
 
@@ -67,8 +66,7 @@ Our blog provides educational content about AI for small businesses:
 The Contact page allows you to reach out to us:
 
 - **Contact Form**: Submit inquiries directly through the website
-- **Contact Information**: Find our email, phone, and office location
-- **Office Hours**: See when our team is available
+- **Contact Information**: Find our email and phone number
 - **FAQs**: Get answers to common questions
 
 ## Features for Users
@@ -108,7 +106,7 @@ If you encounter any issues while using the website:
 1. Try refreshing the page
 2. Clear your browser cache
 3. Try a different browser
-4. Contact us through the Contact page or via email at support@aiunplugged.com
+4. Contact us through the Contact page or via email at ai.unplugged11@gmail.com
 
 ## Privacy & Security
 
@@ -120,8 +118,8 @@ If you encounter any issues while using the website:
 
 If you need assistance with the website or have questions about our services:
 
-- **Email**: info@aiunplugged.com
-- **Phone**: (555) 123-4567 (Monday-Friday, 9am-5pm EST)
+- **Email**: ai.unplugged11@gmail.com
+- **Phone**: 2397458189 (Monday-Friday, 9am-5pm EST)
 - **Contact Form**: Available on the Contact page
 
 Thank you for visiting AI Unplugged! We're excited to help your small business leverage the power of AI.

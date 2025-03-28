@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Unplugged ROI Calculator - Estimate your return on investment from our AI solutions">
+    <title>ROI Calculator | AI Unplugged</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/roi-calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #three-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        #roi-calculator {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calculator-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Make sure content is visible over the 3D background */
+        .calculator-form, .calculator-nav, .calculator-results {
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+            background-color: rgba(26, 26, 26, 0.8);
+        }
+        
+        /* 3D Results Container */
+        #results-3d-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none; /* Initially no interaction */
+        }
+        
+        /* Let 3D chart be interactive */
+        .results-grid {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Add some visual depth to result cards */
+        .result-card {
+            backdrop-filter: blur(5px);
+            background-color: rgba(26, 26, 26, 0.75);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px) translateZ(10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Add visible gradient to reflect 3D lighting */
+        .calculator-results {
+            background: linear-gradient(145deg, rgba(32, 32, 32, 0.85), rgba(18, 18, 18, 0.95));
+        }
+        
+        /* Enhance recommendation box to stand out from 3D elements */
+        .recommendation {
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(8px);
+            background-color: rgba(26, 26, 26, 0.75);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section id="page-header" class="calculator-header">
+            <div class="container">
+                <h1>AI ROI Calculator</h1>
+                <p>Estimate your potential return on investment with our AI solutions.</p>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="roi-calculator">
+            <div id="three-container"></div>
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-intro">
+                        <h2>Calculate Your AI ROI</h2>
+                        <p>Use our interactive calculator to estimate the potential financial benefits of implementing AI solutions in your business. Adjust the sliders below to match your specific business situation and see the projected return on investment.</p>
+                    </div>
+                    
+                    <!-- Calculator Navigation -->
+                    <div class="calculator-nav">
+                        <div class="calculator-nav-item active" data-section="business-info">Business Info</div>
+                        <div class="calculator-nav-item" data-section="automation-setup">Automation</div>
+                        <div class="calculator-nav-item" data-section="results-section">Results</div>
+                    </div>
+                    
+                    <!-- Business Info Section -->
+                    <div class="calculator-section active" id="business-info">
+                        <div class="calculator-form">
+                            <h3>Your Business Information</h3>
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <label for="business-size">Number of employees</label>
+                                    <div class="current-value"><span id="business-size-value">10</span> employees</div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" id="business-size" min="1" max="100" value="10" class="slider">
+                                    <div class="slider-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <label for="customer-volume">Monthly customer interactions</label>
+                                    <div class="current-value"><span id="customer-volume-value">1,000</span> interactions</div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" id="customer-volume" min="100" max="10000" value="1000" step="100" class="slider">
+                                    <div class="slider-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="calculator-navigation">
+                                <button class="nav-button back" disabled><i class="fas fa-arrow-left"></i></button>
+                                <button class="nav-button next"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Automation Setup Section -->
+                    <div class="calculator-section" id="automation-setup">
+                        <div class="calculator-form">
+                            <h3>Automation Potential</h3>
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <label for="support-hours">Weekly hours spent on customer support</label>
+                                    <div class="current-value"><span id="support-hours-value">20</span> hours</div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" id="support-hours" min="5" max="100" value="20" class="slider">
+                                    <div class="slider-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <label for="average-wage">Average hourly wage ($)</label>
+                                    <div class="current-value">$<span id="average-wage-value">25</span> per hour</div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" id="average-wage" min="15" max="100" value="25" class="slider">
+                                    <div class="slider-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <label for="automation-percentage">Estimated percentage of tasks that can be automated</label>
+                                    <div class="current-value"><span id="automation-percentage-value">50</span>% automation</div>
+                                </div>
+                                <div class="slider-container">
+                                    <div class="slider-track"></div>
+                                    <input type="range" id="automation-percentage" min="10" max="90" value="50" class="slider">
+                                    <div class="slider-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="calculator-navigation">
+                                <button class="nav-button back"><i class="fas fa-arrow-left"></i></button>
+                                <button class="nav-button next"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div class="calculator-section" id="results-section">
+                        <div class="calculator-results">
+                            <h3>Your Estimated ROI Analysis</h3>
+                            
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <h4>Monthly Cost Savings</h4>
+                                    <div class="result-value" id="monthly-savings">$1,000</div>
+                                    <p class="result-note">Based on employee time saved through automation</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Annual Cost Savings</h4>
+                                    <div class="result-value" id="annual-savings">$12,000</div>
+                                    <p class="result-note">Projected savings over 12 months</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>First-Year ROI</h4>
+                                    <div class="result-value" id="roi-percentage">400%</div>
+                                    <p class="result-note">Return on your AI investment</p>
+                                </div>
+                                
+                                <div class="result-card">
+                                    <h4>Investment Recovery</h4>
+                                    <div class="result-value" id="payback-period">3 months</div>
+                                    <p class="result-note">Time needed to recoup your investment</p>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation">
+                                <h4>Recommended AI Solution for Your Business:</h4>
+                                <div id="recommended-plan">Business Plan - $249/month</div>
+                                <p>Tailored recommendation based on your business size and automation needs</p>
+                            </div>
+                            
+                            <div class="calculator-navigation">
+                                <button class="nav-button back"><i class="fas fa-arrow-left"></i></button>
+                                <button class="nav-button" disabled></button>
+                            </div>
+                        </div>
+                        
+                        <div class="calculator-cta">
+                            <a href="contact.html" class="btn btn-primary"><i class="fas fa-comment-dots"></i> Get a Personalized Analysis</a>
+                            <a href="services.html" class="btn btn-secondary"><i class="fas fa-th-list"></i> View All AI Solutions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Guarantee -->
+        <section id="roi-guarantee">
+            <div class="container">
+                <div class="guarantee-content">
+                    <div class="guarantee-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Our 90-Day ROI Guarantee</h2>
+                    <p>We're confident you'll see tangible results quickly. If you don't achieve the ROI projected for your business within 90 days on an annual plan, we'll provide additional consulting services or extend your subscription at no extra cost until you do.</p>
+                    <a href="contact.html" class="btn btn-primary">Talk to an AI ROI Specialist</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="calculator-faq">
+            <div class="container">
+                <h2>Frequently Asked Questions About AI ROI</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How accurate is this ROI calculator?</h3>
+                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>This calculator provides estimates based on industry averages and typical results from our existing customers. Your actual results may vary based on your specific business processes, implementation approach, and other factors unique to your organization. We recommend using these figures as a starting point for a more detailed discussion with our team.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How exactly is ROI calculated for AI implementations?</h3>
+                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our ROI calculation compares the projected annual savings from implementing our AI solutions against the total annual cost of the recommended plan. The calculation includes direct labor savings from automation, reduced customer support needs, improved operational efficiency, and other measurable benefits. We use a conservative model that focuses on quantifiable outcomes rather than speculative gains.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What additional benefits aren't included in the ROI calculation?</h3>
+                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>This calculator focuses primarily on direct cost savings, but AI implementation typically delivers many additional benefits not quantified here. These include improved customer satisfaction and retention, reduced error rates, faster response times, better data for decision-making, employee satisfaction from reducing repetitive tasks, and competitive advantages. These "soft benefits" often provide significant additional value beyond the calculated ROI.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta">
+            <div class="container">
+                <h2>Ready to Transform Your Business with AI?</h2>
+                <p>Schedule a free consultation to discuss your specific needs and ROI potential.</p>
+                <a href="contact.html" class="btn btn-primary">Get Started Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>AI Unplugged</h3>
+                    <p>Making AI accessible and practical for small businesses.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services/chatbots.html">AI Chatbots</a></li>
+                        <li><a href="services/analytics.html">Predictive Analytics</a></li>
+                        <li><a href="services/automation.html">Business Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/AiUnplugge80544"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/?utm_source=ig_web_button_share_sheet"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> ai.unplugged11@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/three-animations.js"></script>
+    <script src="js/3d-results.js"></script>
+    <script src="js/particle-background.js"></script>
+    <script>
+        // ROI Calculator JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize sliders
+            const businessSize = document.getElementById('business-size');
+            const customerVolume = document.getElementById('customer-volume');
+            const supportHours = document.getElementById('support-hours');
+            const averageWage = document.getElementById('average-wage');
+            const automationPercentage = document.getElementById('automation-percentage');
+            
+            // Initialize value displays
+            const businessSizeValue = document.getElementById('business-size-value');
+            const customerVolumeValue = document.getElementById('customer-volume-value');
+            const supportHoursValue = document.getElementById('support-hours-value');
+            const averageWageValue = document.getElementById('average-wage-value');
+            const automationPercentageValue = document.getElementById('automation-percentage-value');
+            
+            // Initialize result displays
+            const monthlySavings = document.getElementById('monthly-savings');
+            const annualSavings = document.getElementById('annual-savings');
+            const roiPercentage = document.getElementById('roi-percentage');
+            const paybackPeriod = document.getElementById('payback-period');
+            const recommendedPlan = document.getElementById('recommended-plan');
+            
+            // Function to update slider fill effect and thumb position
+            function updateSliderFill(slider) {
+                const fill = slider.nextElementSibling;
+                const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+                fill.style.width = percentage + '%';
+                
+                // Position the thumb (::after pseudo-element)
+                const container = slider.parentElement;
+                const containerWidth = container.offsetWidth;
+                const thumbPosition = (percentage / 100) * containerWidth - 13; // Half the thumb width
+                container.style.setProperty('--thumb-position', thumbPosition + 'px');
+            }
+            
+            // Create slider fill effect containers
+            const sliders = [businessSize, customerVolume, supportHours, averageWage, automationPercentage];
+            
+            sliders.forEach(slider => {
+                // Update the fill on slider input
+                slider.addEventListener('input', function() {
+                    updateSliderFill(this);
+                });
+                
+                // Initialize fill
+                updateSliderFill(slider);
+                
+                // Use both input and change events for smoother updates
+                slider.addEventListener('input', updateCalculator);
+                slider.addEventListener('change', updateCalculator);
+                
+                // Add focus and blur events for better UI feedback
+                slider.addEventListener('focus', function() {
+                    this.parentElement.classList.add('slider-active');
+                });
+                
+                slider.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('slider-active');
+                });
+            });
+            
+            // Format number with commas for thousands
+            function formatNumber(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+            // Navigation system
+            const calculatorNavItems = document.querySelectorAll('.calculator-nav-item');
+            const calculatorSections = document.querySelectorAll('.calculator-section');
+            const nextButtons = document.querySelectorAll('.nav-button.next');
+            const backButtons = document.querySelectorAll('.nav-button.back');
+            
+            // Set up navigation between sections
+            calculatorNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-section');
+                    navigateToSection(targetSection);
+                });
+            });
+            
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = document.querySelector('.calculator-section.active');
+                    const currentIndex = Array.from(calculatorSections).indexOf(currentSection);
+                    
+                    if (currentIndex < calculatorSections.length - 1) {
+                        const nextSection = calculatorSections[currentIndex + 1].id;
+                        navigateToSection(nextSection);
+                    }
+                });
+            });
+            
+            backButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentSection = document.querySelector('.calculator-section.active');
+                    const currentIndex = Array.from(calculatorSections).indexOf(currentSection);
+                    
+                    if (currentIndex > 0) {
+                        const prevSection = calculatorSections[currentIndex - 1].id;
+                        navigateToSection(prevSection);
+                    }
+                });
+            });
+            
+            function navigateToSection(sectionId) {
+                // Update navigation tabs
+                calculatorNavItems.forEach(item => {
+                    if (item.getAttribute('data-section') === sectionId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Update sections visibility
+                calculatorSections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top of calculator
+                document.querySelector('.calculator-container').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Initial calculation
+            updateCalculator();
+            
+            function updateCalculator() {
+                // Update display values with proper formatting
+                businessSizeValue.textContent = businessSize.value;
+                customerVolumeValue.textContent = formatNumber(customerVolume.value);
+                supportHoursValue.textContent = supportHours.value;
+                averageWageValue.textContent = averageWage.value;
+                automationPercentageValue.textContent = automationPercentage.value;
+                
+                // Calculate savings
+                const employeeCount = parseInt(businessSize.value);
+                const hoursPerWeek = parseInt(supportHours.value);
+                const hourlyWage = parseInt(averageWage.value);
+                const automationPercent = parseInt(automationPercentage.value) / 100;
+                const interactionCount = parseInt(customerVolume.value);
+                
+                // Monthly time saved (in hours)
+                const monthlySavedHours = hoursPerWeek * 4.33 * automationPercent;
+                
+                // Monthly cost savings
+                const monthlyCostSavings = monthlySavedHours * hourlyWage;
+                
+                // Annual savings
+                const annualCostSavings = monthlyCostSavings * 12;
+                
+                // Determine recommended plan with more detailed logic
+                let planName, planCost;
+                if (employeeCount <= 5 && interactionCount <= 500) {
+                    planName = "Essentials";
+                    planCost = 99;
+                } else if ((employeeCount <= 20 && interactionCount <= 2000) || 
+                          (employeeCount <= 10 && interactionCount <= 3000)) {
+                    planName = "Business";
+                    planCost = 249;
+                } else if (employeeCount <= 50 || interactionCount <= 5000) {
+                    planName = "Scale";
+                    planCost = 499;
+                } else {
+                    planName = "Custom Enterprise";
+                    planCost = 999;
+                }
+                
+                // Calculate ROI
+                const annualInvestment = planCost * 12;
+                const roiPercent = Math.round((annualCostSavings / annualInvestment) * 100);
+                
+                // Calculate payback period (in months)
+                const paybackMonths = Math.ceil(annualInvestment / monthlyCostSavings);
+                
+                // Update result displays with animation effect
+                animateValue(monthlySavings, monthlySavings.textContent.replace(/[^0-9.-]+/g,""), Math.round(monthlyCostSavings));
+                animateValue(annualSavings, annualSavings.textContent.replace(/[^0-9.-]+/g,""), Math.round(annualCostSavings));
+                animateValue(roiPercentage, roiPercentage.textContent.replace(/[^0-9.-]+/g,""), roiPercent, '%');
+                
+                // Set payback period with proper wording
+                if (paybackMonths < 1) {
+                    paybackPeriod.textContent = 'Less than 1 month';
+                } else if (paybackMonths === 1) {
+                    paybackPeriod.textContent = '1 month';
+                } else if (paybackMonths > 12) {
+                    paybackPeriod.textContent = 'Over 1 year';
+                } else {
+                    paybackPeriod.textContent = paybackMonths + ' months';
+                }
+                
+                recommendedPlan.textContent = planName + ' Plan - $' + planCost + '/month';
+                
+                // Trigger 3D update after values are updated
+                if (typeof dispatchUpdateEvent === 'function') {
+                    setTimeout(dispatchUpdateEvent, 100);
+                }
+                
+                // Trigger neural network effect
+                if (typeof pulseNetwork === 'function') {
+                    pulseNetwork();
+                }
+            }
+            
+            // Animation function for updating values
+            function animateValue(element, start, end, suffix = '') {
+                // Strip any non-numeric characters for the start value
+                start = parseFloat(start) || 0;
+                
+                // Make sure we have valid numbers
+                if (isNaN(start)) start = 0;
+                if (isNaN(end)) end = 0;
+                
+                // Calculate the step size based on the difference
+                const diff = end - start;
+                const duration = 300; // milliseconds
+                const steps = 20;
+                const step = diff / steps;
+                
+                // Don't animate small changes
+                if (Math.abs(diff) < 10) {
+                    element.textContent = '$' + formatNumber(end) + suffix;
+                    return;
+                }
+                
+                let current = start;
+                const timer = setInterval(() => {
+                    current += step;
+                    
+                    // Check if we've reached the end value
+                    if ((step > 0 && current >= end) || (step < 0 && current <= end)) {
+                        clearInterval(timer);
+                        current = end;
+                    }
+                    
+                    // Update the display with proper formatting
+                    if (element.id === 'roi-percentage') {
+                        element.textContent = Math.round(current) + suffix;
+                    } else {
+                        element.textContent = '$' + formatNumber(Math.round(current));
+                    }
+                    
+                }, duration / steps);
+            }
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    faqItem.classList.toggle('active');
+                    
+                    const icon = question.querySelector('.faq-icon i');
+                    if (faqItem.classList.contains('active')) {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                        
+                        // Get the answer element and set its max height
+                        const answer = faqItem.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                        
+                        // Reset the max height
+                        const answer = faqItem.querySelector('.faq-answer');
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+            
+            // Update all sliders on window resize for responsive adjustments
+            window.addEventListener('resize', function() {
+                sliders.forEach(slider => {
+                    updateSliderFill(slider);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

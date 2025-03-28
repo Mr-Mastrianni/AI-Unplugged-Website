@@ -1,0 +1,273 @@
+/* ROI Calculator Specific Styles */
+/* These styles fix the issues with text overlap, contrast, alignment and spacing */
+
+/* Form Group - Revised for better accessibility */
+.form-group {
+    margin-bottom: 2.5rem;
+}
+
+/* Label and current value containers */
+.slider-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.slider-label label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e0e0e0;
+    margin: 0;
+    max-width: 65%;
+}
+
+.current-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4285f4;
+    padding: 0.35rem 0.75rem;
+    background: rgba(66, 133, 244, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(66, 133, 244, 0.2);
+}
+
+/* Slider container and track */
+.slider-container {
+    position: relative;
+    height: 40px; 
+    margin: 0;
+    --thumb-position: 0px; /* Default position variable for the thumb */
+}
+
+.slider-track {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: #2d2d2d;
+    border-radius: 10px;
+    top: 15px;
+    left: 0;
+}
+
+.slider-fill {
+    position: absolute;
+    height: 10px;
+    top: 15px;
+    left: 0;
+    background: linear-gradient(90deg, #4285f4, #34a853);
+    border-radius: 10px;
+    pointer-events: none;
+    transition: width 0.1s ease;
+}
+
+/* Slider thumb and track improvements */
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; /* Increased height for better touch targets */
+    margin: 0;
+    opacity: 0.0001; /* Almost invisible but still interactable */
+    z-index: 10;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+/* Custom slider thumb with pseudo-element */
+.slider-container::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #ffffff;
+    top: 7px;
+    left: var(--thumb-position, 0px); /* Use the CSS variable for positioning */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid #4285f4;
+    pointer-events: none;
+    transition: transform 0.1s ease, left 0.1s ease;
+    z-index: 5;
+}
+
+/* Active state and focus enhancements */
+.slider:active + .slider-fill {
+    background: linear-gradient(90deg, #64a0ff, #4eca6c);
+}
+
+.slider-active::after {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(66, 133, 244, 0.6);
+}
+
+/* Calculator Navigation Buttons - Improved spacing */
+.calculator-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.nav-button {
+    background: rgba(66, 133, 244, 0.1);
+    color: #4285f4;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:hover {
+    background: #4285f4;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Result cards - Fixed spacing */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+/* 3D Results Container */
+#results-3d-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Initially no interaction */
+}
+
+/* Let 3D chart be interactive */
+.results-grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add some visual depth to result cards */
+.result-card {
+    backdrop-filter: blur(5px);
+    background-color: rgba(26, 26, 26, 0.75);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-5px) translateZ(10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Add visible gradient to reflect 3D lighting */
+.calculator-results {
+    background: linear-gradient(145deg, rgba(32, 32, 32, 0.85), rgba(18, 18, 18, 0.95));
+}
+
+/* Enhance recommendation box to stand out from 3D elements */
+.recommendation {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    background-color: rgba(26, 26, 26, 0.75);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+/* Guarantee section styling for particles */
+#roi-guarantee {
+    position: relative;
+    min-height: 500px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#roi-guarantee .guarantee-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(26, 26, 26, 0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#roi-guarantee .guarantee-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+#roi-guarantee .guarantee-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: linear-gradient(45deg, #4285f4, #0d47a1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(13, 71, 161, 0.5);
+}
+
+#roi-guarantee h2 {
+    position: relative;
+    color: #4285f4;
+    margin-bottom: 20px;
+}
+
+#roi-guarantee h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #4285f4, #34a853);
+    border-radius: 3px;
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 768px) {
+    .slider-label {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .slider-label label {
+        margin-bottom: 0.5rem;
+        max-width: 100%;
+    }
+    
+    .current-value {
+        align-self: flex-start;
+        margin-bottom: 0.5rem;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+} 
