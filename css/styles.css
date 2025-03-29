@@ -1629,8 +1629,8 @@ header.glass-header {
 
 /* Footer */
 footer {
-    background-color: var(--dark-color);
-    color: var(--white-color);
+    background-color: #343a40;
+    color: #ffffff;
     padding: 4rem 0 2rem;
 }
 
@@ -1643,24 +1643,34 @@ footer {
 
 .footer-col h3, .footer-col h4 {
     margin-bottom: 1.5rem;
-    color: var(--white-color);
+    color: #ffffff;
+    font-weight: 700; /* Make headings bolder */
 }
 
 .footer-col ul {
     list-style: none;
+    padding-left: 0;
 }
 
 .footer-col ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem; /* Increased spacing between list items */
 }
 
 .footer-col a {
-    color: #adb5bd;
+    color: #e0e0e0; /* Much lighter color for better contrast */
     transition: color 0.3s ease;
+    text-decoration: none; /* No underline by default */
+    position: relative; /* For the underline effect */
+    display: inline-block; /* For the underline effect */
 }
 
 .footer-col a:hover {
-    color: var(--white-color);
+    color: #ffffff;
+    text-decoration: underline; /* Underline on hover */
+}
+
+.footer-col p {
+    color: #e0e0e0; /* Ensure paragraph text has good contrast */
 }
 
 .social-links {
@@ -1677,19 +1687,30 @@ footer {
     height: 40px;
     border-radius: 50%;
     background-color: #495057;
-    color: var(--white-color);
+    color: #ffffff;
     transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-    background-color: var(--primary-color);
+    background-color: #007bff;
+    transform: translateY(-3px); /* Slight upward movement on hover */
 }
 
 .contact-info p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: #e0e0e0; /* Increased contrast */
+}
+
+.contact-info a {
+    color: #e0e0e0; /* Increased contrast */
+}
+
+.contact-info a:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .footer-bottom {
@@ -1702,11 +1723,23 @@ footer {
 
 .footer-bottom p {
     margin-bottom: 0;
+    color: #e0e0e0; /* Increased contrast */
 }
 
 .legal-links {
     display: flex;
     gap: 1rem;
+}
+
+.legal-links a {
+    color: #e0e0e0; /* Increased contrast */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.legal-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 /* Dark Mode Toggle */
