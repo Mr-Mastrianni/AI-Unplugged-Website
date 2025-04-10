@@ -132,11 +132,19 @@
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan), var(--terminal-green));
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .hero-bg {
@@ -761,7 +769,7 @@
                     <div class="logo">
                         <a href="index.html" aria-label="AI Unplugged Home" class="flex items-center">
                             <img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
-                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                            <span class="logo-text ml-3 text-2xl font-bold animate-pulse-slow">AI<span class="gradient-text">Unplugged</span></span>
                         </a>
                     </div>
                     <ul class="nav-links hidden md:flex items-center space-x-6">

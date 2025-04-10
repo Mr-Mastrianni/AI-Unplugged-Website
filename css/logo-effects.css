@@ -27,9 +27,11 @@
 .logo .logo-text {
     margin-left: 0.5rem;
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 2.5rem; /* Increased from 1.25rem to match logo.css */
     display: flex;
     align-items: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5);
 }
 
 /* Cyber terminal glow effect */
@@ -53,7 +55,7 @@
 }
 
 .logo a:hover .gradient-text {
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
 }
 
 /* Pulse animation for logo */
@@ -110,7 +112,8 @@
     }
 
     .logo .logo-text {
-        font-size: 1.5rem; /* Increased from 1.25rem */
+        font-size: 1.75rem; /* Increased from 1.5rem */
+        letter-spacing: 0.5px;
     }
 }
 

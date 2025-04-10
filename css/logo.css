@@ -38,7 +38,9 @@
 .logo .logo-text {
     margin-left: 0.75rem;
     font-weight: bold;
-    font-size: 2rem; /* Increased from 1.75rem */
+    font-size: 2.5rem; /* Increased from 2rem */
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5);
 }
 
 /* Hover effects */
@@ -69,7 +71,8 @@
     }
 
     .logo .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.5rem; /* Increased from 1.25rem */
+        letter-spacing: 0.5px;
     }
 }
 

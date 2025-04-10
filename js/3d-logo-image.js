@@ -551,21 +551,22 @@ function addLogoImage() {
     textOverlay.className = 'logo-text-overlay';
     textOverlay.textContent = 'AI UNPLUGGED';
     textOverlay.style.position = 'absolute';
-    textOverlay.style.bottom = '10%';
+    textOverlay.style.bottom = '15%'; // Moved up from 10%
     textOverlay.style.left = '0';
     textOverlay.style.width = '100%';
     textOverlay.style.textAlign = 'center';
     textOverlay.style.color = '#00ff00';
     textOverlay.style.fontFamily = '"Orbitron", sans-serif';
-    textOverlay.style.fontSize = 'clamp(1rem, 4vw, 2rem)';
+    textOverlay.style.fontSize = 'clamp(1.5rem, 5vw, 3rem)'; // Increased from clamp(1rem, 4vw, 2rem)
     textOverlay.style.fontWeight = 'bold';
-    textOverlay.style.textShadow = '0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00';
+    textOverlay.style.textShadow = '0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00';
     textOverlay.style.animation = 'text-glow 3s ease-in-out infinite';
     textOverlay.style.zIndex = '2';
-    textOverlay.style.letterSpacing = '2px';
+    textOverlay.style.letterSpacing = '3px'; // Increased from 2px
     textOverlay.style.backfaceVisibility = 'visible';
     textOverlay.style.webkitBackfaceVisibility = 'visible';
     textOverlay.style.pointerEvents = 'none'; // Don't interfere with mouse events
+    textOverlay.style.opacity = '1'; // Ensure full opacity
 
     // Preload the image to ensure it's ready before animation starts
     const preloadImg = new Image();
@@ -729,9 +730,9 @@ function addLogoImage() {
         }
 
         @keyframes text-glow {
-            0% { opacity: 0.9; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00; }
-            50% { opacity: 1; text-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00, 0 0 35px #00ff00, 0 0 45px #00ff00, 0 0 55px #00ff00; }
-            100% { opacity: 0.9; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00; }
+            0% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00; }
+            50% { opacity: 1; text-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00, 0 0 35px #00ff00, 0 0 45px #00ff00, 0 0 55px #00ff00, 0 0 65px #00ff00; }
+            100% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00; }
         }
     `;
     document.head.appendChild(style);
