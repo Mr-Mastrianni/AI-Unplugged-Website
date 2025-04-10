@@ -1,0 +1,199 @@
+/* Logo Enhancement Styles for AI Unplugged Website */
+
+/* Base logo container styling */
+.logo {
+    position: relative;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Logo image styling */
+.logo img {
+    height: 150px; /* Increased from 100px */
+    width: 150px; /* Increased from 100px */
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 0, 0.7)); /* Enhanced glow */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Logo text styling */
+.logo .logo-text {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Cyber terminal glow effect */
+.logo img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.2) 0%, transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover effects */
+.logo a:hover img {
+    transform: scale(1.05) rotate(-5deg);
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
+}
+
+.logo a:hover .gradient-text {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Pulse animation for logo */
+@keyframes logo-pulse {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.6));
+    }
+    100% {
+        filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.3));
+    }
+}
+
+.logo-pulse {
+    animation: logo-pulse 3s infinite ease-in-out;
+}
+
+/* Terminal scan line effect */
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 255, 0, 0.5);
+    opacity: 0;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover::before {
+    opacity: 1;
+    animation: scan-line 1.5s linear;
+}
+
+@keyframes scan-line {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .logo img {
+        height: 100px; /* Increased from 70px */
+        width: 100px; /* Increased from 70px */
+    }
+
+    .logo .logo-text {
+        font-size: 1.5rem; /* Increased from 1.25rem */
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .logo img {
+        height: 120px; /* Increased from 85px */
+        width: 120px; /* Increased from 85px */
+    }
+}
+
+/* Dark mode enhancements */
+.dark-mode .logo img {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5));
+}
+
+/* Logo loading animation */
+@keyframes logo-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.logo-appear {
+    animation: logo-appear 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 3D rotation effect for logo */
+@keyframes logo-rotate-3d {
+    0% { transform: perspective(800px) rotateY(0deg) rotateX(10deg); }
+    25% { transform: perspective(800px) rotateY(90deg) rotateX(5deg); }
+    50% { transform: perspective(800px) rotateY(180deg) rotateX(0deg); }
+    75% { transform: perspective(800px) rotateY(270deg) rotateX(5deg); }
+    100% { transform: perspective(800px) rotateY(360deg) rotateX(10deg); }
+}
+
+.logo-rotate-3d {
+    animation: logo-rotate-3d 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect to pause rotation and add glow */
+.logo-rotate-3d:hover {
+    animation-play-state: paused;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8));
+    transform: scale(1.1) perspective(800px) rotateY(0deg);
+}
+
+/* SVG logo specific styles */
+.logo svg {
+    height: 150px; /* Increased from 100px */
+    width: auto;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 0, 0.7)); /* Enhanced glow */
+}
+
+.logo svg path {
+    transition: fill 0.3s ease;
+}
+
+.logo:hover svg path.primary {
+    fill: var(--terminal-cyan, #0ff);
+}
+
+/* Print media query to ensure logo displays properly when printed */
+@media print {
+    .logo img {
+        filter: none !important;
+        animation: none !important;
+    }
+
+    .logo::before {
+        display: none;
+    }
+}

@@ -1,94 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- AI Unplugged Website - Optimized for Performance, Accessibility, and Mobile Experience -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Unplugged Business Automation - AI-powered automation solutions for small businesses">
-    <title>Business Automation | AI Unplugged</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="AI Unplugged Business Automation - AI-powered automation solutions for small businesses. Streamline operations, reduce manual tasks, and improve efficiency with our intelligent automation tools.">
+    <title>Business Automation | AI Solutions for Small Businesses | AI Unplugged</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aiunplugged.pro/services/automation.html" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Business Automation | AI Solutions for Small Businesses | AI Unplugged">
+    <meta property="og:description" content="AI Unplugged provides intelligent business automation solutions for small businesses. Streamline operations, reduce manual tasks, and improve efficiency with our AI-powered tools.">
+    <meta property="og:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+    <meta property="og:url" content="https://aiunplugged.pro/services/automation.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Business Automation | AI Solutions for Small Businesses | AI Unplugged">
+    <meta name="twitter:description" content="AI Unplugged provides intelligent business automation solutions for small businesses. Streamline operations, reduce manual tasks, and improve efficiency with our AI-powered tools.">
+    <meta name="twitter:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Business Automation",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "AI Unplugged",
+        "url": "https://aiunplugged.pro"
+      },
+      "description": "AI-powered automation solutions for small businesses to streamline operations, reduce manual tasks, and improve efficiency.",
+      "url": "https://aiunplugged.pro/services/automation.html"
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Terminal Theme CSS -->
+    <link rel="stylesheet" href="../css/terminal-theme.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="../css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="../css/logo.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a12, #0f111a);
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+            text-shadow: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--terminal-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-cyan);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            border: 2px solid var(--terminal-cyan);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .terminal-window {
+            border: 1px solid var(--terminal-border);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: rgba(10, 10, 18, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terminal-header {
+            background-color: #1a1a2e;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-border);
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--terminal-red);
+        }
+
+        .terminal-button.close {
+            background-color: #ff5f56;
+        }
+
+        .terminal-button.minimize {
+            background-color: #ffbd2e;
+        }
+
+        .terminal-button.maximize {
+            background-color: #27c93f;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--terminal-green);
+            font-size: 0.875rem;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+        }
+
+        .terminal-text {
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite;
+        }
+
+        @keyframes logo-pulse {
+            0% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="../index.html"><img src="../images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about.html">About Us</a></li>
-                    <li><a href="../services.html" class="active">Services</a></li>
-                    <li><a href="../how-it-works.html">How It Works</a></li>
-                    <li><a href="../blog.html">Blog</a></li>
-                    <li><a href="../contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="../index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="../images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="48" height="48" class="logo-rotate-3d">
+                            <span class="logo-text ml-2 text-xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="../services.html" class="text-terminal-green font-medium" aria-current="page">Services</a></li>
+                        <li><a href="../how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="../contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" class="pt-20">
+        <!-- Breadcrumbs with schema.org structured data -->
+        <div class="bg-gray-900 py-2">
+            <div class="container mx-auto px-4">
+                <ol class="flex text-sm text-gray-400" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../index.html" class="hover:text-terminal-cyan">
+                            <span property="name">Home</span>
+                        </a>
+                        <meta property="position" content="1">
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../services.html" class="hover:text-terminal-cyan">
+                            <span property="name">Services</span>
+                        </a>
+                        <meta property="position" content="2">
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <span property="name" class="font-medium text-terminal-green">Business Automation</span>
+                        <meta property="position" content="3">
+                    </li>
+                </ol>
+            </div>
+        </div>
+
         <!-- Page Header -->
-        <section id="page-header" class="service-header">
-            <div class="container">
-                <h1>Business Automation</h1>
-                <p>Streamline operations and reduce manual tasks with AI-powered automation</p>
+        <section id="page-header" class="terminal-section py-16 bg-dark text-terminal-green relative overflow-hidden">
+            <canvas id="matrixCanvas1" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">automation.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h1 class="text-4xl font-bold mb-4 terminal-text">Business <span class="terminal-gradient">Automation</span></h1>
+                    <p class="text-xl terminal-text">Streamline operations and reduce manual tasks with AI-powered automation</p>
+                </div>
             </div>
         </section>
 
         <!-- Service Overview -->
-        <section id="service-overview">
-            <div class="container">
-                <div class="service-intro">
-                    <div class="service-image">
-                        <div class="automation-animation">
-                            <div class="process-flow">
-                                <div class="process-node start">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <div class="process-arrow a1">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node processor">
-                                    <i class="fas fa-cogs"></i>
-                                    <div class="processor-pulse"></div>
-                                </div>
-                                <div class="process-arrow a2">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node approval">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div class="process-arrow a3">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node end">
-                                    <i class="fas fa-flag-checkered"></i>
-                                </div>
-                            </div>
-                            <div class="automation-data">
-                                <div class="data-packet"></div>
-                                <div class="data-packet"></div>
-                                <div class="data-packet"></div>
+        <section id="service-overview" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas2" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">overview.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="order-2 md:order-1">
+                            <h2 class="text-3xl font-bold mb-6 terminal-text">Free Your Team from <span class="terminal-gradient">Repetitive Tasks</span></h2>
+                            <p class="text-terminal-green mb-4">Our Business Automation solutions leverage AI to streamline your operations, eliminating manual, repetitive tasks and allowing your team to focus on high-value activities. From document processing and data entry to complex workflows and approval processes, we help you automate the routine aspects of your business.</p>
+                            <p class="text-terminal-green mb-6">By implementing intelligent automation, your business can achieve greater efficiency, reduce errors, cut operational costs, and scale operations without proportionally increasing staff.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="../contact.html" class="btn-primary">Get Started</a>
+                                <a href="../assessment/index.html" class="btn-secondary">Take Assessment</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="service-description">
-                        <h2>Free Your Team from Repetitive Tasks</h2>
-                        <p>Our Business Automation solutions leverage AI to streamline your operations, eliminating manual, repetitive tasks and allowing your team to focus on high-value activities. From document processing and data entry to complex workflows and approval processes, we help you automate the routine aspects of your business.</p>
-                        <p>By implementing intelligent automation, your business can achieve greater efficiency, reduce errors, cut operational costs, and scale operations without proportionally increasing staff.</p>
-                        <div class="cta-buttons">
-                            <a href="../contact.html" class="btn btn-primary">Get Started</a>
-                            <a href="../assessment/index.html" class="btn btn-secondary">Take Assessment</a>
+                        <div class="order-1 md:order-2 relative">
+                            <div class="automation-animation bg-terminal-bg bg-opacity-50 p-6 rounded-lg border border-terminal-border">
+                                <div class="flex flex-col items-center">
+                                    <div class="text-center mb-8">
+                                        <div class="text-xl font-mono text-terminal-green mb-2">// Automation Workflow</div>
+                                        <div class="text-sm text-gray-400 font-mono">Processing data...</div>
+                                    </div>
+                                    <div class="process-flow flex items-center justify-between w-full mb-8">
+                                        <div class="process-node flex flex-col items-center">
+                                            <div class="w-12 h-12 rounded-full bg-terminal-bg border-2 border-terminal-green flex items-center justify-center text-terminal-green text-2xl mb-2">
+                                                <i class="fas fa-file-alt"></i>
+                                            </div>
+                                            <span class="text-xs text-terminal-green">Input</span>
+                                        </div>
+                                        <div class="process-arrow w-12 h-0.5 bg-terminal-green relative">
+                                            <div class="absolute -right-2 -top-1 w-0 h-0 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-terminal-green"></div>
+                                        </div>
+                                        <div class="process-node flex flex-col items-center">
+                                            <div class="w-12 h-12 rounded-full bg-terminal-bg border-2 border-terminal-cyan flex items-center justify-center text-terminal-cyan text-2xl mb-2 animate-pulse">
+                                                <i class="fas fa-cogs"></i>
+                                            </div>
+                                            <span class="text-xs text-terminal-cyan">Process</span>
+                                        </div>
+                                        <div class="process-arrow w-12 h-0.5 bg-terminal-green relative">
+                                            <div class="absolute -right-2 -top-1 w-0 h-0 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-terminal-green"></div>
+                                        </div>
+                                        <div class="process-node flex flex-col items-center">
+                                            <div class="w-12 h-12 rounded-full bg-terminal-bg border-2 border-terminal-green flex items-center justify-center text-terminal-green text-2xl mb-2">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                            <span class="text-xs text-terminal-green">Output</span>
+                                        </div>
+                                    </div>
+                                    <div class="terminal-code-block w-full bg-black bg-opacity-70 p-4 rounded font-mono text-sm text-terminal-green overflow-hidden">
+                                        <div class="typing-animation">
+                                            <div class="line"><span class="text-terminal-cyan">function</span> <span class="text-terminal-green">automateProcess</span>() {</div>
+                                            <div class="line">  <span class="text-terminal-cyan">const</span> data = <span class="text-terminal-cyan">await</span> fetchInputData();</div>
+                                            <div class="line">  <span class="text-terminal-cyan">const</span> processed = processWithAI(data);</div>
+                                            <div class="line">  <span class="text-terminal-cyan">return</span> generateOutput(processed);</div>
+                                            <div class="line">}</div>
+                                            <div class="line"></div>
+                                            <div class="line"><span class="text-terminal-cyan">// Automation running...</span></div>
+                                            <div class="line">automateProcess();</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,113 +373,147 @@
         </section>
 
         <!-- Benefits -->
-        <section id="service-benefits">
-            <div class="container">
-                <h2>Benefits of Business Automation</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Time Savings</h3>
-                        <p>Reclaim hours spent on repetitive tasks by automating routine processes, allowing your team to focus on strategic initiatives.</p>
+        <section id="service-benefits" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas3" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-check-double"></i>
+                    <div class="terminal-title">benefits.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Benefits of <span class="terminal-gradient">Business Automation</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Time Savings</h3>
+                            <p class="text-terminal-green">Reclaim hours spent on repetitive tasks by automating routine processes, allowing your team to focus on strategic initiatives.</p>
                         </div>
-                        <h3>Error Reduction</h3>
-                        <p>Minimize human error in data entry, calculations, and other routine tasks through consistent, precise automation.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Error Reduction</h3>
+                            <p class="text-terminal-green">Minimize human error in data entry, calculations, and other routine tasks through consistent, precise automation.</p>
                         </div>
-                        <h3>Cost Efficiency</h3>
-                        <p>Reduce operational costs by automating processes that would otherwise require manual labor or additional staffing.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-tachometer-alt"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Cost Efficiency</h3>
+                            <p class="text-terminal-green">Reduce operational costs by automating processes that would otherwise require manual labor or additional staffing.</p>
                         </div>
-                        <h3>Increased Productivity</h3>
-                        <p>Process more transactions, requests, and tasks in less time, significantly boosting your overall business throughput.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Increased Productivity</h3>
+                            <p class="text-terminal-green">Process more transactions, requests, and tasks in less time, significantly boosting your overall business throughput.</p>
                         </div>
-                        <h3>Scalability</h3>
-                        <p>Grow your business operations without proportionately increasing staff or overhead costs through efficient automation.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-chart-pie"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Scalability</h3>
+                            <p class="text-terminal-green">Grow your business operations without proportionately increasing staff or overhead costs through efficient automation.</p>
                         </div>
-                        <h3>Better Analytics</h3>
-                        <p>Gain comprehensive insights through automated data collection and reporting across your business processes.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Better Analytics</h3>
+                            <p class="text-terminal-green">Gain comprehensive insights through automated data collection and reporting across your business processes.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features -->
-        <section id="service-features">
-            <div class="container">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Document Processing</h3>
-                            <p>Automate the extraction, processing, and filing of information from documents like invoices, receipts, contracts, and forms.</p>
-                        </div>
+        <section id="service-features" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas4" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-tasks"></i>
+                    <div class="terminal-title">features.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Key <span class="terminal-gradient">Features</span></h2>
+                    <div class="space-y-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Document Processing</h3>
+                                    <p class="text-terminal-green">Automate the extraction, processing, and filing of information from documents like invoices, receipts, contracts, and forms.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Workflow Automation</h3>
-                            <p>Create intelligent workflows that route tasks, approvals, and information through your organization based on predefined rules.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Workflow Automation</h3>
+                                    <p class="text-terminal-green">Create intelligent workflows that route tasks, approvals, and information through your organization based on predefined rules.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-envelope"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Email & Communication</h3>
+                                    <p class="text-terminal-green">Automate email responses, notifications, reminders, and follow-ups based on triggers and business rules.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Email & Communication</h3>
-                            <p>Automate email responses, notifications, reminders, and follow-ups based on triggers and business rules.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Data Entry & Processing</h3>
+                                    <p class="text-terminal-green">Eliminate manual data entry with systems that automatically capture, validate, and process information across platforms.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-calculator"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Approval Processes</h3>
+                                    <p class="text-terminal-green">Streamline approvals with automated routing, notifications, and escalations based on business rules and timelines.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Data Entry & Processing</h3>
-                            <p>Eliminate manual data entry with systems that automatically capture, validate, and process information across platforms.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Approval Processes</h3>
-                            <p>Streamline approvals with automated routing, notifications, and escalations based on business rules and timelines.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Financial Operations</h3>
-                            <p>Automate invoicing, payment processing, expense management, and financial reconciliation tasks.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Financial Operations</h3>
+                                    <p class="text-terminal-green">Automate invoicing, payment processing, expense management, and financial reconciliation tasks.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,50 +521,85 @@
         </section>
 
         <!-- How It Works -->
-        <section id="how-it-works">
-            <div class="container">
-                <h2>How Our Business Automation Works</h2>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Process Assessment</h3>
-                            <p>We analyze your current business processes to identify repetitive tasks, bottlenecks, and automation opportunities with the highest ROI potential.</p>
-                        </div>
+        <section id="how-it-works" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas5" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Solution Design</h3>
-                            <p>We create custom automation workflows tailored to your specific business needs, integrating with your existing systems.</p>
+                    <div class="terminal-title">process.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">How Our <span class="terminal-gradient">Business Automation</span> Works</h2>
+                    <div class="space-y-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    1
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Process Assessment</h3>
+                                    <p class="text-terminal-green">We analyze your current business processes to identify repetitive tasks, bottlenecks, and automation opportunities with the highest ROI potential.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>AI Enhancement</h3>
-                            <p>We incorporate artificial intelligence to make your automation smarter, enabling it to handle exceptions, make decisions, and continually improve.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    2
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Solution Design</h3>
+                                    <p class="text-terminal-green">We create custom automation workflows tailored to your specific business needs, integrating with your existing systems.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Implementation</h3>
-                            <p>We deploy the automation solution, integrating it with your existing systems and ensuring smooth operation with minimal disruption.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    3
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">AI Enhancement</h3>
+                                    <p class="text-terminal-green">We incorporate artificial intelligence to make your automation smarter, enabling it to handle exceptions, make decisions, and continually improve.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3>Training & Adoption</h3>
-                            <p>We provide comprehensive training for your team to ensure effective use of the new automation systems and processes.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    4
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Implementation</h3>
+                                    <p class="text-terminal-green">We deploy the automation solution, integrating it with your existing systems and ensuring smooth operation with minimal disruption.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">6</div>
-                        <div class="step-content">
-                            <h3>Continuous Improvement</h3>
-                            <p>We monitor performance, gather feedback, and make ongoing refinements to maximize efficiency and effectiveness over time.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    5
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Training & Adoption</h3>
+                                    <p class="text-terminal-green">We provide comprehensive training for your team to ensure effective use of the new automation systems and processes.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    6
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Continuous Improvement</h3>
+                                    <p class="text-terminal-green">We monitor performance, gather feedback, and make ongoing refinements to maximize efficiency and effectiveness over time.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -261,244 +607,351 @@
         </section>
 
         <!-- Use Cases -->
-        <section id="use-cases">
-            <div class="container">
-                <h2>Common Use Cases</h2>
-                <div class="use-cases-grid">
-                    <div class="use-case">
-                        <div class="use-case-icon">
-                            <i class="fas fa-file-invoice"></i>
-                        </div>
-                        <h3>Invoice Processing</h3>
-                        <ul>
-                            <li>Automatic data extraction from invoices</li>
-                            <li>Validation against purchase orders</li>
-                            <li>Approval routing based on amount and department</li>
-                            <li>Payment scheduling and confirmation</li>
-                        </ul>
+        <section id="use-cases" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas6" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">
-                            <i class="fas fa-user-plus"></i>
+                    <div class="terminal-title">use_cases.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Common <span class="terminal-gradient">Use Cases</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-terminal-cyan text-3xl mr-4">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <h3 class="text-xl font-bold terminal-text">Invoice Processing</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Automatic data extraction from invoices</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Validation against purchase orders</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Approval routing based on amount and department</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Payment scheduling and confirmation</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3>Employee Onboarding</h3>
-                        <ul>
-                            <li>Automated document collection and verification</li>
-                            <li>System access provisioning</li>
-                            <li>Training assignment and tracking</li>
-                            <li>Equipment and resource allocation</li>
-                        </ul>
-                    </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">
-                            <i class="fas fa-headset"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-terminal-cyan text-3xl mr-4">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h3 class="text-xl font-bold terminal-text">Employee Onboarding</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Automated document collection and verification</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">System access provisioning</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Training assignment and tracking</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Equipment and resource allocation</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3>Customer Support</h3>
-                        <ul>
-                            <li>Ticket creation and categorization</li>
-                            <li>Automatic routing to appropriate departments</li>
-                            <li>Response templates and suggestions</li>
-                            <li>Follow-up scheduling and customer satisfaction surveys</li>
-                        </ul>
-                    </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">
-                            <i class="fas fa-boxes"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-terminal-cyan text-3xl mr-4">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h3 class="text-xl font-bold terminal-text">Customer Support</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Ticket creation and categorization</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Automatic routing to appropriate departments</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Response templates and suggestions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Follow-up scheduling and customer satisfaction surveys</span>
+                                </li>
+                            </ul>
                         </div>
-                        <h3>Inventory Management</h3>
-                        <ul>
-                            <li>Automatic reordering based on inventory levels</li>
-                            <li>Purchase order generation and tracking</li>
-                            <li>Receiving and reconciliation processes</li>
-                            <li>Inventory count scheduling and variance reporting</li>
-                        </ul>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-terminal-cyan text-3xl mr-4">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                                <h3 class="text-xl font-bold terminal-text">Inventory Management</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Automatic reordering based on inventory levels</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Purchase order generation and tracking</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Receiving and reconciliation processes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-terminal-cyan mr-2">></span>
+                                    <span class="text-terminal-green">Inventory count scheduling and variance reporting</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Case Studies -->
-        <section id="case-studies">
-            <div class="container">
-                <h2>Success Stories</h2>
-                <div class="case-study-grid">
-                    <div class="case-study">
-                        <div class="case-study-content">
-                            <div class="industry-tag">Professional Services</div>
-                            <h3>Wilson Accounting</h3>
-                            <p>Wilson Accounting implemented our automation solution to streamline their client onboarding and document processing workflows. After three months, they experienced:</p>
-                            <ul class="results-list">
-                                <li>68% reduction in document processing time</li>
-                                <li>42% decrease in administrative overhead</li>
-                                <li>4x faster client onboarding process</li>
-                            </ul>
-                            <a href="../blog/case-study-wilson-accounting.html" class="btn btn-secondary">Read Full Case Study</a>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../images/case-study-accounting.jpg" alt="Accounting firm with AI automation implementation">
-                        </div>
-                    </div>
-                    <div class="case-study reverse">
-                        <div class="case-study-content">
-                            <div class="industry-tag">Healthcare</div>
-                            <h3>Wellness Medical Group</h3>
-                            <p>Wellness Medical Group used our automation platform to streamline patient intake, insurance verification, and appointment scheduling. The results after six months included:</p>
-                            <ul class="results-list">
-                                <li>76% reduction in paperwork processing time</li>
-                                <li>52% decrease in scheduling errors</li>
-                                <li>Annual cost savings of approximately $120,000</li>
-                            </ul>
-                            <a href="../blog/case-study-wellness-medical.html" class="btn btn-secondary">Read Full Case Study</a>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../images/case-study-healthcare.jpg" alt="Healthcare facility with AI automation implementation">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Pricing -->
-        <section id="pricing">
-            <div class="container">
-                <h2>Business Automation Pricing Plans</h2>
-                <p class="section-intro">Choose the right plan for your business needs. All plans include setup, training, and ongoing support.</p>
-                
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Starter</h3>
-                            <div class="price">
-                                <span class="amount">$149</span>
-                                <span class="period">/month</span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Automation of up to 3 basic processes</li>
-                                <li><i class="fas fa-check"></i> Document processing (up to 250/month)</li>
-                                <li><i class="fas fa-check"></i> Basic workflow automation</li>
-                                <li><i class="fas fa-check"></i> Email integration</li>
-                                <li><i class="fas fa-check"></i> Web-based dashboard access</li>
-                                <li><i class="fas fa-check"></i> Email support</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-secondary">Get Started</a>
-                        </div>
+        <section id="pricing" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas7" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Most Popular</div>
-                        <div class="pricing-header">
-                            <h3>Professional</h3>
-                            <div class="price">
-                                <span class="amount">$349</span>
-                                <span class="period">/month</span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Automation of up to 8 business processes</li>
-                                <li><i class="fas fa-check"></i> Advanced document processing (up to 1000/month)</li>
-                                <li><i class="fas fa-check"></i> Complex workflow automation with approvals</li>
-                                <li><i class="fas fa-check"></i> Integration with CRM, ERP, and accounting systems</li>
-                                <li><i class="fas fa-check"></i> AI-powered data extraction</li>
-                                <li><i class="fas fa-check"></i> Customizable dashboards and reports</li>
-                                <li><i class="fas fa-check"></i> Priority email & phone support</li>
-                                <li><i class="fas fa-check"></i> Quarterly optimization review</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-primary">Get Started</a>
-                        </div>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Enterprise</h3>
-                            <div class="price">
-                                <span class="amount">Custom</span>
-                                <span class="period"></span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Unlimited process automation</li>
-                                <li><i class="fas fa-check"></i> Unlimited document processing</li>
-                                <li><i class="fas fa-check"></i> Advanced AI-powered automation</li>
-                                <li><i class="fas fa-check"></i> Custom integrations with any business system</li>
-                                <li><i class="fas fa-check"></i> Process mining and optimization</li>
-                                <li><i class="fas fa-check"></i> Full API access</li>
-                                <li><i class="fas fa-check"></i> 24/7 premium support</li>
-                                <li><i class="fas fa-check"></i> Dedicated automation specialist</li>
-                                <li><i class="fas fa-check"></i> Monthly strategy consultations</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-secondary">Contact Us</a>
-                        </div>
-                    </div>
+                    <div class="terminal-title">pricing.sh</div>
                 </div>
-                
-                <div class="pricing-note">
-                    <p>All plans include a 14-day free trial. No credit card required to start.</p>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-4 text-center terminal-text">Business Automation <span class="terminal-gradient">Pricing Plans</span></h2>
+                    <p class="text-center text-terminal-green mb-10">Choose the right plan for your business needs. All plans include setup, training, and ongoing support.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Starter</h3>
+                                <div class="text-3xl font-bold text-terminal-green mb-1">$149</div>
+                                <div class="text-sm text-gray-400">/month</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Automation of up to 3 basic processes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Document processing (up to 250/month)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Basic workflow automation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Email integration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Web-based dashboard access</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Email support</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-secondary">Get Started</a>
+                            </div>
+                        </div>
+
+                        <div class="terminal-card p-6 border-2 border-terminal-cyan bg-terminal-bg bg-opacity-70 rounded-lg relative transform hover:scale-105 transition-all duration-300 z-10">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-terminal-cyan text-terminal-bg text-xs font-bold py-1 px-4 rounded-full">Most Popular</div>
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Professional</h3>
+                                <div class="text-3xl font-bold text-terminal-cyan mb-1">$349</div>
+                                <div class="text-sm text-gray-400">/month</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Automation of up to 8 business processes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Advanced document processing (up to 1000/month)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Complex workflow automation with approvals</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Integration with CRM, ERP, and accounting systems</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">AI-powered data extraction</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Customizable dashboards and reports</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Priority email & phone support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Quarterly optimization review</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-primary">Get Started</a>
+                            </div>
+                        </div>
+
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Enterprise</h3>
+                                <div class="text-3xl font-bold text-terminal-green mb-1">Custom</div>
+                                <div class="text-sm text-gray-400">pricing</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Unlimited process automation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Unlimited document processing</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Advanced AI-powered automation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Custom integrations with any business system</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Process mining and optimization</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Full API access</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">24/7 premium support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Dedicated automation specialist</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Monthly strategy consultations</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-secondary">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <p class="text-terminal-green">All plans include a 14-day free trial. No credit card required to start.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Which business processes are best suited for automation?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>The best candidates for automation are typically repetitive, rule-based processes that involve structured data. These include data entry, document processing, approval workflows, reporting, customer onboarding, invoice processing, and inventory management. During our initial assessment, we'll help you identify the processes with the highest automation potential in your specific business.</p>
-                        </div>
+        <section id="faq" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas8" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How disruptive is implementing automation to our current operations?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    <div class="terminal-title">faq.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Frequently Asked <span class="terminal-gradient">Questions</span></h2>
+                    <div class="space-y-4">
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">Which business processes are best suited for automation?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">The best candidates for automation are typically repetitive, rule-based processes that involve structured data. These include data entry, document processing, approval workflows, reporting, customer onboarding, invoice processing, and inventory management. During our initial assessment, we'll help you identify the processes with the highest automation potential in your specific business.</p>
+                            </div>
                         </div>
-                        <div class="faq-answer">
-                            <p>We design our implementation process to minimize disruption to your business operations. We typically implement automation alongside existing processes, allowing for testing and transition with minimal downtime. Most implementations can be completed with little to no interruption to your day-to-day operations. We also provide comprehensive training to ensure a smooth transition for your team.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">How disruptive is implementing automation to our current operations?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">We design our implementation process to minimize disruption to your business operations. We typically implement automation alongside existing processes, allowing for testing and transition with minimal downtime. Most implementations can be completed with little to no interruption to your day-to-day operations. We also provide comprehensive training to ensure a smooth transition for your team.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Will automation replace our employees?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">Will automation replace our employees?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">The goal of automation is not to replace employees but to free them from repetitive, time-consuming tasks so they can focus on higher-value activities that require human judgment, creativity, and interpersonal skills. Most businesses find that automation allows them to reallocate their talent to more strategic initiatives, improve employee satisfaction by eliminating monotonous work, and grow without proportionally increasing headcount.</p>
+                            </div>
                         </div>
-                        <div class="faq-answer">
-                            <p>The goal of automation is not to replace employees but to free them from repetitive, time-consuming tasks so they can focus on higher-value activities that require human judgment, creativity, and interpersonal skills. Most businesses find that automation allows them to reallocate their talent to more strategic initiatives, improve employee satisfaction by eliminating monotonous work, and grow without proportionally increasing headcount.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">How customizable are your automation solutions?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">Our automation solutions are highly customizable to fit your specific business needs and processes. We don't believe in one-size-fits-all approaches. While we have pre-built templates and components that accelerate implementation, we tailor every solution to your unique requirements, systems, and workflows. This ensures the automation integrates seamlessly with your business and delivers maximum value.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How customizable are your automation solutions?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Our automation solutions are highly customizable to fit your specific business needs and processes. We don't believe in one-size-fits-all approaches. While we have pre-built templates and components that accelerate implementation, we tailor every solution to your unique requirements, systems, and workflows. This ensures the automation integrates seamlessly with your business and delivers maximum value.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>What kind of ROI can we expect from business automation?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>ROI varies based on the specific processes being automated and your business context, but our clients typically see ROI within 3-6 months of implementation. Common returns include 40-70% reduction in processing time, 30-50% decrease in operational costs for automated tasks, 60-90% reduction in errors, and significant improvements in employee productivity and satisfaction. During our assessment, we'll provide detailed ROI projections specific to your business case.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">What kind of ROI can we expect from business automation?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">ROI varies based on the specific processes being automated and your business context, but our clients typically see ROI within 3-6 months of implementation. Common returns include 40-70% reduction in processing time, 30-50% decrease in operational costs for automated tasks, 60-90% reduction in errors, and significant improvements in employee productivity and satisfaction. During our assessment, we'll provide detailed ROI projections specific to your business case.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -506,59 +959,90 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Automate Your Business Processes?</h2>
-                <p>Schedule a free consultation to discuss how our automation solutions can transform your operations.</p>
-                <a href="../contact.html" class="btn btn-primary">Get Started Today</a>
+        <section id="cta" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas9" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">get_started.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-4 terminal-text">Ready to <span class="terminal-gradient">Automate</span> Your Business Processes?</h2>
+                    <p class="text-terminal-green text-xl mb-8">Schedule a free consultation to discuss how our automation solutions can transform your operations.</p>
+                    <div class="inline-flex">
+                        <a href="../contact.html" class="btn-primary text-lg px-8 py-3">Get Started Today</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../services.html">Services</a></li>
-                        <li><a href="../blog.html">Blog</a></li>
-                        <li><a href="../contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="chatbots.html">AI Chatbots</a></li>
-                        <li><a href="analytics.html">Predictive Analytics</a></li>
-                        <li><a href="automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> ai.unplugged11@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> 2397458189</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="../services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="../assessment/index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="../contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="../privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="../terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -566,31 +1050,102 @@
 
     <script src="../js/script.js"></script>
     <script>
+        // Matrix Rain Animation
+        function initMatrixRain() {
+            const canvases = document.querySelectorAll('.matrix-bg');
+
+            canvases.forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+
+                // Characters to use in the rain
+                const characters = '01\u30a2\u30a4\u30a6\u30a8\u30aa\u30ab\u30ad\u30af\u30b1\u30b3\u30b5\u30b7\u30b9\u30bb\u30bd\u30bf\u30c1\u30c4\u30c6\u30c8\u30ca\u30cb\u30cc\u30cd\u30ce\u30cf\u30d2\u30d5\u30d8\u30db\u30de\u30df\u30e0\u30e1\u30e2\u30e4\u30e6\u30e8\u30e9\u30ea\u30eb\u30ec\u30ed\u30ef\u30f2\u30f3';
+                const columns = Math.floor(canvas.width / 20); // Character width
+                const drops = [];
+
+                // Initialize drops at random positions
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.floor(Math.random() * canvas.height / 20); // Start at random positions
+                }
+
+                function draw() {
+                    // Semi-transparent black background to create fade effect
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#0f0'; // Green text
+                    ctx.font = '15px monospace';
+
+                    // Draw characters
+                    for (let i = 0; i < drops.length; i++) {
+                        // Random character
+                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+
+                        // Draw the character
+                        ctx.fillText(text, i * 20, drops[i] * 20);
+
+                        // Move the drop down
+                        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                // Run the animation
+                setInterval(draw, 50);
+            });
+        }
+
+        // Initialize 3D Logo Rotation
+        function init3DLogo() {
+            const logo = document.querySelector('.logo-rotate-3d');
+            if (logo) {
+                anime({
+                    targets: logo,
+                    rotateY: '360deg',
+                    duration: 4000,
+                    loop: true,
+                    easing: 'linear'
+                });
+            }
+        }
+
         // FAQ Accordion Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
+        function initFaqAccordion() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
-                    const answer = item.querySelector('.faq-answer');
-                    const icon = item.querySelector('.faq-icon i');
-                    
-                    // Toggle the active class
-                    item.classList.toggle('active');
-                    
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+
+                    // Toggle the answer visibility
+                    answer.classList.toggle('hidden');
+
                     // Toggle the icon
-                    if (item.classList.contains('active')) {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                    } else {
+                    if (answer.classList.contains('hidden')) {
                         icon.classList.remove('fa-minus');
                         icon.classList.add('fa-plus');
-                        answer.style.maxHeight = null;
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
                     }
                 });
+            });
+        }
+
+        // Initialize everything when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initMatrixRain();
+            init3DLogo();
+            initFaqAccordion();
+
+            // Handle window resize for matrix rain
+            window.addEventListener('resize', function() {
+                // Reinitialize matrix rain after a short delay
+                setTimeout(initMatrixRain, 300);
             });
         });
     </script>

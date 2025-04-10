@@ -1,0 +1,297 @@
+/* AI-Enhanced Assessment Styles */
+
+/* AI Enhancement Badge */
+.ai-enhancement-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+    color: #000;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    z-index: 10;
+}
+
+.ai-enhancement-badge i {
+    font-size: 0.9rem;
+}
+
+/* AI Recommended Elements */
+.ai-recommended {
+    border-color: var(--terminal-cyan) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3) !important;
+    position: relative;
+}
+
+.ai-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+    color: #000;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+}
+
+.ai-badge i {
+    font-size: 0.8rem;
+}
+
+/* AI Insights */
+.ai-insight {
+    border-left: 3px solid var(--terminal-cyan);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    position: relative;
+    background-color: rgba(0, 255, 255, 0.05);
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.ai-insight::before {
+    content: "AI Insight";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-cyan);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.ai-insight p {
+    color: var(--terminal-cyan);
+    margin: 0;
+}
+
+/* Industry Benchmarks */
+.industry-benchmark {
+    background-color: rgba(0, 255, 255, 0.05);
+    border: 1px solid var(--terminal-cyan);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.industry-benchmark h5 {
+    color: var(--terminal-cyan);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.benchmark-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.benchmark-stat i {
+    color: var(--terminal-green);
+}
+
+/* AI Recommendation Cards */
+.ai-recommendation-card {
+    border: 1px solid var(--terminal-green);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: rgba(0, 255, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ai-recommendation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.1);
+}
+
+.ai-recommendation-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--terminal-green), var(--terminal-cyan));
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.ai-recommendation-card h4 {
+    color: var(--terminal-green);
+    margin-bottom: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+}
+
+.ai-recommendation-card p {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.ai-recommendation-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.ai-recommendation-card ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--terminal-green);
+}
+
+.ai-recommendation-card ul li:before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green);
+}
+
+.ai-recommendation-card .confidence {
+    font-size: 0.8rem;
+    color: var(--terminal-gray);
+    margin-top: 1rem;
+}
+
+.confidence-meter {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 0.25rem;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+    border-radius: 2px;
+}
+
+/* ROI Analysis Enhancements */
+.roi-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.roi-chart::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 0, 0) 70%);
+    z-index: 0;
+}
+
+.roi-value {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: 'Share Tech Mono', monospace;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.roi-label {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    position: relative;
+    z-index: 1;
+}
+
+.roi-formula {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.8;
+    border-left: 3px solid var(--terminal-green);
+}
+
+/* Next Steps Enhancements */
+.next-steps-list {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: steps;
+}
+
+.next-steps-list li {
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    position: relative;
+    counter-increment: steps;
+}
+
+.next-steps-list li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+.ai-recommended {
+    animation: pulse 2s infinite;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .ai-enhancement-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    .roi-value {
+        font-size: 2.5rem;
+    }
+    
+    .ai-recommendation-card {
+        padding: 1rem;
+    }
+}

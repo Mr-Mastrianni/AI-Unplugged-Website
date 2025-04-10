@@ -1,0 +1,82 @@
+/* Optimized Logo Styling for AI Unplugged Website */
+
+.logo {
+    position: relative;
+    z-index: 10;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* Logo image styling */
+.logo img {
+    height: 150px; /* Increased from 100px */
+    width: 150px; /* Increased from 100px */
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 0, 0.7)); /* Enhanced glow */
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-right: 15px; /* Added spacing between logo and text */
+}
+
+/* Enhanced glow effect for logo */
+.logo-glow {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5));
+    animation: logo-glow 4s infinite alternate ease-in-out;
+}
+
+@keyframes logo-glow {
+    0% { filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 12px rgba(0, 255, 0, 0.7)); }
+    100% { filter: drop-shadow(0 0 16px rgba(0, 255, 0, 0.9)); }
+}
+
+/* Logo text styling */
+.logo .logo-text {
+    margin-left: 0.75rem;
+    font-weight: bold;
+    font-size: 2rem; /* Increased from 1.75rem */
+}
+
+/* Hover effects */
+.logo a:hover {
+    transform: scale(1.05);
+}
+
+.logo a:hover img {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
+}
+
+/* Pulse animation for logo */
+@keyframes logo-pulse {
+    0% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.3)); }
+    50% { filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.6)); }
+    100% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.3)); }
+}
+
+.logo-pulse {
+    animation: logo-pulse 3s infinite ease-in-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .logo img {
+        height: 100px; /* Increased from 70px */
+        width: 100px; /* Increased from 70px */
+    }
+
+    .logo .logo-text {
+        font-size: 1.25rem;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .logo img {
+        height: 120px; /* Increased from 85px */
+        width: 120px; /* Increased from 85px */
+    }
+}

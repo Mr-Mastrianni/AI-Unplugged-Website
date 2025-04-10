@@ -5,601 +5,1077 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore AI Unplugged's affordable AI solutions for small businesses: AI chatbots, predictive analytics, and business automation. Simple, effective technology with measurable ROI.">
     <title>AI Solutions for Small Businesses | Chatbots, Analytics & Automation | AI Unplugged</title>
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aiunplugged.pro/services" />
-    
-    <!-- Production minified CSS -->
-    <link rel="stylesheet" href="css/styles.min.css">
-    <!-- Fallback for development -->
-    <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="css/logo.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        @keyframes pulse-slow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite;
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--terminal-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: black;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-shadow: none;
+            border: 1px solid var(--terminal-green);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-green);
+            border: 2px solid var(--terminal-green);
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-shadow: var(--text-shadow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateY(-3px);
+            border-color: var(--terminal-cyan);
+            color: var(--terminal-cyan);
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger .w-6 {
+                background-color: var(--terminal-green);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--terminal-bg);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px;
+                transition: all 0.5s ease;
+                z-index: 99;
+                border-top: 1px solid var(--terminal-green);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
+                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="services.html" class="text-terminal-green font-medium" aria-current="page">Services</a></li>
+                        <li><a href="how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-gray-300 my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-gray-300 my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-gray-300 my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="pt-32">
         <!-- Breadcrumbs with schema.org structured data -->
-        <div class="breadcrumbs">
-            <div class="container">
-                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <a property="item" typeof="WebPage" href="index.html">
+        <div class="bg-gray-900 py-2 border-b border-terminal-green">
+            <div class="container mx-auto px-4">
+                <ol class="flex text-sm text-gray-400" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="index.html" class="hover:text-terminal-cyan">
                             <span property="name">Home</span>
                         </a>
                         <meta property="position" content="1">
+                        <span class="mx-2 text-terminal-green">/</span>
                     </li>
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <span property="name">Services</span>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <span property="name" class="font-medium text-terminal-green">Services</span>
                         <meta property="position" content="2">
                     </li>
                 </ol>
             </div>
         </div>
-        
+
         <!-- Page Header -->
-        <section id="page-header" class="services-header">
-            <div class="container">
-                <h1>Our AI Solutions</h1>
-                <p>We offer a range of AI solutions designed to address specific business needs, all with a focus on simplicity, affordability, and measurable results.</p>
+        <section id="page-header" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="header-matrix" class="matrix-bg"></canvas>
+            <div class="terminal-window container mx-auto px-4 relative z-10">
+                <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                    <div class="terminal-buttons flex gap-2">
+                        <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                    </div>
+                    <div class="terminal-title text-terminal-green text-sm font-mono">ai_solutions.sh</div>
+                    <div class="terminal-buttons opacity-0 flex gap-2">
+                        <span class="terminal-button w-3 h-3 rounded-full"></span>
+                    </div>
+                </div>
+                <div class="terminal-content text-center">
+                    <h1 class="text-4xl font-bold mb-4 text-white">Our <span class="gradient-text">AI Solutions</span></h1>
+                    <p class="text-xl text-terminal-green">We offer a range of AI solutions designed to address specific business needs, all with a focus on simplicity, affordability, and measurable results.</p>
+                </div>
             </div>
         </section>
 
         <!-- Services Introduction -->
-        <section id="services-intro">
-            <div class="container">
-                <h2>How We Help Small Businesses</h2>
-                <p class="section-intro">At AI Unplugged, we understand that every small business has unique challenges and goals. That's why we offer a range of AI solutions designed to address specific business needs, all with a focus on simplicity, affordability, and measurable results.</p>
-                <p class="section-intro">Each of our services comes with personalized consultation, seamless implementation, and ongoing support to ensure you get the most value from your AI investment.</p>
+        <section id="services-intro" class="py-16 bg-darker relative overflow-hidden">
+            <canvas id="intro-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="terminal-window">
+                    <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">business_solutions.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
+                        </div>
+                    </div>
+                    <div class="terminal-content">
+                        <h2 class="text-3xl font-bold mb-6 text-center">How We <span class="gradient-text">Help Small Businesses</span></h2>
+                        <div class="max-w-3xl mx-auto">
+                            <p class="text-terminal-green mb-4">At AI Unplugged, we understand that every small business has unique challenges and goals. That's why we offer a range of AI solutions designed to address specific business needs, all with a focus on simplicity, affordability, and measurable results.</p>
+                            <p class="text-terminal-green mb-8">Each of our services comes with personalized consultation, seamless implementation, and ongoing support to ensure you get the most value from your AI investment.</p>
+
+                            <div class="flex justify-center">
+                                <a href="roi-calculator.html" class="btn-primary inline-flex items-center px-8 py-4 text-lg font-bold relative group overflow-hidden">
+                                    <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-x-0 -skew-x-12 bg-terminal-green group-hover:bg-transparent group-hover:skew-x-12"></span>
+                                    <span class="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform skew-x-12 bg-terminal-cyan group-hover:bg-terminal-green group-hover:-skew-x-12"></span>
+                                    <span class="absolute bottom-0 left-0 hidden w-10 h-20 transition-all duration-100 ease-out transform -translate-x-8 translate-y-10 bg-terminal-green -rotate-12"></span>
+                                    <span class="absolute bottom-0 right-0 hidden w-10 h-20 transition-all duration-100 ease-out transform translate-x-10 translate-y-8 bg-terminal-cyan -rotate-12"></span>
+                                    <span class="relative flex items-center">
+                                        <i class="fas fa-calculator mr-3 text-xl"></i> Calculate Your AI ROI
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Services List -->
-        <section id="services-list">
-            <div class="container">
-                <div class="service-item">
-                    <div class="service-image">
-                        <div class="chatbot-animation">
-                            <div class="chat-interface">
-                                <div class="interface-header">
-                                    <div class="header-dot red"></div>
-                                    <div class="header-dot yellow"></div>
-                                    <div class="header-dot green"></div>
-                                    <div class="header-title">AI Chatbot</div>
+        <section id="services-list" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="services-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                    <div class="terminal-buttons flex gap-2">
+                        <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                    </div>
+                    <div class="terminal-title text-terminal-green text-sm font-mono">services_list.sh</div>
+                    <div class="terminal-buttons opacity-0 flex gap-2">
+                        <span class="terminal-button w-3 h-3 rounded-full"></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="terminal-header flex justify-between items-center mb-4">
+                            <div class="terminal-buttons flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <div class="terminal-title text-terminal-green text-sm font-mono">chatbot.sh</div>
+                            <div class="terminal-buttons opacity-0 flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full"></span>
+                            </div>
+                        </div>
+                        <div class="chat-interface bg-gray-900 rounded-md border border-gray-700 p-3 mb-6">
+                            <div class="interface-header flex items-center justify-between border-b border-gray-700 pb-2 mb-3">
+                                <div class="flex items-center">
+                                    <div class="header-dot w-2 h-2 rounded-full bg-red-500 mr-1"></div>
+                                    <div class="header-dot w-2 h-2 rounded-full bg-yellow-500 mr-1"></div>
+                                    <div class="header-dot w-2 h-2 rounded-full bg-green-500 mr-1"></div>
                                 </div>
-                                <div class="chat-messages">
-                                    <div class="timestamp">Today, 10:42 AM</div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-bubble user">
-                                            <div class="bubble-content">Hello! I need help with my order.</div>
-                                            <div class="bubble-timestamp">10:42 AM</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-avatar">
-                                            <div class="avatar-circle">
-                                                <i class="fas fa-robot"></i>
-                                            </div>
-                                            <div class="avatar-pulse"></div>
-                                        </div>
-                                        <div class="chat-bubble bot">
-                                            <div class="typing-indicator">
-                                                <div class="typing-dot"></div>
-                                                <div class="typing-dot"></div>
-                                                <div class="typing-dot"></div>
-                                            </div>
-                                            <div class="bubble-content">Hi there! I'd be happy to help with your order. Could you please provide your order number?</div>
-                                            <div class="bubble-timestamp">10:42 AM</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-bubble user">
-                                            <div class="bubble-content">It's #ABC12345</div>
-                                            <div class="bubble-timestamp">10:43 AM</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-avatar">
-                                            <div class="avatar-circle">
-                                                <i class="fas fa-robot"></i>
-                                            </div>
-                                        </div>
-                                        <div class="chat-bubble bot scanning">
-                                            <div class="scan-animation">
-                                                <div class="scan-line"></div>
-                                                <div class="scan-text">Searching order database...</div>
-                                            </div>
-                                            <div class="bubble-timestamp">10:43 AM</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-avatar">
-                                            <div class="avatar-circle">
-                                                <i class="fas fa-robot"></i>
-                                            </div>
-                                        </div>
-                                        <div class="chat-bubble bot">
-                                            <div class="bubble-content">I found your order! It was shipped yesterday and will arrive tomorrow. Tracking number is <span class="highlight">TRK7890123</span>. Is there anything else I can help with?</div>
-                                            <div class="bubble-timestamp">10:43 AM</div>
-                                        </div>
+                                <div class="header-title text-xs text-terminal-green">AI Chatbot</div>
+                                <div></div>
+                            </div>
+                            <div class="chat-messages space-y-3 mb-3">
+                                <div class="timestamp text-xs text-gray-500 text-center">Today, 10:42 AM</div>
+
+                                <div class="flex justify-end">
+                                    <div class="chat-bubble user bg-blue-900 text-white p-2 rounded-lg max-w-[80%]">
+                                        <div class="bubble-content text-sm">Hello! I need help with my order.</div>
+                                        <div class="bubble-timestamp text-xs text-blue-300 text-right mt-1">10:42 AM</div>
                                     </div>
                                 </div>
-                                <div class="chat-input">
-                                    <input type="text" placeholder="Type your message..." disabled>
-                                    <button class="send-button">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
+
+                                <div class="flex">
+                                    <div class="chat-avatar mr-2">
+                                        <div class="avatar-circle w-8 h-8 rounded-full bg-terminal-green/20 flex items-center justify-center">
+                                            <i class="fas fa-robot text-terminal-green text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="chat-bubble bot bg-gray-800 text-white p-2 rounded-lg max-w-[80%]">
+                                        <div class="bubble-content text-sm">Hi there! I'd be happy to help with your order. Could you please provide your order number?</div>
+                                        <div class="bubble-timestamp text-xs text-gray-400 text-right mt-1">10:42 AM</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <div class="chat-bubble user bg-blue-900 text-white p-2 rounded-lg max-w-[80%]">
+                                        <div class="bubble-content text-sm">It's #ABC12345</div>
+                                        <div class="bubble-timestamp text-xs text-blue-300 text-right mt-1">10:43 AM</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="chat-avatar mr-2">
+                                        <div class="avatar-circle w-8 h-8 rounded-full bg-terminal-green/20 flex items-center justify-center">
+                                            <i class="fas fa-robot text-terminal-green text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="chat-bubble bot bg-gray-800 text-white p-2 rounded-lg max-w-[80%]">
+                                        <div class="scan-text text-sm text-terminal-green">Searching order database...</div>
+                                        <div class="bubble-timestamp text-xs text-gray-400 text-right mt-1">10:43 AM</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="chat-avatar mr-2">
+                                        <div class="avatar-circle w-8 h-8 rounded-full bg-terminal-green/20 flex items-center justify-center">
+                                            <i class="fas fa-robot text-terminal-green text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="chat-bubble bot bg-gray-800 text-white p-2 rounded-lg max-w-[80%]">
+                                        <div class="bubble-content text-sm">I found your order! It was shipped yesterday and will arrive tomorrow. Tracking number is <span class="text-terminal-cyan font-bold">TRK7890123</span>. Is there anything else I can help with?</div>
+                                        <div class="bubble-timestamp text-xs text-gray-400 text-right mt-1">10:43 AM</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="ai-processing">
-                                <div class="neural-network">
-                                    <div class="neuron-layer input-layer">
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                    </div>
-                                    <div class="neuron-layer hidden-layer">
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                    </div>
-                                    <div class="neuron-layer output-layer">
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                        <div class="neuron"></div>
-                                    </div>
-                                    <div class="neural-connections"></div>
-                                </div>
-                                <div class="data-particles">
-                                    <div class="particle p1"></div>
-                                    <div class="particle p2"></div>
-                                    <div class="particle p3"></div>
-                                    <div class="particle p4"></div>
-                                    <div class="particle p5"></div>
-                                </div>
+                            <div class="chat-input flex bg-gray-800 rounded-md overflow-hidden">
+                                <input type="text" placeholder="Type your message..." disabled class="bg-gray-800 text-gray-400 text-sm p-2 flex-grow focus:outline-none">
+                                <button class="send-button bg-terminal-green/20 px-3 text-terminal-green">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
+
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="service-icon w-16 h-16 rounded-full bg-terminal-green/20 flex items-center justify-center text-terminal-green text-2xl">
+                                <i class="fas fa-robot"></i>
+                            </div>
                         </div>
-                        <h3>AI Chatbots</h3>
-                        <p>Provide 24/7 customer support, answer frequently asked questions, and guide visitors through your website or online store with our intelligent chatbots.</p>
-                        <h4>Benefits:</h4>
-                        <ul class="benefits-list">
-                            <li>Reduce customer service costs while improving response times</li>
-                            <li>Free up your team to focus on complex customer needs</li>
-                            <li>Collect valuable customer data and insights</li>
-                            <li>Personalize interactions based on customer history</li>
+                        <h3 class="text-xl font-bold mb-4 text-center text-terminal-green">AI Chatbots</h3>
+                        <p class="text-gray-300 mb-6">Provide 24/7 customer support, answer frequently asked questions, and guide visitors through your website or online store with our intelligent chatbots.</p>
+                        <h4 class="text-lg font-bold mb-2 text-terminal-cyan">Benefits:</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Reduce customer service costs while improving response times</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Free up your team to focus on complex customer needs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Collect valuable customer data and insights</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Personalize interactions based on customer history</span>
+                            </li>
                         </ul>
-                        <div class="service-cta">
-                            <a href="services/chatbots.html" class="btn btn-secondary">Learn More</a>
+                        <div class="text-center">
+                            <a href="services/chatbots.html" class="btn-secondary inline-block">Learn More</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="service-item">
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="terminal-header flex justify-between items-center mb-4">
+                            <div class="terminal-buttons flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <div class="terminal-title text-terminal-green text-sm font-mono">analytics.sh</div>
+                            <div class="terminal-buttons opacity-0 flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full"></span>
+                            </div>
                         </div>
-                        <h3>Predictive Analytics</h3>
-                        <p>Make data-driven decisions with our predictive analytics solutions that analyze your business data to forecast trends, optimize inventory, and identify opportunities for growth.</p>
-                        <h4>Benefits:</h4>
-                        <ul class="benefits-list">
-                            <li>Optimize inventory levels and reduce waste</li>
-                            <li>Forecast sales and demand more accurately</li>
-                            <li>Identify trends and patterns in customer behavior</li>
-                            <li>Allocate resources more effectively</li>
-                        </ul>
-                        <div class="service-cta">
-                            <a href="services/analytics.html" class="btn btn-secondary">Learn More</a>
+                        <div class="analytics-screen bg-gray-900 rounded-md border border-gray-700 p-3 mb-6">
+                            <div class="screen-header flex items-center justify-between border-b border-gray-700 pb-2 mb-3">
+                                <div class="flex items-center">
+                                    <div class="header-dot w-2 h-2 rounded-full bg-red-500 mr-1"></div>
+                                    <div class="header-dot w-2 h-2 rounded-full bg-yellow-500 mr-1"></div>
+                                    <div class="header-dot w-2 h-2 rounded-full bg-green-500 mr-1"></div>
+                                </div>
+                                <div class="header-title text-xs text-terminal-green">Sales Forecast</div>
+                                <div></div>
+                            </div>
+                            <div class="screen-content">
+                                <div class="chart-container mb-4">
+                                    <div class="flex justify-between items-end h-32 mb-2">
+                                        <div class="chart-bar w-8 bg-terminal-green/30 rounded-t-sm" style="height: 40%"></div>
+                                        <div class="chart-bar w-8 bg-terminal-green/50 rounded-t-sm" style="height: 65%"></div>
+                                        <div class="chart-bar w-8 bg-terminal-green/70 rounded-t-sm" style="height: 50%"></div>
+                                        <div class="chart-bar w-8 bg-terminal-green/90 rounded-t-sm" style="height: 80%"></div>
+                                        <div class="chart-bar w-8 bg-terminal-cyan rounded-t-sm" style="height: 90%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <div>Q1</div>
+                                        <div>Q2</div>
+                                        <div>Q3</div>
+                                        <div>Q4</div>
+                                        <div>Forecast</div>
+                                    </div>
+                                </div>
+                                <div class="data-table border border-gray-700 rounded-sm overflow-hidden text-xs">
+                                    <div class="table-row grid grid-cols-3 bg-gray-800">
+                                        <div class="table-cell p-1 border-r border-gray-700 text-terminal-green">Product</div>
+                                        <div class="table-cell p-1 border-r border-gray-700 text-terminal-green">Current</div>
+                                        <div class="table-cell p-1 text-terminal-green">Forecast</div>
+                                    </div>
+                                    <div class="table-row grid grid-cols-3">
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">Product A</div>
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">1,245</div>
+                                        <div class="table-cell p-1 border-t border-gray-700 text-terminal-cyan">1,890</div>
+                                    </div>
+                                    <div class="table-row grid grid-cols-3">
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">Product B</div>
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">2,350</div>
+                                        <div class="table-cell p-1 border-t border-gray-700 text-terminal-cyan">2,780</div>
+                                    </div>
+                                    <div class="table-row grid grid-cols-3">
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">Product C</div>
+                                        <div class="table-cell p-1 border-r border-t border-gray-700">950</div>
+                                        <div class="table-cell p-1 border-t border-gray-700 text-terminal-cyan">1,450</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-image">
-                        <div class="analytics-animation">
-                            <div class="analytics-screen">
-                                <div class="screen-header">
-                                    <div class="header-dot"></div>
-                                    <div class="header-dot"></div>
-                                    <div class="header-dot"></div>
-                                </div>
-                                <div class="screen-content">
-                                    <div class="chart-container">
-                                        <div class="bar-chart">
-                                            <div class="chart-bar bar1"></div>
-                                            <div class="chart-bar bar2"></div>
-                                            <div class="chart-bar bar3"></div>
-                                            <div class="chart-bar bar4"></div>
-                                            <div class="chart-bar bar5"></div>
-                                        </div>
-                                        <div class="line-chart">
-                                            <div class="chart-line"></div>
-                                            <div class="data-point p1"></div>
-                                            <div class="data-point p2"></div>
-                                            <div class="data-point p3"></div>
-                                            <div class="data-point p4"></div>
-                                            <div class="data-point p5"></div>
-                                        </div>
-                                    </div>
-                                    <div class="stats-container">
-                                        <div class="stat-item"></div>
-                                        <div class="stat-item"></div>
-                                        <div class="stat-item"></div>
-                                    </div>
-                                </div>
+
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="service-icon w-16 h-16 rounded-full bg-terminal-green/20 flex items-center justify-center text-terminal-green text-2xl">
+                                <i class="fas fa-chart-line"></i>
                             </div>
-                            <div class="prediction-indicator">
-                                <div class="indicator-dot"></div>
-                                <div class="indicator-pulse"></div>
-                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center text-terminal-green">Predictive Analytics</h3>
+                        <p class="text-gray-300 mb-6">Make data-driven decisions with our predictive analytics solutions that analyze your business data to forecast trends, optimize inventory, and identify opportunities for growth.</p>
+                        <h4 class="text-lg font-bold mb-2 text-terminal-cyan">Benefits:</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Optimize inventory levels and reduce waste</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Forecast sales and demand more accurately</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Identify trends and patterns in customer behavior</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Allocate resources more effectively</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="services/analytics.html" class="btn-secondary inline-block">Learn More</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="service-item">
-                    <div class="service-image">
-                        <div class="automation-animation">
-                            <div class="process-flow">
-                                <div class="process-node start">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <div class="process-arrow a1">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node processor">
-                                    <i class="fas fa-cogs"></i>
-                                    <div class="processor-pulse"></div>
-                                </div>
-                                <div class="process-arrow a2">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node approval">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div class="process-arrow a3">
-                                    <div class="arrow-body"></div>
-                                    <div class="arrow-head"></div>
-                                </div>
-                                <div class="process-node end">
-                                    <i class="fas fa-flag-checkered"></i>
-                                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="service-icon w-16 h-16 rounded-full bg-terminal-green/20 flex items-center justify-center text-terminal-green text-2xl">
+                                <i class="fas fa-cogs"></i>
                             </div>
-                            <div class="automation-data">
-                                <div class="data-packet"></div>
-                                <div class="data-packet"></div>
-                                <div class="data-packet"></div>
-                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center text-terminal-green">Business Automation</h3>
+                        <p class="text-gray-300 mb-6">Streamline your operations with AI-powered automation that handles repetitive tasks, workflows, and processes, allowing your team to focus on high-value activities.</p>
+                        <h4 class="text-lg font-bold mb-2 text-terminal-cyan">Benefits:</h4>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Reduce time spent on manual, repetitive tasks</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Minimize human error in routine processes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Improve operational efficiency and throughput</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                <span class="text-gray-300">Scale your business without proportionally increasing staff</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <a href="services/automation.html" class="btn-secondary inline-block">Learn More</a>
                         </div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-cogs"></i>
+
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="terminal-header flex justify-between items-center mb-4">
+                            <div class="terminal-buttons flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <div class="terminal-title text-terminal-green text-sm font-mono">automation.sh</div>
+                            <div class="terminal-buttons opacity-0 flex gap-2">
+                                <span class="terminal-button w-3 h-3 rounded-full"></span>
+                            </div>
                         </div>
-                        <h3>Business Automation</h3>
-                        <p>Streamline your operations with AI-powered automation that handles repetitive tasks, workflows, and processes, allowing your team to focus on high-value activities.</p>
-                        <h4>Benefits:</h4>
-                        <ul class="benefits-list">
-                            <li>Reduce time spent on manual, repetitive tasks</li>
-                            <li>Minimize human error in routine processes</li>
-                            <li>Improve operational efficiency and throughput</li>
-                            <li>Scale your business without proportionally increasing staff</li>
-                        </ul>
-                        <div class="service-cta">
-                            <a href="services/automation.html" class="btn btn-secondary">Learn More</a>
+                        <div class="automation-flow bg-gray-900 rounded-md border border-gray-700 p-4 mb-6 h-64 flex items-center justify-center">
+                            <div class="process-flow flex items-center justify-between w-full max-w-md">
+                                <div class="process-node flex flex-col items-center">
+                                    <div class="node-icon w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-blue-300 mb-2">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <div class="node-label text-xs text-gray-400">Input</div>
+                                </div>
+
+                                <div class="process-arrow w-12 h-0.5 bg-gradient-to-r from-blue-500 to-green-500 relative">
+                                    <div class="arrow-head absolute -right-1 -top-1 w-0 h-0 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-green-500"></div>
+                                </div>
+
+                                <div class="process-node flex flex-col items-center relative">
+                                    <div class="node-icon w-12 h-12 rounded-full bg-green-900 flex items-center justify-center text-green-300 mb-2 relative">
+                                        <i class="fas fa-cogs"></i>
+                                        <div class="absolute inset-0 rounded-full border-2 border-green-500 opacity-50 animate-ping"></div>
+                                    </div>
+                                    <div class="node-label text-xs text-gray-400">Process</div>
+                                </div>
+
+                                <div class="process-arrow w-12 h-0.5 bg-gradient-to-r from-green-500 to-purple-500 relative">
+                                    <div class="arrow-head absolute -right-1 -top-1 w-0 h-0 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-purple-500"></div>
+                                </div>
+
+                                <div class="process-node flex flex-col items-center">
+                                    <div class="node-icon w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-purple-300 mb-2">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="node-label text-xs text-gray-400">Output</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Custom Solutions -->
-                <div class="custom-solutions">
-                    <div class="custom-content">
-                        <h3>Need a Custom Solution?</h3>
-                        <p>Don't see exactly what you're looking for? We specialize in creating custom AI solutions tailored to your specific business needs and challenges.</p>
-                        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <div class="terminal-card p-6 border border-terminal-cyan rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-cyan/20 transition-all max-w-3xl mx-auto mb-16">
+                    <div class="terminal-header flex justify-between items-center mb-6">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">custom_solution.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4 text-terminal-cyan">Need a Custom Solution?</h3>
+                        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">Don't see exactly what you're looking for? We specialize in creating custom AI solutions tailored to your specific business needs and challenges.</p>
+                        <a href="contact.html" class="btn-primary inline-block">Contact Us</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Pricing Section -->
-        <section id="pricing">
-            <div class="container">
-                <h2>Transparent, Flexible Pricing</h2>
-                <p class="section-intro">We believe in making AI accessible to businesses of all sizes. Our pricing is straightforward with no hidden costs, and we offer flexible options to fit your budget and needs.</p>
-                
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Essentials</h3>
-                            <div class="price">
-                                <span class="amount">$99</span>
-                                <span class="period">/month</span>
-                            </div>
+        <section id="pricing" class="py-16 bg-darker relative overflow-hidden">
+            <canvas id="pricing-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="terminal-window">
+                    <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Basic AI chatbot (250 interactions/month)</li>
-                                <li><i class="fas fa-check"></i> Basic analytics dashboard</li>
-                                <li><i class="fas fa-check"></i> 1 automated workflow</li>
-                                <li><i class="fas fa-check"></i> Email support</li>
-                                <li><i class="fas fa-check"></i> Monthly performance report</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="contact.html" class="btn btn-secondary">Get Started</a>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">pricing_options.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
                         </div>
                     </div>
-                    
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Most Popular</div>
-                        <div class="pricing-header">
-                            <h3>Business</h3>
-                            <div class="price">
-                                <span class="amount">$249</span>
-                                <span class="period">/month</span>
+                    <div class="terminal-content">
+                        <h2 class="text-3xl font-bold mb-4 text-center">Transparent, <span class="gradient-text">Flexible Pricing</span></h2>
+                        <p class="text-terminal-green text-center mb-8 max-w-3xl mx-auto">We believe in making AI accessible to businesses of all sizes. Our pricing is straightforward with no hidden costs, and we offer flexible options to fit your budget and needs.</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold mb-2 text-terminal-green">Essentials</h3>
+                            <div class="flex justify-center items-baseline">
+                                <span class="text-3xl font-bold text-white">$99</span>
+                                <span class="text-gray-400 ml-1">/month</span>
                             </div>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Advanced AI chatbot (1,000 interactions/month)</li>
-                                <li><i class="fas fa-check"></i> Full analytics suite with recommendations</li>
-                                <li><i class="fas fa-check"></i> 3 automated workflows</li>
-                                <li><i class="fas fa-check"></i> Priority email & phone support</li>
-                                <li><i class="fas fa-check"></i> Quarterly strategy consultation</li>
+                        <div class="mb-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Basic AI chatbot (250 interactions/month)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Basic analytics dashboard</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">1 automated workflow</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Email support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Monthly performance report</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="pricing-cta">
-                            <a href="contact.html" class="btn btn-primary">Get Started</a>
+                        <div class="text-center">
+                            <a href="contact.html" class="btn-secondary inline-block">Get Started</a>
                         </div>
                     </div>
-                    
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Scale</h3>
-                            <div class="price">
-                                <span class="amount">$499</span>
-                                <span class="period">/month</span>
+
+                    <div class="terminal-card p-6 border-2 border-terminal-cyan rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-cyan/30 transition-all relative">
+                        <div class="absolute -top-3 right-4 bg-terminal-cyan text-black text-xs font-bold py-1 px-3 rounded-full">Most Popular</div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold mb-2 text-terminal-cyan">Business</h3>
+                            <div class="flex justify-center items-baseline">
+                                <span class="text-3xl font-bold text-white">$249</span>
+                                <span class="text-gray-400 ml-1">/month</span>
                             </div>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Premium AI chatbot (3,000+ interactions)</li>
-                                <li><i class="fas fa-check"></i> Advanced predictive analytics</li>
-                                <li><i class="fas fa-check"></i> 10 automated workflows</li>
-                                <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                                <li><i class="fas fa-check"></i> Monthly strategy sessions</li>
+                        <div class="mb-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Advanced AI chatbot (1,000 interactions/month)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Full analytics suite with recommendations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">3 automated workflows</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Priority email & phone support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Quarterly strategy consultation</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="pricing-cta">
-                            <a href="contact.html" class="btn btn-secondary">Get Started</a>
+                        <div class="text-center">
+                            <a href="contact.html" class="btn-primary inline-block">Get Started</a>
                         </div>
                     </div>
-                    
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Custom</h3>
-                            <div class="price">
-                                <span class="amount">Custom</span>
-                                <span class="period"></span>
+
+                    <div class="terminal-card p-6 border border-terminal-green rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold mb-2 text-terminal-green">Scale</h3>
+                            <div class="flex justify-center items-baseline">
+                                <span class="text-3xl font-bold text-white">$499</span>
+                                <span class="text-gray-400 ml-1">/month</span>
                             </div>
                         </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Tailored AI solutions for your needs</li>
-                                <li><i class="fas fa-check"></i> Custom integrations with your systems</li>
-                                <li><i class="fas fa-check"></i> Advanced predictive analytics</li>
-                                <li><i class="fas fa-check"></i> Unlimited automated workflows</li>
-                                <li><i class="fas fa-check"></i> 24/7 premium support</li>
+                        <div class="mb-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Premium AI chatbot (3,000+ interactions)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Advanced predictive analytics</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">10 automated workflows</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Dedicated account manager</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Monthly strategy sessions</span>
+                                </li>
                             </ul>
                         </div>
-                        <div class="pricing-cta">
-                            <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                        <div class="text-center">
+                            <a href="contact.html" class="btn-secondary inline-block">Get Started</a>
+                        </div>
+                    </div>
+
+                    <div class="terminal-card p-6 border border-purple-500 rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold mb-2 text-purple-400">Custom</h3>
+                            <div class="flex justify-center items-baseline">
+                                <span class="text-3xl font-bold text-white">Custom</span>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Tailored AI solutions for your needs</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Custom integrations with your systems</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Advanced predictive analytics</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">Unlimited automated workflows</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-gray-300">24/7 premium support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-center">
+                            <a href="contact.html" class="btn-secondary inline-block border-purple-500 text-purple-400 hover:text-purple-300 hover:border-purple-300">Contact Us</a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="pricing-note">
-                    <p>All plans include a 14-day free trial. No credit card required to start.</p>
-                    <div class="roi-calculator-link">
-                        <a href="roi-calculator.html">
-                            <i class="fas fa-calculator"></i> Calculate Your ROI with Our Interactive Tool
-                        </a>
+
+                <div class="text-center mt-12 mb-8">
+                    <p class="text-terminal-green mb-6">All plans include a 14-day free trial. No credit card required to start.</p>
+
+                    <div class="roi-calculator-cta max-w-4xl mx-auto p-8 border-2 border-terminal-cyan rounded-lg bg-terminal-bg bg-opacity-70 shadow-xl shadow-terminal-cyan/30 transform hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                        <!-- Animated background elements -->
+                        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-900/10 to-purple-900/10"></div>
+                            <div class="absolute top-0 left-0 w-2 h-2 rounded-full bg-terminal-cyan animate-ping" style="left: 10%; top: 20%"></div>
+                            <div class="absolute top-0 left-0 w-2 h-2 rounded-full bg-terminal-green animate-ping" style="left: 80%; top: 50%; animation-delay: 1s"></div>
+                            <div class="absolute top-0 left-0 w-2 h-2 rounded-full bg-purple-500 animate-ping" style="left: 30%; top: 80%; animation-delay: 2s"></div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                            <div class="md:w-2/3">
+                                <div class="inline-block px-3 py-1 bg-terminal-cyan/20 text-terminal-cyan text-sm font-bold rounded-full mb-3">
+                                    <i class="fas fa-star mr-1"></i> FEATURED TOOL
+                                </div>
+                                <h3 class="text-3xl font-bold mb-3 text-white">Calculate Your <span class="gradient-text">AI ROI</span> in Minutes</h3>
+                                <p class="text-terminal-green mb-6 text-lg">Our interactive calculator helps you estimate the potential financial benefits of implementing AI solutions in your business. See exactly how much time and money you could save.</p>
+                                <ul class="mb-6 space-y-2">
+                                    <li class="flex items-center text-gray-300">
+                                        <i class="fas fa-check-circle text-terminal-cyan mr-2"></i> Personalized to your business size and industry
+                                    </li>
+                                    <li class="flex items-center text-gray-300">
+                                        <i class="fas fa-check-circle text-terminal-cyan mr-2"></i> Calculate potential time and cost savings
+                                    </li>
+                                    <li class="flex items-center text-gray-300">
+                                        <i class="fas fa-check-circle text-terminal-cyan mr-2"></i> Get tailored AI solution recommendations
+                                    </li>
+                                </ul>
+                                <a href="roi-calculator.html" class="btn-primary inline-flex items-center px-8 py-4 text-lg font-bold relative overflow-hidden group">
+                                    <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                                    <i class="fas fa-calculator mr-3 text-xl"></i> Calculate Your ROI
+                                </a>
+                            </div>
+                            <div class="md:w-1/3 flex justify-center">
+                                <div class="relative w-48 h-48 flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-terminal-green to-terminal-cyan rounded-full opacity-20 animate-pulse-slow"></div>
+                                    <div class="absolute inset-2 bg-gradient-to-r from-terminal-green to-terminal-cyan rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 0.5s"></div>
+                                    <div class="absolute inset-4 bg-gradient-to-r from-terminal-green to-terminal-cyan rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 1s"></div>
+                                    <div class="relative bg-terminal-bg rounded-full w-32 h-32 flex items-center justify-center border-2 border-terminal-cyan">
+                                        <i class="fas fa-calculator text-5xl text-terminal-cyan"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Industry-Specific Bundles -->
-        <section id="industry-bundles">
-            <div class="container">
-                <h2>Industry-Specific AI Solutions</h2>
-                <p class="section-intro">Tailored AI packages designed for the unique challenges of your industry.</p>
-                
-                <div class="bundles-grid">
-                    <div class="bundle-card">
-                        <div class="bundle-icon">
-                            <i class="fas fa-shopping-cart"></i>
+        <section id="industry-bundles" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="industry-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="terminal-window">
+                    <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
                         </div>
-                        <h3>Retail AI Bundle</h3>
-                        <p>Optimize inventory, enhance customer service, and understand customer sentiment.</p>
-                        <ul class="bundle-features">
-                            <li>Inventory forecasting</li>
-                            <li>24/7 customer chatbot</li>
-                            <li>Review & sentiment analysis</li>
-                        </ul>
-                        <div class="bundle-price">Starting at $349/month</div>
-                        <a href="contact.html" class="btn btn-secondary">Learn More</a>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">industry_solutions.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
+                        </div>
                     </div>
-                    
-                    <div class="bundle-card">
-                        <div class="bundle-icon">
-                            <i class="fas fa-heartbeat"></i>
+                    <div class="terminal-content">
+                        <h2 class="text-3xl font-bold mb-4 text-center">Industry-Specific <span class="gradient-text">AI Solutions</span></h2>
+                        <p class="text-terminal-green text-center mb-8 max-w-3xl mx-auto">Tailored AI packages designed for the unique challenges of your industry.</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <!-- Retail Bundle -->
+                            <div class="terminal-card p-6 border border-blue-500 rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-blue-500/20 transition-all">
+                                <div class="terminal-header flex justify-between items-center mb-4">
+                                    <div class="terminal-buttons flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-red-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-yellow-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-green-500"></span>
+                                    </div>
+                                    <div class="terminal-title text-blue-400 text-xs font-mono">retail_ai.sh</div>
+                                    <div class="terminal-buttons opacity-0 flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center mb-4">
+                                    <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-900 text-blue-400 text-2xl">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-center text-blue-400">Retail AI Bundle</h3>
+                                <p class="text-gray-300 mb-4 text-center">Optimize inventory, enhance customer service, and understand customer sentiment.</p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Inventory forecasting</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">24/7 customer chatbot</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-blue-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Review & sentiment analysis</span>
+                                    </li>
+                                </ul>
+                                <div class="text-center mb-6">
+                                    <div class="text-xl font-bold text-blue-400">Starting at $349<span class="text-sm font-normal text-gray-400">/month</span></div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="contact.html" class="btn-secondary inline-block border-blue-400 text-blue-400 hover:bg-blue-900 hover:text-white">Learn More</a>
+                                </div>
+                            </div>
+
+                            <!-- Healthcare Bundle -->
+                            <div class="terminal-card p-6 border border-green-500 rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-green-500/20 transition-all">
+                                <div class="terminal-header flex justify-between items-center mb-4">
+                                    <div class="terminal-buttons flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-red-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-yellow-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-green-500"></span>
+                                    </div>
+                                    <div class="terminal-title text-green-400 text-xs font-mono">healthcare_ai.sh</div>
+                                    <div class="terminal-buttons opacity-0 flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center mb-4">
+                                    <div class="w-16 h-16 flex items-center justify-center rounded-full bg-green-900 text-green-400 text-2xl">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-center text-green-400">Healthcare AI Bundle</h3>
+                                <p class="text-gray-300 mb-4 text-center">Streamline patient scheduling, improve follow-up, and enhance satisfaction.</p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Automated appointment scheduling</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Patient follow-up system</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Satisfaction analysis</span>
+                                    </li>
+                                </ul>
+                                <div class="text-center mb-6">
+                                    <div class="text-xl font-bold text-green-400">Starting at $399<span class="text-sm font-normal text-gray-400">/month</span></div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="contact.html" class="btn-secondary inline-block border-green-400 text-green-400 hover:bg-green-900 hover:text-white">Learn More</a>
+                                </div>
+                            </div>
+
+                            <!-- Professional Services Bundle -->
+                            <div class="terminal-card p-6 border border-purple-500 rounded-lg bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
+                                <div class="terminal-header flex justify-between items-center mb-4">
+                                    <div class="terminal-buttons flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-red-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-yellow-500"></span>
+                                        <span class="terminal-button w-2 h-2 rounded-full bg-green-500"></span>
+                                    </div>
+                                    <div class="terminal-title text-purple-400 text-xs font-mono">professional_ai.sh</div>
+                                    <div class="terminal-buttons opacity-0 flex gap-2">
+                                        <span class="terminal-button w-2 h-2 rounded-full"></span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center mb-4">
+                                    <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-900 text-purple-400 text-2xl">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-center text-purple-400">Professional Services Bundle</h3>
+                                <p class="text-gray-300 mb-4 text-center">Automate client interactions, document processing, and billing operations.</p>
+                                <ul class="space-y-2 mb-6">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Client intake automation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Document processing AI</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-purple-400 mr-2 mt-1"></i>
+                                        <span class="text-gray-300">Billing automation</span>
+                                    </li>
+                                </ul>
+                                <div class="text-center mb-6">
+                                    <div class="text-xl font-bold text-purple-400">Starting at $379<span class="text-sm font-normal text-gray-400">/month</span></div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="contact.html" class="btn-secondary inline-block border-purple-400 text-purple-400 hover:bg-purple-900 hover:text-white">Learn More</a>
+                                </div>
+                            </div>
                         </div>
-                        <h3>Healthcare AI Bundle</h3>
-                        <p>Streamline patient scheduling, improve follow-up, and enhance satisfaction.</p>
-                        <ul class="bundle-features">
-                            <li>Automated appointment scheduling</li>
-                            <li>Patient follow-up system</li>
-                            <li>Satisfaction analysis</li>
-                        </ul>
-                        <div class="bundle-price">Starting at $399/month</div>
-                        <a href="contact.html" class="btn btn-secondary">Learn More</a>
-                    </div>
-                    
-                    <div class="bundle-card">
-                        <div class="bundle-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h3>Professional Services Bundle</h3>
-                        <p>Automate client interactions, document processing, and billing operations.</p>
-                        <ul class="bundle-features">
-                            <li>Client intake automation</li>
-                            <li>Document processing AI</li>
-                            <li>Billing automation</li>
-                        </ul>
-                        <div class="bundle-price">Starting at $379/month</div>
-                        <a href="contact.html" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Implementation Packages -->
-        <section id="implementation">
-            <div class="container">
-                <h2>Implementation & Onboarding</h2>
-                <p class="section-intro">Get up and running quickly with our professional implementation services.</p>
-                
-                <div class="implementation-grid">
-                    <div class="implementation-card">
-                        <h3>Basic Setup</h3>
-                        <div class="implementation-price">Free</div>
-                        <p>Self-guided setup with comprehensive documentation and video tutorials.</p>
-                        <ul>
-                            <li>Access to knowledge base</li>
-                            <li>Setup guides and checklists</li>
-                            <li>Email support for questions</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-secondary">Select</a>
-                    </div>
-                    
-                    <div class="implementation-card featured">
-                        <h3>Standard Implementation</h3>
-                        <div class="implementation-price">$499 <span class="one-time">one-time</span></div>
-                        <p>Guided implementation with dedicated specialist to ensure smooth setup.</p>
-                        <ul>
-                            <li>2 implementation sessions</li>
-                            <li>Configuration assistance</li>
-                            <li>Basic integration support</li>
-                            <li>Team training session</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary">Select</a>
-                    </div>
-                    
-                    <div class="implementation-card">
-                        <h3>White Glove Onboarding</h3>
-                        <div class="implementation-price">$1,499 <span class="one-time">one-time</span></div>
-                        <p>Comprehensive implementation service with custom integrations and strategy.</p>
-                        <ul>
-                            <li>Full implementation service</li>
-                            <li>Custom integrations</li>
-                            <li>Extended team training</li>
-                            <li>90-day optimization support</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-secondary">Select</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- FAQ Section -->
-        <section id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How easy is it to implement your AI solutions?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        <section id="faq" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="faq-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="terminal-window">
+                    <div class="terminal-header flex justify-between items-center mb-6 mx-auto" style="max-width: 800px;">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
                         </div>
-                        <div class="faq-answer">
-                            <p>Our solutions are designed with small businesses in mind, focusing on ease of implementation. Most of our standard solutions can be up and running within a few days. Our team handles the technical aspects, and we provide training to ensure your team can use the tools effectively.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Do I need technical expertise to use your services?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>No technical expertise is required. We've designed our solutions to be user-friendly with intuitive interfaces. Our team provides comprehensive training and ongoing support to ensure you can utilize all features effectively.</p>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">faq.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
                         </div>
                     </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How long does it take to see results?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Many clients see immediate operational improvements, such as reduced time spent on customer inquiries or administrative tasks. For analytics and forecasting tools, meaningful insights typically emerge within the first month as the system collects and analyzes data.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Can I customize the solutions to fit my specific business needs?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Absolutely! While our standard packages work well for many businesses, we specialize in customization. During our initial consultation, we'll discuss your specific needs and tailor our solutions accordingly.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>What kind of support do you offer?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>All our plans include ongoing support. Depending on your package, this ranges from email support to 24/7 premium support with a dedicated account manager. We're committed to ensuring your success with our tools.</p>
+                    <div class="terminal-content">
+                        <h2 class="text-3xl font-bold mb-4 text-center">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                        <p class="text-terminal-green text-center mb-8 max-w-3xl mx-auto">Get answers to common questions about our AI solutions and implementation process.</p>
+
+                        <div class="max-w-3xl mx-auto">
+                            <div class="faq-item rounded-lg mb-4 overflow-hidden border border-terminal-green bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                                <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                    <h3 class="text-lg font-semibold text-terminal-green">How easy is it to implement your AI solutions?</h3>
+                                    <span class="faq-icon text-terminal-green"><i class="fas fa-plus"></i></span>
+                                </div>
+                                <div class="faq-answer px-6 pb-6">
+                                    <p class="text-gray-300">Our solutions are designed with small businesses in mind, focusing on ease of implementation. Most of our standard solutions can be up and running within a few days. Our team handles the technical aspects, and we provide training to ensure your team can use the tools effectively.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item rounded-lg mb-4 overflow-hidden border border-terminal-green bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                                <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                    <h3 class="text-lg font-semibold text-terminal-green">Do I need technical expertise to use your services?</h3>
+                                    <span class="faq-icon text-terminal-green"><i class="fas fa-plus"></i></span>
+                                </div>
+                                <div class="faq-answer px-6 pb-6">
+                                    <p class="text-gray-300">No technical expertise is required. We've designed our solutions to be user-friendly with intuitive interfaces. Our team provides comprehensive training and ongoing support to ensure you can utilize all features effectively.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item rounded-lg mb-4 overflow-hidden border border-terminal-green bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                                <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                    <h3 class="text-lg font-semibold text-terminal-green">How long does it take to see results?</h3>
+                                    <span class="faq-icon text-terminal-green"><i class="fas fa-plus"></i></span>
+                                </div>
+                                <div class="faq-answer px-6 pb-6">
+                                    <p class="text-gray-300">Many clients see immediate operational improvements, such as reduced time spent on customer inquiries or administrative tasks. For analytics and forecasting tools, meaningful insights typically emerge within the first month as the system collects and analyzes data.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item rounded-lg mb-4 overflow-hidden border border-terminal-green bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                                <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                    <h3 class="text-lg font-semibold text-terminal-green">Can I customize the solutions to fit my specific business needs?</h3>
+                                    <span class="faq-icon text-terminal-green"><i class="fas fa-plus"></i></span>
+                                </div>
+                                <div class="faq-answer px-6 pb-6">
+                                    <p class="text-gray-300">Absolutely! While our standard packages work well for many businesses, we specialize in customization. During our initial consultation, we'll discuss your specific needs and tailor our solutions accordingly.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item rounded-lg mb-4 overflow-hidden border border-terminal-green bg-terminal-bg bg-opacity-50 hover:shadow-lg hover:shadow-terminal-green/20 transition-all">
+                                <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                    <h3 class="text-lg font-semibold text-terminal-green">What kind of support do you offer?</h3>
+                                    <span class="faq-icon text-terminal-green"><i class="fas fa-plus"></i></span>
+                                </div>
+                                <div class="faq-answer px-6 pb-6">
+                                    <p class="text-gray-300">All our plans include ongoing support. Depending on your package, this ranges from email support to 24/7 premium support with a dedicated account manager. We're committed to ensuring your success with our tools.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -607,59 +1083,104 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Transform Your Business with AI?</h2>
-                <p>Start with a free consultation to discover which solutions are right for you.</p>
-                <a href="contact.html" class="btn btn-primary">Get Started Today</a>
+        <section id="cta" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="cta-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <div class="terminal-window max-w-4xl mx-auto">
+                    <div class="terminal-header flex justify-between items-center mb-6">
+                        <div class="terminal-buttons flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="terminal-button w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">transform_business.sh</div>
+                        <div class="terminal-buttons opacity-0 flex gap-2">
+                            <span class="terminal-button w-3 h-3 rounded-full"></span>
+                        </div>
+                    </div>
+                    <div class="terminal-content">
+                        <h2 class="text-3xl font-bold mb-6">Ready to <span class="gradient-text">Transform Your Business</span> with AI?</h2>
+                        <p class="text-xl mb-8 max-w-2xl mx-auto text-terminal-green">Start with a free consultation to discover which solutions are right for you.</p>
+
+                        <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                            <a href="contact.html" class="btn-primary inline-flex items-center px-8 py-4 text-lg font-bold">
+                                <i class="fas fa-rocket mr-2"></i> Get Started Today
+                            </a>
+                            <div class="relative">
+                                <div class="absolute -inset-1 bg-terminal-cyan opacity-30 rounded-lg blur-sm animate-pulse-slow"></div>
+                                <a href="roi-calculator.html" class="btn-secondary inline-flex items-center px-8 py-4 text-lg font-bold relative border-2 border-terminal-cyan text-terminal-cyan hover:text-white hover:bg-terminal-cyan/20">
+                                    <i class="fas fa-calculator mr-2"></i> Calculate Your ROI
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/chatbots.html">AI Chatbots</a></li>
-                        <li><a href="services/analytics.html">Predictive Analytics</a></li>
-                        <li><a href="services/automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:ai.unplugged11@gmail.com">ai.unplugged11@gmail.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:2397458189">(239) 745-8189</a></p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="assessment/index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services/chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="services/analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="services/automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -667,20 +1188,141 @@
 
     <script src="js/script.js"></script>
     <script>
+        // Matrix Rain Animation
+        class MatrixRain {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.resizeCanvas();
+                this.characters = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+                this.fontSize = 14;
+                this.columns = Math.floor(this.canvas.width / this.fontSize);
+                this.drops = [];
+                this.initialize();
+            }
+
+            resizeCanvas() {
+                this.canvas.width = this.canvas.parentElement.offsetWidth;
+                this.canvas.height = this.canvas.parentElement.offsetHeight;
+            }
+
+            initialize() {
+                // Initialize drops at random positions
+                for (let i = 0; i < this.columns; i++) {
+                    this.drops[i] = Math.floor(Math.random() * -100);
+                }
+                window.addEventListener('resize', () => this.handleResize());
+            }
+
+            handleResize() {
+                this.resizeCanvas();
+                this.columns = Math.floor(this.canvas.width / this.fontSize);
+                // Adjust drops array length
+                if (this.drops.length > this.columns) {
+                    this.drops = this.drops.slice(0, this.columns);
+                } else if (this.drops.length < this.columns) {
+                    for (let i = this.drops.length; i < this.columns; i++) {
+                        this.drops[i] = Math.floor(Math.random() * -100);
+                    }
+                }
+            }
+
+            draw() {
+                // Semi-transparent black background to create fade effect
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.ctx.font = `${this.fontSize}px monospace`;
+
+                for (let i = 0; i < this.drops.length; i++) {
+                    // Random character
+                    const text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
+
+                    // Gradient color from top to bottom
+                    const gradient = this.ctx.createLinearGradient(0, this.drops[i] * this.fontSize, 0, this.drops[i] * this.fontSize + this.fontSize * 5);
+                    gradient.addColorStop(0, '#0f0'); // Bright green at the head
+                    gradient.addColorStop(0.8, 'rgba(0, 255, 0, 0.5)'); // Fading green
+                    gradient.addColorStop(1, 'rgba(0, 255, 0, 0.1)'); // Almost transparent at the tail
+
+                    this.ctx.fillStyle = gradient;
+
+                    // Draw the character
+                    this.ctx.fillText(text, i * this.fontSize, this.drops[i] * this.fontSize);
+
+                    // Move the drop down
+                    this.drops[i]++;
+
+                    // Reset drop to top with random delay when it reaches bottom
+                    if (this.drops[i] * this.fontSize > this.canvas.height && Math.random() > 0.975) {
+                        this.drops[i] = 0;
+                    }
+                }
+            }
+
+            animate() {
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+
+            start() {
+                this.animate();
+            }
+        }
+
+        // Mobile navigation toggle function
+        function initMobileNav() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded',
+                    hamburger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+
+            // Close menu when a link is clicked
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // Initialize Matrix Rain animations
+        function initMatrixRain() {
+            const matrixCanvases = document.querySelectorAll('.matrix-bg');
+            matrixCanvases.forEach(canvas => {
+                const matrixRain = new MatrixRain(canvas);
+                matrixRain.start();
+            });
+        }
+
         // FAQ Accordion Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile navigation
+            initMobileNav();
+
+            // Initialize matrix rain animations
+            initMatrixRain();
+
             const faqItems = document.querySelectorAll('.faq-item');
-            
+
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
-                
+
                 question.addEventListener('click', () => {
                     const answer = item.querySelector('.faq-answer');
                     const icon = item.querySelector('.faq-icon i');
-                    
+
                     // Toggle the active class
                     item.classList.toggle('active');
-                    
+
                     // Toggle the icon
                     if (item.classList.contains('active')) {
                         icon.classList.remove('fa-plus');
@@ -695,5 +1337,11 @@
             });
         });
     </script>
+
+    <!-- Chatbot Script -->
+    <script src="js/chatbot.js"></script>
+
+    <!-- Logo Enhancer Script -->
+    <script src="js/logo-enhancer.js"></script>
 </body>
 </html>

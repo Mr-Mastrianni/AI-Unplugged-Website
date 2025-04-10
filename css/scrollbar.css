@@ -1,0 +1,56 @@
+/* Custom Scrollbar Styling for AI Unplugged Website */
+
+/* Define variables for scrollbar colors */
+:root {
+    --scrollbar-track: rgba(5, 5, 10, 0.5);
+    --scrollbar-thumb: var(--terminal-green, #0f0);
+    --scrollbar-thumb-hover: var(--terminal-cyan, #0ff);
+    --scrollbar-width: 8px;
+    --scrollbar-radius: 4px;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: var(--scrollbar-radius);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Edge and IE */
+body {
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for specific elements if needed */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}

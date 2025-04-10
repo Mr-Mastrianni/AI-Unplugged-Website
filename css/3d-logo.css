@@ -1,0 +1,85 @@
+/* 3D Logo Animation Styles for AI Unplugged */
+
+.hero-3d-logo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+#logo-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.logo-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--terminal-green);
+    font-family: 'Inconsolata', monospace;
+    z-index: 0;
+}
+
+.logo-loading .spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 10px;
+    border: 3px solid rgba(0, 255, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--terminal-green);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Terminal-style text animation */
+.logo-loading p {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    animation: typing 3s steps(40, end) infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-3d-logo {
+        min-height: 300px;
+    }
+}
+
+/* Navbar logo 3D rotation effect */
+.logo-rotate-3d {
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    animation: navbar-logo-rotate 8s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8));
+}
+
+@keyframes navbar-logo-rotate {
+    0% { transform: perspective(800px) rotateY(0deg); }
+    25% { transform: perspective(800px) rotateY(90deg); }
+    50% { transform: perspective(800px) rotateY(180deg); }
+    75% { transform: perspective(800px) rotateY(270deg); }
+    100% { transform: perspective(800px) rotateY(360deg); }
+}
+
+.logo-rotate-3d:hover {
+    animation-play-state: paused;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 0, 1));
+    transform: scale(1.15) perspective(800px) rotateY(0deg);
+}

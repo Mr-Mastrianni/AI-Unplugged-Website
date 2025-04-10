@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- AI Unplugged Website - Optimized for Performance, Accessibility, and Mobile Experience -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AI Unplugged provides affordable, easy-to-implement AI solutions for small businesses. Boost efficiency with AI chatbots, predictive analytics, and business automation. Get started with our free assessment.">
     <title>AI Solutions for Small Businesses | Chatbots, Analytics & Automation | AI Unplugged</title>
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aiunplugged.pro/" />
-    
+
     <!-- Open Graph tags -->
     <meta property="og:title" content="AI Solutions for Small Businesses | AI Unplugged">
     <meta property="og:description" content="AI Unplugged provides affordable, easy-to-implement AI solutions for small businesses. Boost efficiency with AI chatbots, predictive analytics, and business automation.">
     <meta property="og:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
     <meta property="og:url" content="https://aiunplugged.pro">
     <meta property="og:type" content="website">
-    
+
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Solutions for Small Businesses | AI Unplugged">
     <meta name="twitter:description" content="AI Unplugged provides affordable, easy-to-implement AI solutions for small businesses. Boost efficiency with chatbots, analytics & automation.">
     <meta name="twitter:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
-    
+
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -44,85 +45,771 @@
       }
     }
     </script>
-    
-    <!-- Production minified CSS -->
-    <link rel="stylesheet" href="css/styles.min.css">
-    <!-- Fallback for development -->
-    <link rel="stylesheet" href="css/styles.css" media="print" onload="this.media='all'">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    <!-- Custom CSS for Logo Rotation -->
+    <style>
+        /* 3D Logo Container Styles */
+        #logo-container {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* Fallback Logo Styles */
+        .logo-fallback-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-fallback-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: logo-rotate 8s linear infinite;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.7));
+        }
+
+        @keyframes logo-rotate {
+            0% { transform: perspective(800px) rotateY(0deg); }
+            100% { transform: perspective(800px) rotateY(360deg); }
+        }
+
+        @keyframes logo-pulse {
+            0% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="css/logo.css">
+
+    <!-- 3D Logo Animation CSS -->
+    <link rel="stylesheet" href="css/3d-logo.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a12, #0f111a);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            transition: all 0.4s ease;
+            border: 1px solid var(--terminal-green);
+            transform: perspective(1000px) rotateY(0deg);
+            transform-style: preserve-3d;
+            background: rgba(10, 10, 18, 0.7);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            border-color: var(--terminal-cyan);
+        }
+
+        .service-card i {
+            transition: all 0.4s ease;
+            text-shadow: 0 0 10px var(--terminal-glow);
+        }
+
+        .service-card:hover i {
+            transform: scale(1.2);
+            color: var(--terminal-cyan);
+        }
+
+        .animated-brain {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .neuron {
+            position: absolute;
+            background-color: var(--terminal-green);
+            border-radius: 50%;
+            opacity: 0.6;
+            box-shadow: 0 0 10px var(--terminal-glow);
+        }
+
+        .connection {
+            position: absolute;
+            background-color: var(--terminal-green);
+            opacity: 0.3;
+            transform-origin: left center;
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--terminal-green);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        .nav-links a:hover {
+            color: var(--terminal-cyan);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--terminal-green);
+            text-shadow: var(--text-shadow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            transition: all 0.3s ease;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-shadow: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-green);
+            border: 2px solid var(--terminal-green);
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-shadow: var(--text-shadow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateY(-3px);
+            border-color: var(--terminal-cyan);
+            color: var(--terminal-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Custom animations for elements */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .animate-fade-right {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .animate-fade-left {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .solutions-highlight-container {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, var(--terminal-green), var(--terminal-cyan));
+            border-image-slice: 1;
+            background-color: rgba(0, 20, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            animation: glow 3s infinite;
+        }
+
+        .solutions-highlight-container:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .shadow-glow-blue {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .shadow-glow-green {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+
+        .shadow-glow-purple {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+
+        .glow-icon-blue {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: pulse 3s infinite;
+        }
+
+        .glow-icon-green {
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            animation: pulse 3s infinite;
+            animation-delay: 1s;
+        }
+
+        .glow-icon-purple {
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+            animation: pulse 3s infinite;
+            animation-delay: 2s;
+        }
+
+        .client-avatar-animation {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .avatar-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--terminal-green), var(--terminal-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .avatar-icon {
+            color: var(--terminal-bg);
+            z-index: 1;
+        }
+
+        .avatar-pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(0, 255, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+                text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.6);
+                text-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+                text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .typewriter {
+            position: relative;
+        }
+
+        .typewriter::after {
+            content: '|';
+            position: absolute;
+            right: -15px;
+            color: var(--terminal-green);
+            animation: blink 1s infinite;
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger .w-6 {
+                background-color: var(--terminal-green);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--terminal-bg);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px;
+                transition: all 0.5s ease;
+                z-index: 99;
+                border-top: 1px solid var(--terminal-green);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+
+        /* FAQ Accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-icon i {
+            transform: rotate(45deg);
+        }
+
+        .faq-item {
+            background-color: rgba(10, 10, 18, 0.7);
+            border: 1px solid var(--terminal-green);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+            border-color: var(--terminal-cyan);
+        }
+
+        /* Custom ROI Visualizer */
+        #roi-visualizer {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            background: rgba(10, 10, 18, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--terminal-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        /* Additional 3D and animation styles */
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--terminal-green);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .rotate-3d {
+            animation: rotate3d 15s linear infinite;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* Custom tailwind-like utilities */
+        .grid-cols-auto-fit {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blur-bg {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Matrix background effect */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--terminal-red);
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--terminal-cyan);
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(54px, 800px, 54px, 0); }
+            20% { clip: rect(27px, 800px, 86px, 0); }
+            40% { clip: rect(14px, 800px, 75px, 0); }
+            60% { clip: rect(39px, 800px, 104px, 0); }
+            80% { clip: rect(18px, 800px, 53px, 0); }
+            100% { clip: rect(73px, 800px, 112px, 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(35px, 800px, 89px, 0); }
+            20% { clip: rect(56px, 800px, 103px, 0); }
+            40% { clip: rect(22px, 800px, 64px, 0); }
+            60% { clip: rect(88px, 800px, 120px, 0); }
+            80% { clip: rect(13px, 800px, 32px, 0); }
+            100% { clip: rect(42px, 800px, 99px, 0); }
+        }
+
+        /* Terminal-style sections */
+        .section-terminal {
+            position: relative;
+            border: 1px solid var(--terminal-green);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            background-color: rgba(10, 10, 18, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+        }
+
+        .section-terminal-header {
+            background: linear-gradient(to right, #0a0a0a, #111);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-green);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .section-terminal-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--terminal-green);
+            font-size: 16px;
+            font-weight: 600;
+            text-shadow: var(--text-shadow);
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .terminal-button.red {
+            background: #ff5f56;
+        }
+
+        .terminal-button.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-button.green {
+            background: #27c93f;
+        }
+
+        /* Sections with different backgrounds */
+        .bg-dark {
+            background-color: var(--terminal-bg);
+        }
+
+        .bg-darker {
+            background-color: rgba(5, 5, 10, 0.8);
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #0a0a12, #151525);
+        }
+
+        /* Custom scrollbar styling moved to scrollbar.css */
+
+        /* Quick ROI Calculator Styles */
+        .mini-roi-calculator {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mini-roi-calculator:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .highlight-animation {
+            animation: highlight-pulse 1s ease-in-out;
+        }
+
+        @keyframes highlight-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: var(--terminal-green); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-slow {
+            0% { opacity: 0.8; box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); }
+            50% { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); }
+            100% { opacity: 0.8; box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+    </style>
+    <!-- Accessibility Styles -->
+    <style>
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--terminal-green);
+            color: #000;
+            padding: 8px;
+            z-index: 9999;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* High contrast focus styles for accessibility */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--terminal-cyan) !important;
+            outline-offset: 2px !important;
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
-        <nav id="main-nav" role="navigation" aria-label="Main Navigation">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html" aria-label="AI Unplugged Home"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
+                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="index.html" class="text-terminal-green font-medium" aria-current="page">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-terminal-cyan">Services</a></li>
+                        <li><a href="how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" class="pt-32">
         <!-- Hero Section -->
-        <section id="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Unlock the Power of AI for Your Small Business</h1>
-                    <p>Affordable, easy-to-implement AI solutions tailored for small businesses. Boost efficiency, improve customer experience, and drive growth.</p>
-                    <div class="hero-buttons">
-                        <a href="services.html" class="btn btn-primary">Discover Our Services</a>
-                        <a href="assessment/index.html" class="btn btn-secondary">Take AI Readiness Assessment</a>
+        <section id="hero" class="hero-bg py-16 md:py-24" aria-labelledby="hero-heading">
+            <canvas id="matrix-rain" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center md:items-start">
+                    <div class="hero-content md:w-2/5 text-white animate-fade-right">
+                        <h1 id="hero-heading" class="text-3xl md:text-5xl font-bold mb-6 glitch" data-text="Unlock the Power of AI for Your Business">Unlock the Power of AI for Your Business</h1>
+                        <p class="text-lg md:text-xl mb-8">Affordable, easy-to-implement AI solutions tailored for small businesses. Boost efficiency, improve customer experience, and drive growth.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                            <a href="services.html" class="btn-primary text-center">Discover Our Services</a>
+                            <a href="assessment/index.html" class="btn-secondary text-center">Take AI Readiness Assessment</a>
+                        </div>
+                        <div class="mt-2 relative">
+                            <a href="roi-calculator.html" class="flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-pulse-slow">
+                                <i class="fas fa-calculator text-xl"></i>
+                                <span>Calculate Your AI ROI</span>
+                                <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">NEW</div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-image">
-                    <picture>
-                        <!-- Comment out missing images for now -->
-                        <!-- <source srcset="images/hero-image.webp" type="image/webp">
-                        <source srcset="images/hero-image.jpg" type="image/jpeg"> 
-                        <img src="images/hero-image.jpg" alt="AI solutions powering small business growth - visual representation of AI technology" loading="eager"> -->
-                        <!-- Fallback content -->
-                        <div style="background-color: #4285f4; color: white; padding: 50px; text-align: center; border-radius: 10px;">
-                            <h3>AI Solutions for Small Businesses</h3>
-                            <p>Enhancing efficiency and growth through innovative technology</p>
-                        </div>
-                    </picture>
-                    <div class="animated-hero">
-                        <div class="business-building">
-                            <div class="window"></div>
-                            <div class="window"></div>
-                            <div class="window"></div>
-                            <div class="window"></div>
-                            <div class="door"></div>
-                        </div>
-                        <div class="ai-elements">
-                            <div class="circuit-path"></div>
-                            <div class="data-node"></div>
-                            <div class="data-node"></div>
-                            <div class="data-node"></div>
-                            <div class="robot">
-                                <div class="robot-head">
-                                    <div class="robot-eye"></div>
-                                    <div class="robot-eye"></div>
+                    <div class="hero-image md:w-3/5 mt-10 md:mt-0 animate-fade-left">
+                        <div class="relative h-96 md:h-[40rem] w-full floating">
+                            <div id="logo-container" class="hero-3d-logo w-full h-full">
+                                <!-- Fallback logo that will be shown immediately and replaced by JS if WebGL works -->
+                                <div class="logo-fallback-container">
+                                    <img src="images/ai-unplugged.png" alt="AI Unplugged Logo" class="logo-fallback-image" />
                                 </div>
-                                <div class="robot-body"></div>
                             </div>
-                            <div class="ai-pulse"></div>
                         </div>
                     </div>
                 </div>
@@ -130,148 +817,121 @@
         </section>
 
         <!-- Services Overview -->
-        <section id="services-overview">
-            <div class="container">
-                <h2>Our AI Solutions</h2>
-                <p class="section-intro">We specialize in affordable, practical AI solutions designed specifically for small business needs. Our technology is easy to implement, requires minimal technical expertise, and delivers measurable ROI.</p>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-robot"></i>
-                        <h3><a href="services/chatbots.html" title="AI Chatbot Solutions for Small Businesses">AI Chatbots</a></h3>
-                        <p>24/7 customer support and engagement to enhance your customer experience. Our chatbots understand natural language, learn from interactions, and seamlessly integrate with your existing systems.</p>
-                        <a href="services/chatbots.html" class="btn btn-secondary">Learn More</a>
+        <section id="services-overview" class="py-16 bg-darker relative overflow-hidden">
+            <canvas id="services-matrix" class="matrix-bg"></canvas>
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <canvas id="solutions-matrix" class="w-full h-full opacity-30"></canvas>
+            </div>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3><a href="services/analytics.html" title="Predictive Analytics for Small Businesses">Predictive Analytics</a></h3>
-                        <p>Data-driven insights to optimize inventory, sales forecasting, and business decisions. Turn your existing data into actionable intelligence to reduce costs and increase revenue.</p>
-                        <a href="services/analytics.html" class="btn btn-secondary">Learn More</a>
+                    <div class="section-terminal-title">AI_SOLUTIONS.exe</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
                     </div>
-                    <div class="service-card">
-                        <i class="fas fa-cogs"></i>
-                        <h3><a href="services/automation.html" title="Business Automation Solutions for Small Businesses">Business Automation</a></h3>
-                        <p>Streamline operations and reduce manual tasks with custom automation solutions. Free your team from repetitive work and focus on growth and innovation.</p>
-                        <a href="services/automation.html" class="btn btn-secondary">Learn More</a>
+                </div>
+
+                <div class="solutions-highlight-container relative mb-12 p-6 mx-auto max-w-4xl">
+                    <div class="solutions-glow absolute inset-0 rounded-lg" style="background: radial-gradient(circle, rgba(0,255,0,0.2) 0%, rgba(0,0,0,0) 70%);"></div>
+                    <div class="terminal-header mb-4 flex items-center justify-between">
+                        <div class="terminal-buttons flex gap-2">
+                            <div class="terminal-button red w-3 h-3 rounded-full"></div>
+                            <div class="terminal-button yellow w-3 h-3 rounded-full"></div>
+                            <div class="terminal-button green w-3 h-3 rounded-full"></div>
+                        </div>
+                        <div class="terminal-title text-terminal-green text-sm font-mono">ai_solutions_core.exe</div>
+                        <div class="terminal-buttons opacity-0 w-12"></div>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 glitch typewriter" data-text="Our AI Solutions">Our <span class="gradient-text text-glow">AI Solutions</span></h2>
+                    <p class="text-xl md:text-2xl text-center text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">We specialize in affordable, practical AI solutions designed specifically for small business needs. Our technology is easy to implement, requires minimal technical expertise, and delivers measurable ROI.</p>
+                    <div class="flex justify-center items-center mb-6">
+                        <div class="inline-flex items-center bg-terminal-bg border border-terminal-cyan rounded-full px-4 py-2 text-terminal-cyan">
+                            <i class="fas fa-calculator mr-2"></i>
+                            <span>See the potential ROI for your business with our <a href="roi-calculator.html" class="underline font-bold hover:text-white">ROI Calculator</a></span>
+                        </div>
+                    </div>
+                    <div class="terminal-line w-1/2 h-1 bg-gradient-to-r from-terminal-green to-terminal-cyan mx-auto rounded-full animate-pulse-slow"></div>
+                    <div class="text-center mt-6">
+                        <a href="services.html" class="btn-primary inline-block mx-2">Explore Our Solutions</a>
+                        <a href="assessment/index.html" class="btn-secondary inline-block mx-2">Take AI Assessment</a>
+                        <a href="roi-calculator.html" class="btn-secondary inline-block mx-2 relative overflow-hidden group">
+                            <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                            <i class="fas fa-calculator mr-1"></i> Calculate ROI
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="service-card rounded-xl overflow-hidden border border-blue-900 transform transition-all duration-500 hover:scale-105 hover:shadow-glow-blue animate-fade-up" style="animation-delay: 200ms;">
+                        <div class="p-8 relative">
+                            <div class="service-card-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-900 mb-6 glow-icon-blue">
+                                <i class="fas fa-robot text-2xl text-blue-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4"><a href="services/chatbots.html" class="hover:text-blue-400 gradient-text">AI Chatbots</a></h3>
+                            <p class="text-gray-300 mb-6">24/7 customer support and engagement to enhance your customer experience. Our chatbots understand natural language, learn from interactions, and seamlessly integrate with your existing systems.</p>
+                            <a href="services/chatbots.html" class="btn-secondary inline-block hover:bg-blue-900 hover:border-blue-400 hover:text-blue-100 transition-all">Learn More</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card rounded-xl overflow-hidden border border-green-900 transform transition-all duration-500 hover:scale-105 hover:shadow-glow-green animate-fade-up" style="animation-delay: 400ms;">
+                        <div class="p-8 relative">
+                            <div class="service-card-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-green-900 mb-6 glow-icon-green">
+                                <i class="fas fa-chart-line text-2xl text-green-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4"><a href="services/analytics.html" class="hover:text-green-400 gradient-text">Predictive Analytics</a></h3>
+                            <p class="text-gray-300 mb-6">Data-driven insights to optimize inventory, sales forecasting, and business decisions. Turn your existing data into actionable intelligence to reduce costs and increase revenue.</p>
+                            <a href="services/analytics.html" class="btn-secondary inline-block hover:bg-green-900 hover:border-green-400 hover:text-green-100 transition-all">Learn More</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card rounded-xl overflow-hidden border border-purple-900 transform transition-all duration-500 hover:scale-105 hover:shadow-glow-purple animate-fade-up" style="animation-delay: 600ms;">
+                        <div class="p-8 relative">
+                            <div class="service-card-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-purple-900 mb-6 glow-icon-purple">
+                                <i class="fas fa-cogs text-2xl text-purple-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4"><a href="services/automation.html" class="hover:text-purple-400 gradient-text">Business Automation</a></h3>
+                            <p class="text-gray-300 mb-6">Streamline operations and reduce manual tasks with custom automation solutions. Free your team from repetitive work and focus on growth and innovation.</p>
+                            <a href="services/automation.html" class="btn-secondary inline-block hover:bg-purple-900 hover:border-purple-400 hover:text-purple-100 transition-all">Learn More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Us Brief -->
-        <section id="about-brief">
-            <div class="container">
-                <div class="about-content">
-                    <h2>About AI Unplugged</h2>
-                    <p>Founded with a mission to <a href="about.html" title="Learn more about our mission">make AI accessible for small businesses</a>, we bridge the gap between cutting-edge technology and practical business applications. Our team of experts develops custom AI solutions that are easy to implement, affordable, and effective.</p>
-                    <a href="about.html" class="btn btn-secondary">Our Story</a>
-                </div>
-                <div class="about-image">
-                    <div class="team-animation">
-                        <div class="team-member-animated">
-                            <div class="member-avatar"></div>
-                            <div class="member-info">
-                                <div class="info-line"></div>
-                                <div class="info-line"></div>
-                            </div>
+        <section id="about-brief" class="py-16 bg-dark">
+            <canvas id="about-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal mx-auto">
+                    <div class="section-terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
                         </div>
-                        <div class="team-member-animated">
-                            <div class="member-avatar"></div>
-                            <div class="member-info">
-                                <div class="info-line"></div>
-                                <div class="info-line"></div>
-                            </div>
+                        <div class="section-terminal-title">about_us.sys</div>
+                        <div class="terminal-buttons opacity-0">
+                            <div class="terminal-button"></div>
                         </div>
-                        <div class="team-member-animated">
-                            <div class="member-avatar"></div>
-                            <div class="member-info">
-                                <div class="info-line"></div>
-                                <div class="info-line"></div>
-                            </div>
-                        </div>
-                        <div class="team-member-animated">
-                            <div class="member-avatar"></div>
-                            <div class="member-info">
-                                <div class="info-line"></div>
-                                <div class="info-line"></div>
-                            </div>
-                        </div>
-                        <div class="connection-line"></div>
-                        <div class="connection-line"></div>
-                        <div class="connection-line"></div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- AI Assessment Promo -->
-        <section id="assessment-promo">
-            <div class="container">
-                <div class="assessment-content">
-                    <h2>Is Your Business Ready for AI?</h2>
-                    <p>Our free AI Readiness Assessment helps you identify where AI can make the biggest impact in your business. Get personalized recommendations and a detailed ROI analysis in just 5 minutes.</p>
-                    <ul class="assessment-benefits">
-                        <li><i class="fas fa-check-circle"></i> Identify AI-ready processes</li>
-                        <li><i class="fas fa-check-circle"></i> Get personalized solution recommendations</li>
-                        <li><i class="fas fa-check-circle"></i> Receive a custom implementation roadmap</li>
-                        <li><i class="fas fa-check-circle"></i> Calculate potential ROI</li>
-                    </ul>
-                    <a href="assessment/index.html" class="btn btn-primary">Take the Assessment</a>
-                </div>
-                <div class="assessment-image">
-                    <div class="ai-brain-animation">
-                        <div class="brain-container">
-                            <div class="brain-outline"></div>
-                            <div class="brain-center"></div>
-                            
-                            <!-- Neural network connections -->
-                            <div class="neural-connections">
-                                <div class="neuron n1"></div>
-                                <div class="neuron n2"></div>
-                                <div class="neuron n3"></div>
-                                <div class="neuron n4"></div>
-                                <div class="neuron n5"></div>
-                                <div class="neuron n6"></div>
-                                <div class="neuron n7"></div>
-                                <div class="neuron n8"></div>
-                                
-                                <div class="connection c1"></div>
-                                <div class="connection c2"></div>
-                                <div class="connection c3"></div>
-                                <div class="connection c4"></div>
-                                <div class="connection c5"></div>
-                                <div class="connection c6"></div>
-                                <div class="connection c7"></div>
-                                <div class="connection c8"></div>
+                    <div class="p-8">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="about-content md:w-1/2 animate-fade-right">
+                                <h2 class="text-3xl font-bold mb-6">About <span class="gradient-text">AI Unplugged</span></h2>
+                                <p class="text-lg text-gray-400 mb-8">Founded with a mission to <a href="about.html" class="text-terminal-cyan hover:underline">make AI accessible for small businesses</a>, we bridge the gap between cutting-edge technology and practical business applications. Our team of experts develops custom AI solutions that are easy to implement, affordable, and effective.</p>
+                                <a href="about.html" class="btn-secondary inline-block">Our Story</a>
                             </div>
-                            
-                            <!-- Data packets moving through the network -->
-                            <div class="data-packet p1"></div>
-                            <div class="data-packet p2"></div>
-                            <div class="data-packet p3"></div>
-                            <div class="data-packet p4"></div>
-                            
-                            <!-- The scan line that goes across the brain -->
-                            <div class="scan-line"></div>
-                            
-                            <!-- Business process icons -->
-                            <div class="process-icon sales">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="process-icon customer">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="process-icon operations">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <div class="process-icon data">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            
-                            <!-- Readiness percentage indicator -->
-                            <div class="readiness-indicator">
-                                <div class="readiness-text">AI Readiness</div>
-                                <div class="readiness-meter">
-                                    <div class="meter-fill"></div>
+                            <div class="about-image md:w-1/2 mt-10 md:mt-0 animate-fade-left">
+                                <div class="animated-brain rotate-3d">
+                                    <!-- This will be populated by JS -->
                                 </div>
                             </div>
                         </div>
@@ -279,80 +939,61 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Testimonials -->
-        <section id="testimonials">
-            <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonials-slider">
-                    <div class="testimonial" itemscope itemtype="https://schema.org/Review">
-                        <meta itemprop="datePublished" content="2023-03-15"/>
-                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                            <meta itemprop="worstRating" content="1"/>
-                            <meta itemprop="bestRating" content="5"/>
-                            <meta itemprop="ratingValue" content="5"/>
-                            <div class="star-rating" aria-label="5 out of 5 stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+
+        <!-- AI Assessment Promo -->
+        <section id="assessment-promo" class="py-16 bg-darker">
+            <canvas id="assessment-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal mx-auto">
+                    <div class="section-terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
                         </div>
-                        <p itemprop="reviewBody">"AI Unplugged transformed our customer service with their chatbot solution. We now provide 24/7 support with 80% fewer resources."</p>
-                        <div class="client-info">
-                            <div class="client-avatar-animation retail">
-                                <div class="avatar-circle"></div>
-                                <div class="avatar-icon"><i class="fas fa-store"></i></div>
-                                <div class="avatar-glow"></div>
-                                <div class="avatar-pulse"></div>
-                            </div>
-                            <div>
-                                <h4 itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sarah Johnson</span></h4>
-                                <p>Retail Store Owner</p>
-                            </div>
+                        <div class="section-terminal-title">ai_assessment.exe</div>
+                        <div class="terminal-buttons opacity-0">
+                            <div class="terminal-button"></div>
                         </div>
                     </div>
-                    <div class="testimonial" itemscope itemtype="https://schema.org/Review">
-                        <meta itemprop="datePublished" content="2023-04-20"/>
-                        <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                            <meta itemprop="worstRating" content="1"/>
-                            <meta itemprop="bestRating" content="5"/>
-                            <meta itemprop="ratingValue" content="5"/>
-                            <div class="star-rating" aria-label="5 out of 5 stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+
+                    <div class="p-8">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="assessment-content md:w-1/2 animate-fade-right">
+                                <h2 class="text-3xl font-bold mb-6">Is Your Business <span class="gradient-text">Ready for AI?</span></h2>
+                                <p class="text-lg text-gray-400 mb-6">Our free AI Readiness Assessment helps you identify where AI can make the biggest impact in your business. Get personalized recommendations and a detailed ROI analysis in just 5 minutes.</p>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-center">
+                                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-green-900 mr-3">
+                                            <i class="fas fa-check text-terminal-green"></i>
+                                        </span>
+                                        <span class="text-gray-400">Identify AI-ready processes</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-green-900 mr-3">
+                                            <i class="fas fa-check text-terminal-green"></i>
+                                        </span>
+                                        <span class="text-gray-400">Get personalized solution recommendations</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-green-900 mr-3">
+                                            <i class="fas fa-check text-terminal-green"></i>
+                                        </span>
+                                        <span class="text-gray-400">Receive a custom implementation roadmap</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-green-900 mr-3">
+                                            <i class="fas fa-check text-terminal-green"></i>
+                                        </span>
+                                        <span class="text-gray-400">Calculate potential ROI</span>
+                                    </li>
+                                </ul>
+                                <a href="assessment/index.html" class="btn-primary inline-block">Take the Assessment</a>
                             </div>
-                        </div>
-                        <p itemprop="reviewBody">"Their predictive analytics helped us optimize our inventory and reduce waste by 25%. The ROI has been incredible."</p>
-                        <div class="client-info">
-                            <div class="client-avatar-animation restaurant">
-                                <div class="avatar-circle"></div>
-                                <div class="avatar-icon"><i class="fas fa-utensils"></i></div>
-                                <div class="avatar-glow"></div>
-                                <div class="avatar-pulse"></div>
-                            </div>
-                            <div>
-                                <h4 itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Michael Chen</span></h4>
-                                <p>Restaurant Manager</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <p>"Business automation has saved us 15 hours per week on administrative tasks. Now we can focus on growing our business."</p>
-                        <div class="client-info">
-                            <div class="client-avatar-animation service">
-                                <div class="avatar-circle"></div>
-                                <div class="avatar-icon"><i class="fas fa-briefcase"></i></div>
-                                <div class="avatar-glow"></div>
-                                <div class="avatar-pulse"></div>
-                            </div>
-                            <div>
-                                <h4>Emma Rodriguez</h4>
-                                <p>Service Business Owner</p>
+                            <div class="assessment-image md:w-1/2 mt-10 md:mt-0 animate-fade-left">
+                                <div id="ai-brain" class="w-full h-72 md:h-96 relative floating">
+                                    <!-- This will be populated by JS -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -360,57 +1001,90 @@
             </div>
         </section>
 
+
+
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Harness the Power of AI?</h2>
-                <p>Schedule a free consultation to discuss how AI can transform your business.</p>
-                <a href="contact.html" class="btn btn-primary">Get Started</a>
+        <section id="cta" class="py-16 bg-gradient relative overflow-hidden">
+            <canvas id="cta-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h2 class="text-3xl font-bold mb-6 glitch" data-text="Ready to Harness the Power of AI?">Ready to Harness the Power of AI?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Schedule a free consultation to discuss how AI can transform your business.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="contact.html" class="btn-primary inline-block text-center px-8 py-4 rounded-lg font-bold text-lg transform transition hover:-translate-y-1">Get Started</a>
+                    <a href="assessment/index.html" class="btn-secondary inline-block text-center px-8 py-4 rounded-lg font-bold text-lg transform transition hover:-translate-y-1">Take Assessment</a>
+                </div>
+            </div>
+
+            <!-- Animated elements -->
+            <div class="absolute bottom-0 left-0 w-full h-16 opacity-20">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#gradient)" />
+                </svg>
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="var(--terminal-green)" />
+                        <stop offset="100%" stop-color="var(--terminal-cyan)" />
+                    </linearGradient>
+                </defs>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Is AI really suitable for small businesses?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        <section id="faq" class="py-16 bg-dark">
+            <canvas id="faq-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="section-terminal-title">faqs.sys</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading" class="text-3xl font-bold text-center mb-12">Frequently Asked <span class="gradient-text">Questions</span></h2>
+
+                <div class="max-w-3xl mx-auto" role="region" aria-labelledby="faq-heading">
+                    <div class="faq-item rounded-lg mb-4 overflow-hidden">
+                        <div class="faq-question p-6 cursor-pointer flex justify-between items-center" role="button" aria-expanded="false" aria-controls="faq-answer-1" tabindex="0">
+                            <h3 id="faq-question-1" class="text-lg font-semibold">Is AI really suitable for small businesses?</h3>
+                            <span class="faq-icon text-terminal-green" aria-hidden="true"><i class="fas fa-plus"></i></span>
                         </div>
-                        <div class="faq-answer">
-                            <p>Absolutely! Our AI solutions are specifically designed for small businesses, with affordability and ease of implementation in mind. Small businesses can benefit greatly from AI through reduced operational costs, improved customer service, and data-driven decision making.</p>
+                        <div id="faq-answer-1" class="faq-answer px-6 pb-6" aria-labelledby="faq-question-1" hidden>
+                            <p class="text-gray-400">Absolutely! Our AI solutions are specifically designed for small businesses, with affordability and ease of implementation in mind. Small businesses can benefit greatly from AI through reduced operational costs, improved customer service, and data-driven decision making.</p>
                         </div>
                     </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Do I need technical expertise to use your AI solutions?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+
+                    <div class="faq-item rounded-lg mb-4 overflow-hidden">
+                        <div class="faq-question p-6 cursor-pointer flex justify-between items-center" role="button" aria-expanded="false" aria-controls="faq-answer-2" tabindex="0">
+                            <h3 id="faq-question-2" class="text-lg font-semibold">Do I need technical expertise to use your AI solutions?</h3>
+                            <span class="faq-icon text-terminal-green" aria-hidden="true"><i class="fas fa-plus"></i></span>
                         </div>
-                        <div class="faq-answer">
-                            <p>No technical expertise is required. We've designed our solutions to be user-friendly with intuitive interfaces. Our team handles the technical aspects of implementation and provides comprehensive training to ensure you can use all features effectively.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How quickly will I see ROI from AI implementation?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Many of our clients see measurable results within the first month of implementation. For example, chatbots immediately reduce time spent on customer inquiries, while automation solutions quickly eliminate hours of manual tasks. The specific timeline depends on your business and which solutions you implement.</p>
+                        <div id="faq-answer-2" class="faq-answer px-6 pb-6" aria-labelledby="faq-question-2" hidden>
+                            <p class="text-gray-400">No technical expertise is required. We've designed our solutions to be user-friendly with intuitive interfaces. Our team handles the technical aspects of implementation and provides comprehensive training to ensure you can use all features effectively.</p>
                         </div>
                     </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>What's the implementation process like?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+
+                    <div class="faq-item rounded-lg mb-4 overflow-hidden">
+                        <div class="faq-question p-6 cursor-pointer flex justify-between items-center" role="button" aria-expanded="false" aria-controls="faq-answer-3" tabindex="0">
+                            <h3 id="faq-question-3" class="text-lg font-semibold">How quickly will I see ROI from AI implementation?</h3>
+                            <span class="faq-icon text-terminal-green" aria-hidden="true"><i class="fas fa-plus"></i></span>
                         </div>
-                        <div class="faq-answer">
-                            <p>We follow a streamlined 5-step process: consultation, customization, implementation, training, and ongoing support. Most implementations can be completed within 2-4 weeks, with minimal disruption to your current operations. Our team handles the technical aspects while ensuring your team is comfortable with the new tools.</p>
+                        <div id="faq-answer-3" class="faq-answer px-6 pb-6" aria-labelledby="faq-question-3" hidden>
+                            <p class="text-gray-400">Many of our clients see measurable results within the first month of implementation. For example, chatbots immediately reduce time spent on customer inquiries, while automation solutions quickly eliminate hours of manual tasks. The specific timeline depends on your business and which solutions you implement.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item rounded-lg mb-4 overflow-hidden">
+                        <div class="faq-question p-6 cursor-pointer flex justify-between items-center" role="button" aria-expanded="false" aria-controls="faq-answer-4" tabindex="0">
+                            <h3 id="faq-question-4" class="text-lg font-semibold">What's the implementation process like?</h3>
+                            <span class="faq-icon text-terminal-green" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <div id="faq-answer-4" class="faq-answer px-6 pb-6" aria-labelledby="faq-question-4" hidden>
+                            <p class="text-gray-400">We follow a streamlined 5-step process: consultation, customization, implementation, training, and ongoing support. Most implementations can be completed within 2-4 weeks, with minimal disruption to your current operations. Our team handles the technical aspects while ensuring your team is comfortable with the new tools.</p>
                         </div>
                     </div>
                 </div>
@@ -418,91 +1092,936 @@
         </section>
 
         <!-- Before/After ROI Visualizer Section -->
-        <section id="roi-visualizer-section" class="section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2>See the Impact of AI on Your Business</h2>
-                    <p>Explore how AI solutions transform business processes, increase efficiency, and reduce costs.</p>
+        <section id="roi-visualizer-section" class="py-16 bg-dark">
+            <canvas id="roi-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal mx-auto">
+                    <div class="section-terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="section-terminal-title">roi_calc.bin</div>
+                        <div class="terminal-buttons opacity-0">
+                            <div class="terminal-button"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <div class="text-center mb-8 animate-fade-up">
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4 glitch" data-text="See the Impact of AI on Your Business">See the <span class="gradient-text text-glow">Impact of AI</span> on Your Business</h2>
+                            <p class="text-lg text-gray-400 max-w-3xl mx-auto">Explore how AI solutions transform business processes, increase efficiency, and reduce costs.</p>
+                            <div class="terminal-line w-1/3 h-1 bg-gradient-to-r from-terminal-green to-terminal-cyan mx-auto rounded-full animate-pulse-slow mt-6"></div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8 mb-8">
+                            <div class="md:col-span-2 transform transition-all duration-500 hover:scale-[1.02] animate-fade-right" style="animation-delay: 200ms;">
+                                <div id="roi-visualizer" class="relative mx-auto rounded-xl overflow-hidden h-full border-2 border-terminal-green shadow-glow-green">
+                                    <!-- Visualization will be populated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="md:col-span-1 animate-fade-left" style="animation-delay: 400ms;">
+                                <div class="mini-roi-calculator bg-terminal-bg border-2 border-terminal-green rounded-xl p-6 h-full flex flex-col justify-between transform transition-all duration-500 hover:shadow-glow-green hover:border-terminal-cyan">
+                                    <div>
+                                        <div class="flex items-center mb-4">
+                                            <i class="fas fa-calculator text-terminal-green text-2xl mr-3 animate-pulse-slow"></i>
+                                            <h3 class="text-xl font-bold text-terminal-green">Quick ROI Estimate</h3>
+                                        </div>
+                                        <p class="text-gray-400 mb-4">See how much your business could save with AI automation:</p>
+
+                                        <div class="space-y-4 mb-6">
+                                            <div class="transform transition hover:scale-[1.02]">
+                                                <label class="block text-gray-300 mb-2 flex items-center">
+                                                    <i class="fas fa-clock text-terminal-cyan mr-2"></i>
+                                                    Hours spent on repetitive tasks weekly:
+                                                </label>
+                                                <select id="quick-hours" class="w-full bg-darker text-gray-300 border border-terminal-green p-2 rounded-md focus:border-terminal-cyan focus:outline-none focus:ring-1 focus:ring-terminal-cyan transition-all">
+                                                    <option value="10">Less than 10 hours</option>
+                                                    <option value="20" selected>10-20 hours</option>
+                                                    <option value="40">20-40 hours</option>
+                                                    <option value="60">40+ hours</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="transform transition hover:scale-[1.02]">
+                                                <label class="block text-gray-300 mb-2 flex items-center">
+                                                    <i class="fas fa-dollar-sign text-terminal-cyan mr-2"></i>
+                                                    Average hourly wage ($):
+                                                </label>
+                                                <select id="quick-wage" class="w-full bg-darker text-gray-300 border border-terminal-green p-2 rounded-md focus:border-terminal-cyan focus:outline-none focus:ring-1 focus:ring-terminal-cyan transition-all">
+                                                    <option value="15">$15</option>
+                                                    <option value="25" selected>$25</option>
+                                                    <option value="40">$40</option>
+                                                    <option value="60">$60+</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="result-box border-2 border-terminal-cyan bg-darker p-4 rounded-lg text-center transform transition-all duration-500 hover:shadow-glow-cyan">
+                                            <p class="text-gray-400 mb-2">Estimated Annual Savings:</p>
+                                            <div class="flex items-center justify-center">
+                                                <div class="text-terminal-cyan mr-2 text-4xl">$</div>
+                                                <p id="quick-roi-result" class="text-4xl font-bold text-terminal-cyan typewriter">13,000</p>
+                                            </div>
+                                            <p class="text-gray-500 mt-2 text-sm">Based on 50% efficiency improvement</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 text-center">
+                                        <a href="roi-calculator.html" class="btn-primary inline-flex items-center justify-center w-full py-3 text-lg relative overflow-hidden group">
+                                            <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                                            <i class="fas fa-calculator mr-2"></i> Get Detailed ROI Analysis
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="roi-visualizer"></div>
+            </div>
+        </section>
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-darker">
+            <canvas id="contact-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="section-terminal-title">contact_form.bin</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="gradient-text">Touch</span></h2>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-dark rounded-lg border border-terminal-green">
+                            <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+
+                            <div class="space-y-4">
+                                <p class="flex items-center">
+                                    <span class="text-terminal-green mr-3"><i class="fas fa-envelope"></i></span>
+                                    <a href="mailto:ai.unplugged11@gmail.com" class="text-gray-400 hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                                </p>
+
+                                <p class="flex items-center">
+                                    <span class="text-terminal-green mr-3"><i class="fas fa-phone"></i></span>
+                                    <a href="tel:2397458189" class="text-gray-400 hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                                </p>
+
+                                <div class="pt-4">
+                                    <h4 class="text-lg font-semibold mb-2">Follow Us</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                                            <i class="fab fa-linkedin text-xl"></i>
+                                        </a>
+                                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                                            <i class="fab fa-twitter text-xl"></i>
+                                        </a>
+                                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                                            <i class="fab fa-facebook text-xl"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                                            <i class="fab fa-instagram text-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-dark rounded-lg border border-terminal-green">
+                            <h3 class="text-xl font-bold mb-4">Send Us a Message</h3>
+
+                            <form id="contactForm" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-gray-400 mb-1">Name</label>
+                                    <input type="text" id="name" name="name" class="w-full bg-darker text-gray-300 border border-terminal-green p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-terminal-green">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-gray-400 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full bg-darker text-gray-300 border border-terminal-green p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-terminal-green">
+                                </div>
+
+                                <div>
+                                    <label for="message" class="block text-gray-400 mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full bg-darker text-gray-300 border border-terminal-green p-3 rounded-md focus:outline-none focus:ring-1 focus:ring-terminal-green"></textarea>
+                                </div>
+
+                                <button type="submit" class="bg-terminal-green text-dark font-bold py-3 px-6 rounded-md hover:bg-green-400 transition-colors w-full">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="assessment/index.html">AI Assessment</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/chatbots.html">AI Chatbots</a></li>
-                        <li><a href="services/analytics.html">Predictive Analytics</a></li>
-                        <li><a href="services/automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/AiUnplugge80544"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=61572847089889"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/aiunpluggedofficial/?utm_source=ig_web_button_share_sheet"><i class="fab fa-instagram"></i></a>
+    <!-- Floating ROI Calculator Button -->
+    <div id="floating-roi-button" class="fixed bottom-24 right-24 z-40 opacity-0 pointer-events-none transform translate-y-10 transition-all duration-500">
+        <a href="roi-calculator.html" class="flex items-center justify-center gap-2 py-3 px-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold rounded-lg shadow-lg hover:shadow-xl">
+            <i class="fas fa-calculator text-xl"></i>
+            <span>Calculate Your ROI</span>
+        </a>
+    </div>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:ai.unplugged11@gmail.com">ai.unplugged11@gmail.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:2397458189">(239) 745-8189</a></p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="assessment/index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services/chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="services/analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="services/automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/scripts.js"></script>
-    <!-- Comment out scripts that might be missing -->
-    <!-- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/three-animations.js"></script>
-    <script src="js/chatbot.js"></script>
-    <script src="js/solution-finder.js"></script>
-    <script src="js/roi-visualizer.js"></script>
-    <script src="js/roadmap-generator.js"></script>
-    <script src="js/content-calendar.js"></script>
-    -->
     <script>
-        // Initialize on page load
-        window.addEventListener('load', function() {
-            console.log('Page loaded successfully!');
-            // Comment out potentially missing functions
-            /*
-            // Initialize A/B Testing
-            if (typeof initABTesting === 'function') {
-                initABTesting();
+        // Initialize ThreeJS
+        function initThreeJS() {
+            // Hero Neural Network
+            const canvas = document.getElementById('matrix-rain');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Create particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = Math.min(window.innerWidth < 768 ? 1000 : 2000, 2000);
+
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 10;
             }
-            */
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.01,
+                color: 0x00ff00,
+                transparent: true,
+                opacity: 0.7
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            // Add a group of spheres (neurons) connected by lines for neural network effect
+            const neuronGroup = new THREE.Group();
+            const neuronCount = window.innerWidth < 768 ? 30 : 60;
+            const neuronPositions = [];
+
+            for (let i = 0; i < neuronCount; i++) {
+                const geometry = new THREE.SphereGeometry(0.04, 16, 16);
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0x00ff00,
+                    transparent: true,
+                    opacity: 0.7
+                });
+
+                const neuron = new THREE.Mesh(geometry, material);
+
+                // Position neurons in a brain-like shape
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                const radius = 3 + Math.random() * 2;
+
+                neuron.position.x = radius * Math.sin(phi) * Math.cos(theta);
+                neuron.position.y = radius * Math.sin(phi) * Math.sin(theta);
+                neuron.position.z = radius * Math.cos(phi);
+
+                neuronPositions.push(neuron.position);
+                neuronGroup.add(neuron);
+            }
+
+            // Connect neurons with lines (synapses)
+            for (let i = 0; i < neuronCount; i++) {
+                for (let j = i + 1; j < neuronCount; j++) {
+                    // Only connect some neurons
+                    if (Math.random() > 0.95) continue;
+
+                    const startPoint = neuronPositions[i];
+                    const endPoint = neuronPositions[j];
+
+                    const distance = startPoint.distanceTo(endPoint);
+                    if (distance > 2) continue; // Only connect nearby neurons
+
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints([startPoint, endPoint]);
+                    const lineMaterial = new THREE.LineBasicMaterial({
+                        color: 0x00ff00,
+                        transparent: true,
+                        opacity: 0.2
+                    });
+
+                    const line = new THREE.Line(lineGeometry, lineMaterial);
+                    neuronGroup.add(line);
+                }
+            }
+
+            scene.add(neuronGroup);
+
+            camera.position.z = 6;
+
+            // Add mouse movement effect
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                particlesMesh.rotation.x += 0.0003;
+                particlesMesh.rotation.y += 0.0003;
+
+                neuronGroup.rotation.x += 0.001;
+                neuronGroup.rotation.y += 0.001;
+
+                // Responsive effect with mouse
+                neuronGroup.rotation.x += mouseY * 0.001;
+                neuronGroup.rotation.y += mouseX * 0.001;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        // Matrix rain effect for all matrix canvases
+        function initMatrixRain() {
+            // Special handling for solutions matrix
+            const solutionsMatrix = document.getElementById('solutions-matrix');
+            if (solutionsMatrix) {
+                createMatrixRain(solutionsMatrix, '#00ff00', 1.5); // Brighter green, faster speed
+            }
+
+            document.querySelectorAll('.matrix-bg').forEach(canvas => {
+                if (canvas.id === 'matrix-rain') return; // Skip main hero canvas handled by ThreeJS
+
+                createMatrixRain(canvas);
+            });
+        }
+
+        // Create matrix rain effect on a canvas
+        function createMatrixRain(canvas, color = '#0f0', speedFactor = 1) {
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const parent = canvas.parentElement;
+
+            // Set canvas size
+            canvas.width = parent.offsetWidth;
+            canvas.height = parent.offsetHeight;
+
+            // Characters to use in the rain
+            const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+            // Prepare droplets
+            const fontSize = 14;
+            const columns = Math.floor(canvas.width / fontSize);
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -canvas.height);
+            }
+
+            // Draw function
+            function draw() {
+                ctx.fillStyle = 'rgba(10, 10, 18, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = color;
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+
+                    drops[i] += speedFactor;
+                }
+            }
+
+            // Animation loop
+            const intervalId = setInterval(draw, 33);
+
+            // Handle resize
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    if (entry.target === parent) {
+                        canvas.width = parent.offsetWidth;
+                        canvas.height = parent.offsetHeight;
+                    }
+                }
+            });
+
+            resizeObserver.observe(parent);
+        }
+
+        // Service card 3D effect
+        function initServiceCards() {
+            const cards = document.querySelectorAll('.service-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateY = (x - centerX) / 20;
+                    const rotateX = (centerY - y) / 20;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateZ(0)`;
+                });
+            });
+        }
+
+        // Animate elements on scroll
+        function initScrollAnimations() {
+            const animatedElements = [
+                { selector: '.animate-fade-right', animation: { opacity: [0, 1], translateX: [-20, 0] } },
+                { selector: '.animate-fade-left', animation: { opacity: [0, 1], translateX: [20, 0] } },
+                { selector: '.animate-fade-up', animation: { opacity: [0, 1], translateY: [20, 0] } },
+                { selector: '.animate-scale', animation: { opacity: [0, 1], scale: [0.8, 1] } }
+            ];
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        for (const type of animatedElements) {
+                            if (entry.target.classList.contains(type.selector.substring(1))) {
+                                anime({
+                                    targets: entry.target,
+                                    ...type.animation,
+                                    duration: 800,
+                                    easing: 'easeOutCubic'
+                                });
+                                break;
+                            }
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(type => {
+                document.querySelectorAll(type.selector).forEach(el => observer.observe(el));
+            });
+        }
+
+        // Initialize FAQ accordion with accessibility support
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon i');
+
+                // Function to toggle FAQ item
+                const toggleFAQ = () => {
+                    // Close all other items
+                    faqItems.forEach(other => {
+                        if (other !== item && other.classList.contains('active')) {
+                            const otherQuestion = other.querySelector('.faq-question');
+                            const otherAnswer = other.querySelector('.faq-answer');
+                            const otherIcon = other.querySelector('.faq-icon i');
+
+                            other.classList.remove('active');
+                            otherQuestion.setAttribute('aria-expanded', 'false');
+                            otherAnswer.hidden = true;
+                            otherIcon.classList.replace('fa-minus', 'fa-plus');
+                        }
+                    });
+
+                    // Toggle current item
+                    const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                    item.classList.toggle('active');
+                    question.setAttribute('aria-expanded', !isExpanded);
+                    answer.hidden = isExpanded;
+
+                    if (!isExpanded) {
+                        icon.classList.replace('fa-plus', 'fa-minus');
+                    } else {
+                        icon.classList.replace('fa-minus', 'fa-plus');
+                    }
+                };
+
+                // Add click event listener
+                question.addEventListener('click', toggleFAQ);
+
+                // Add keyboard support
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQ();
+                    }
+                });
+            });
+        }
+
+        // Mobile navigation toggle
+        function initMobileNav() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded',
+                    hamburger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+        }
+
+        // Smooth scrolling for navigation
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        const navLinks = document.querySelector('.nav-links');
+                        if (navLinks && navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Typewriter effect for AI Solutions heading
+        function initTypewriterEffect() {
+            const solutionsHeading = document.querySelector('.solutions-highlight-container h2');
+            if (!solutionsHeading) return;
+
+            // Add a special highlight effect when scrolled into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add a special pulsing glow effect
+                        anime({
+                            targets: '.solutions-highlight-container',
+                            boxShadow: [
+                                '0 0 20px rgba(0, 255, 0, 0.2)',
+                                '0 0 40px rgba(0, 255, 0, 0.6)',
+                                '0 0 20px rgba(0, 255, 0, 0.2)'
+                            ],
+                            duration: 2000,
+                            easing: 'easeInOutQuad',
+                            direction: 'alternate',
+                            loop: 2
+                        });
+
+                        // Highlight the text with a special effect
+                        anime({
+                            targets: '.gradient-text',
+                            textShadow: [
+                                '0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3)',
+                                '0 0 20px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.6)',
+                                '0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3)'
+                            ],
+                            duration: 2000,
+                            easing: 'easeInOutQuad',
+                            delay: 500
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(solutionsHeading);
+        }
+
+        // Quick ROI Calculator functionality with enhanced animations and effects
+        function initQuickROICalculator() {
+            const hoursSelect = document.getElementById('quick-hours');
+            const wageSelect = document.getElementById('quick-wage');
+            const resultElement = document.getElementById('quick-roi-result');
+            const calculatorContainer = document.querySelector('.mini-roi-calculator');
+
+            if (!hoursSelect || !wageSelect || !resultElement || !calculatorContainer) return;
+
+            // Store previous value for animation
+            let previousValue = parseInt(resultElement.textContent.replace(/[^0-9.-]+/g, "")) || 0;
+
+            function calculateROI() {
+                const hours = parseInt(hoursSelect.value);
+                const wage = parseInt(wageSelect.value);
+
+                // Calculate annual savings (hours per week * 52 weeks * hourly wage * 0.5 automation factor)
+                const annualSavings = hours * 52 * wage * 0.5;
+
+                // Animate the value change
+                animateROIValue(previousValue, annualSavings);
+
+                // Update previous value for next calculation
+                previousValue = annualSavings;
+
+                // Add a pulse effect to the calculator container
+                calculatorContainer.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5)';
+                setTimeout(() => {
+                    calculatorContainer.style.boxShadow = '';
+                }, 1000);
+            }
+
+            // Animate the ROI value with a smooth counting effect
+            function animateROIValue(startValue, endValue) {
+                // Clear any existing animation
+                if (resultElement._animationFrame) {
+                    cancelAnimationFrame(resultElement._animationFrame);
+                }
+
+                const duration = 1500; // Animation duration in ms
+                const startTime = performance.now();
+
+                // Add a highlight effect
+                resultElement.style.textShadow = '0 0 10px var(--terminal-cyan)';
+
+                const updateValue = (timestamp) => {
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    // Use easeOutExpo for a nice deceleration effect
+                    const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    const currentValue = startValue + (endValue - startValue) * easeOutExpo;
+
+                    // Update the display
+                    resultElement.textContent = Math.round(currentValue).toLocaleString();
+
+                    if (progress < 1) {
+                        resultElement._animationFrame = requestAnimationFrame(updateValue);
+                    } else {
+                        // Animation complete, remove highlight effect after a delay
+                        setTimeout(() => {
+                            resultElement.style.textShadow = '';
+                        }, 500);
+                    }
+                };
+
+                resultElement._animationFrame = requestAnimationFrame(updateValue);
+            }
+
+            // Add event listeners with enhanced feedback
+            hoursSelect.addEventListener('change', () => {
+                // Add visual feedback when changed
+                hoursSelect.style.borderColor = 'var(--terminal-cyan)';
+                hoursSelect.style.boxShadow = '0 0 10px var(--terminal-cyan)';
+
+                setTimeout(() => {
+                    hoursSelect.style.borderColor = '';
+                    hoursSelect.style.boxShadow = '';
+                }, 1000);
+
+                calculateROI();
+            });
+
+            wageSelect.addEventListener('change', () => {
+                // Add visual feedback when changed
+                wageSelect.style.borderColor = 'var(--terminal-cyan)';
+                wageSelect.style.boxShadow = '0 0 10px var(--terminal-cyan)';
+
+                setTimeout(() => {
+                    wageSelect.style.borderColor = '';
+                    wageSelect.style.boxShadow = '';
+                }, 1000);
+
+                calculateROI();
+            });
+
+            // Initial calculation
+            calculateROI();
+
+            // Add hover effects to the result box
+            const resultBox = document.querySelector('.result-box');
+            if (resultBox) {
+                resultBox.addEventListener('mouseenter', () => {
+                    resultElement.style.transform = 'scale(1.1)';
+                    resultElement.style.textShadow = '0 0 15px var(--terminal-cyan)';
+                });
+
+                resultBox.addEventListener('mouseleave', () => {
+                    resultElement.style.transform = 'scale(1)';
+                    resultElement.style.textShadow = '';
+                });
+            }
+        }
+
+        // Initialize floating ROI calculator button
+        function initFloatingROIButton() {
+            const floatingButton = document.getElementById('floating-roi-button');
+            const chatbotButton = document.querySelector('.chatbot-button');
+
+            if (!floatingButton) return;
+
+            // Show button when user scrolls down past 1000px
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+
+                if (scrollPosition > 1000) {
+                    floatingButton.classList.add('opacity-100');
+                    floatingButton.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+
+                    // Adjust position if chatbot is visible to prevent overlap
+                    if (chatbotButton) {
+                        floatingButton.style.bottom = '100px';
+                    }
+                } else {
+                    floatingButton.classList.remove('opacity-100');
+                    floatingButton.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+                }
+            });
+        }
+
+        // Performance optimization - Lazy load animations and effects
+        function lazyLoadAnimations() {
+            // Use Intersection Observer to only initialize animations when they're visible
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            // Create observers for different sections
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initMatrixRain();
+                        init3DLogo();
+                        heroObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+
+            const brainObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        createAIBrain();
+                        brainObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+
+            const animatedBrainObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        createAnimatedBrain();
+                        animatedBrainObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+
+            const roiObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initROIVisualizer();
+                        roiObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            const heroSection = document.getElementById('hero');
+            if (heroSection) heroObserver.observe(heroSection);
+
+            const aiBrain = document.getElementById('ai-brain');
+            if (aiBrain) brainObserver.observe(aiBrain);
+
+            const animatedBrain = document.querySelector('.animated-brain');
+            if (animatedBrain) animatedBrainObserver.observe(animatedBrain);
+
+            const roiVisualizer = document.getElementById('roi-visualizer');
+            if (roiVisualizer) roiObserver.observe(roiVisualizer);
+        }
+
+        // Reduce animation complexity on mobile
+        function optimizeForMobile() {
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                // Reduce matrix rain density
+                window.MATRIX_DENSITY = 0.5;
+
+                // Reduce particle count
+                window.PARTICLE_COUNT = 50;
+
+                // Disable some animations
+                document.documentElement.classList.add('reduce-animations');
+
+                // Add mobile-specific styles
+                const mobileStyles = document.createElement('style');
+                mobileStyles.textContent = `
+                    @media (max-width: 767px) {
+                        .animate-fade-up, .animate-fade-right, .animate-fade-left {
+                            animation-duration: 0.5s !important;
+                        }
+
+                        .matrix-bg {
+                            opacity: 0.3 !important;
+                        }
+
+                        .service-card {
+                            transform: none !important;
+                            transition: transform 0.3s ease !important;
+                        }
+
+                        .service-card:hover {
+                            transform: translateY(-5px) !important;
+                        }
+                    }
+                `;
+                document.head.appendChild(mobileStyles);
+            }
+        }
+
+        // Initialize everything when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize critical UI components immediately
+            initMobileNav();
+            initSmoothScroll();
+            initFAQ();
+
+            // Initialize performance-intensive animations only when visible
+            lazyLoadAnimations();
+
+            // Optimize for mobile devices
+            optimizeForMobile();
+
+            // Initialize other components
+            initServiceCards();
+            initScrollAnimations();
+            initTypewriterEffect();
+            initQuickROICalculator();
+            initFloatingROIButton();
+
+            console.log('AI Unplugged website initialized successfully with cyber terminal theme!');
         });
     </script>
+
+    <!-- Brain Animation Scripts -->
+    <script src="js/brain-animations.js"></script>
+
+    <!-- 3D Logo Animation Script -->
+    <script src="js/3d-logo-image.js"></script>
+
+    <!-- ROI Visualizer Script -->
+    <script src="js/roi-visualizer.js"></script>
+
+    <!-- Chatbot Script -->
+    <script src="js/chatbot.js"></script>
+
+    <!-- Logo Enhancer Script -->
+    <script src="js/logo-enhancer.js"></script>
 </body>
 </html>

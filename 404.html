@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="css/scrollbar.css">
     <style>
         .error-container {
             display: flex;
@@ -18,7 +21,7 @@
             min-height: 60vh;
             padding: 2rem;
         }
-        
+
         .error-code {
             font-size: 8rem;
             font-weight: 700;
@@ -28,27 +31,27 @@
             -webkit-text-fill-color: transparent;
             font-family: 'Montserrat', sans-serif;
         }
-        
+
         .error-message {
             font-size: 2rem;
             margin: 1rem 0 2rem;
             font-family: 'Montserrat', sans-serif;
         }
-        
+
         .error-description {
             font-size: 1.2rem;
             max-width: 600px;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
-        
+
         .error-animation {
             margin: 2rem 0;
             position: relative;
             width: 200px;
             height: 200px;
         }
-        
+
         .robot {
             position: absolute;
             top: 50%;
@@ -57,7 +60,7 @@
             width: 100px;
             height: 120px;
         }
-        
+
         .robot-head {
             width: 60px;
             height: 40px;
@@ -68,7 +71,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        
+
         .robot-eye {
             width: 12px;
             height: 12px;
@@ -78,15 +81,15 @@
             top: 12px;
             animation: blink 2s infinite;
         }
-        
+
         .robot-eye:first-child {
             left: 12px;
         }
-        
+
         .robot-eye:last-child {
             right: 12px;
         }
-        
+
         .robot-body {
             width: 80px;
             height: 70px;
@@ -97,7 +100,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        
+
         .search-path {
             position: absolute;
             width: 200px;
@@ -108,7 +111,7 @@
             left: 0;
             animation: rotate 10s linear infinite;
         }
-        
+
         .search-icon {
             position: absolute;
             width: 24px;
@@ -124,7 +127,7 @@
             font-size: 14px;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes blink {
             0%, 45%, 55%, 100% {
                 opacity: 1;
@@ -133,7 +136,7 @@
                 opacity: 0;
             }
         }
-        
+
         @keyframes rotate {
             0% {
                 transform: rotate(0deg);
@@ -142,7 +145,7 @@
                 transform: rotate(360deg);
             }
         }
-        
+
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
@@ -183,7 +186,7 @@
             <h1 class="error-code">404</h1>
             <h2 class="error-message">Page Not Found</h2>
             <p class="error-description">Oops! The page you're looking for seems to have gone missing. Our AI assistant has been dispatched to search for it, but in the meantime, let's help you get back on track.</p>
-            
+
             <div class="error-animation">
                 <div class="search-path"></div>
                 <div class="search-icon"><i class="fas fa-search"></i></div>
@@ -195,7 +198,7 @@
                     <div class="robot-body"></div>
                 </div>
             </div>
-            
+
             <div>
                 <a href="index.html" class="btn btn-primary">Back to Home</a>
                 <a href="contact.html" class="btn btn-secondary">Contact Us</a>
@@ -251,29 +254,29 @@
             // Check if URL has a path that might be a valid page
             const path = window.location.pathname;
             const possiblePages = [
-                '/index.html', 
-                '/about.html', 
-                '/services.html', 
-                '/how-it-works.html', 
-                '/blog.html', 
+                '/index.html',
+                '/about.html',
+                '/services.html',
+                '/how-it-works.html',
+                '/blog.html',
                 '/contact.html',
                 '/assessment/index.html',
                 '/privacy-policy.html',
                 '/terms-of-service.html'
             ];
-            
+
             // If we're at a deep path that's not in our page list
             // Try to find a close match and suggest it
             if (path !== '/' && path !== '/404.html' && !possiblePages.includes(path)) {
                 const pageSuggestions = document.createElement('div');
                 pageSuggestions.className = 'page-suggestions';
                 pageSuggestions.innerHTML = '<h3>Were you looking for one of these pages?</h3><ul></ul>';
-                
+
                 const suggestionsList = pageSuggestions.querySelector('ul');
-                
+
                 // Get page name from path
                 const pathPage = path.split('/').pop().replace('.html', '');
-                
+
                 // Find possible matches based on simple string similarity
                 possiblePages.forEach(page => {
                     const pageName = page.split('/').pop().replace('.html', '');
@@ -283,7 +286,7 @@
                         suggestionsList.appendChild(li);
                     }
                 });
-                
+
                 // Only add suggestions if we found any
                 if (suggestionsList.children.length > 0) {
                     document.querySelector('.error-description').after(pageSuggestions);
@@ -292,4 +295,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

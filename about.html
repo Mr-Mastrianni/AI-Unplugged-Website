@@ -5,94 +5,269 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about AI Unplugged - We make AI technology accessible and affordable for small businesses through chatbots, predictive analytics, and automation solutions.">
     <title>About Us | AI Solutions for Small Businesses | AI Unplugged</title>
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://aiunplugged.pro/about" />
-    
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Terminal Theme CSS -->
+    <link rel="stylesheet" href="css/terminal-theme.css">
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="css/chatbot.css">
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="css/logo.css">
+
+    <style>
+        :root {
+            --primary: #4285f4;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            background-color: #0a0a12;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .terminal-gradient {
+            background: linear-gradient(90deg, #00ff41, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            transition: all 0.3s ease;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-shadow: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(66, 133, 244, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Navigation Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 40;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                cursor: pointer;
+            }
+        }
+    </style>
 <body>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
+                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="about.html" class="text-terminal-green font-medium" aria-current="page">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-terminal-cyan">Services</a></li>
+                        <li><a href="how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="pt-32">
         <!-- Breadcrumbs with schema.org structured data -->
-        <div class="breadcrumbs">
-            <div class="container">
-                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <a property="item" typeof="WebPage" href="index.html">
+        <div class="bg-gray-900 py-2">
+            <div class="container mx-auto px-4">
+                <ol class="flex text-sm text-gray-400" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="index.html" class="hover:text-terminal-cyan">
                             <span property="name">Home</span>
                         </a>
                         <meta property="position" content="1">
+                        <span class="mx-2">/</span>
                     </li>
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <span property="name">About Us</span>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <span property="name" class="font-medium text-terminal-green">About Us</span>
                         <meta property="position" content="2">
                     </li>
                 </ol>
             </div>
         </div>
-        
+
         <!-- Page Header -->
-        <section id="page-header" class="about-header">
-            <div class="container">
-                <h1>About AI Unplugged</h1>
-                <p>Making AI accessible and practical for small businesses.</p>
+        <section id="page-header" class="terminal-section py-16 bg-dark text-terminal-green">
+            <canvas id="matrixCanvas1" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">about.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h1 class="text-4xl font-bold mb-4 terminal-text">About <span class="terminal-gradient">AI Unplugged</span></h1>
+                    <p class="text-xl terminal-text">Making AI accessible and practical for small businesses.</p>
+                </div>
             </div>
         </section>
 
         <!-- Our Story -->
-        <section id="our-story">
-            <div class="container">
-                <div class="story-content">
-                    <h2>Our Story</h2>
-                    <p>Founded in 2022, AI Unplugged emerged from a simple observation: while AI technology was advancing rapidly, small businesses were being left behind due to technical complexity and high costs.</p>
-                    <p>Our founders, a team of AI specialists and small business consultants, recognized this gap and set out to bridge it by creating affordable, easy-to-implement AI solutions specifically designed for small businesses.</p>
-                    <p>Since then, we've been on a mission to democratize AI technology, making it accessible to businesses of all sizes. We believe that AI shouldn't be reserved for big corporations with deep pockets—it should be a tool that empowers all businesses to grow and thrive in the digital age.</p>
+        <section id="our-story" class="terminal-section py-16 bg-dark">
+            <canvas id="matrixCanvas2" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">story.sh</div>
                 </div>
-                <div class="story-image">
-                    <picture>
-                        <source srcset="images/about/our-story.webp" type="image/webp">
-                        <source srcset="images/about/our-story.jpg" type="image/jpeg"> 
-                        <img src="images/about/our-story.jpg" alt="The founding of AI Unplugged - our journey to democratize AI" loading="lazy">
-                    </picture>
-                    <div class="founding-animation">
-                        <div class="idea-lightbulb">
-                            <i class="fas fa-lightbulb"></i>
-                            <div class="lightbulb-rays"></div>
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
+                            <h2 class="text-3xl font-bold mb-6 terminal-text">Our <span class="terminal-gradient">Story</span></h2>
+                            <p class="text-terminal-green mb-4">Founded in 2022, AI Unplugged emerged from a simple observation: while AI technology was advancing rapidly, small businesses were being left behind due to technical complexity and high costs.</p>
+                            <p class="text-terminal-green mb-4">Our founders, a team of AI specialists and small business consultants, recognized this gap and set out to bridge it by creating affordable, easy-to-implement AI solutions specifically designed for small businesses.</p>
+                            <p class="text-terminal-green">Since then, we've been on a mission to democratize AI technology, making it accessible to businesses of all sizes. We believe that AI shouldn't be reserved for big corporations with deep pockets—it should be a tool that empowers all businesses to grow and thrive in the digital age.</p>
                         </div>
-                        <div class="ai-nodes">
-                            <div class="node node1"><i class="fas fa-robot"></i></div>
-                            <div class="node node2"><i class="fas fa-store"></i></div>
-                            <div class="node node3"><i class="fas fa-cogs"></i></div>
-                            <div class="connector connector1"></div>
-                            <div class="connector connector2"></div>
-                            <div class="connector connector3"></div>
-                            <div class="connection-pulse"></div>
+                        <div class="md:w-1/2 relative terminal-image-container">
+                            <div class="rounded-lg overflow-hidden shadow-terminal">
+                                <picture>
+                                    <source srcset="images/about/our-story.webp" type="image/webp">
+                                    <source srcset="images/about/our-story.jpg" type="image/jpeg">
+                                    <img src="images/about/our-story.jpg" alt="The founding of AI Unplugged - our journey to democratize AI" loading="lazy" class="w-full h-auto terminal-image">
+                                </picture>
+                            </div>
+                            <div class="terminal-overlay"></div>
                         </div>
                     </div>
                 </div>
@@ -100,185 +275,272 @@
         </section>
 
         <!-- Our Mission -->
-        <section id="our-mission">
-            <div class="container">
-                <div class="mission-image">
-                    <div class="mission-animation">
-                        <div class="mission-circle">
-                            <div class="mission-pulse"></div>
-                            <div class="target-icon">
-                                <i class="fas fa-bullseye"></i>
+        <section id="our-mission" class="terminal-section py-16 bg-darker">
+            <canvas id="matrixCanvas3" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">mission.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="text-center max-w-4xl mx-auto">
+                        <h2 class="text-3xl font-bold mb-6 terminal-text">Our <span class="terminal-gradient">Mission</span></h2>
+                        <p class="text-terminal-green mb-8 text-lg">To democratize AI technology by making it accessible, affordable, and practical for small businesses worldwide.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="terminal-card p-6">
+                                <i class="fas fa-rocket text-4xl text-terminal-cyan mb-4"></i>
+                                <h3 class="text-xl font-bold mb-3 terminal-text">Innovation</h3>
+                                <p class="text-terminal-green">Continuously developing cutting-edge AI solutions tailored for small business needs.</p>
                             </div>
-                        </div>
-                        <div class="mission-elements">
-                            <div class="mission-element element1">
-                                <i class="fas fa-coins"></i>
-                                <div class="element-line"></div>
+                            <div class="terminal-card p-6">
+                                <i class="fas fa-handshake text-4xl text-terminal-cyan mb-4"></i>
+                                <h3 class="text-xl font-bold mb-3 terminal-text">Accessibility</h3>
+                                <p class="text-terminal-green">Making complex AI technology simple and user-friendly for everyone.</p>
                             </div>
-                            <div class="mission-element element2">
-                                <i class="fas fa-rocket"></i>
-                                <div class="element-line"></div>
-                            </div>
-                            <div class="mission-element element3">
-                                <i class="fas fa-chart-line"></i>
-                                <div class="element-line"></div>
-                            </div>
-                            <div class="mission-element element4">
-                                <i class="fas fa-users"></i>
-                                <div class="element-line"></div>
+                            <div class="terminal-card p-6">
+                                <i class="fas fa-chart-line text-4xl text-terminal-cyan mb-4"></i>
+                                <h3 class="text-xl font-bold mb-3 terminal-text">Growth</h3>
+                                <p class="text-terminal-green">Empowering businesses to achieve their full potential through AI-driven solutions.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="mission-content">
-                    <h2>Our Mission</h2>
-                    <p>At AI Unplugged, our mission is to empower small businesses by providing them with affordable, easy-to-use AI solutions that drive growth, efficiency, and innovation.</p>
-                    <p>We strive to:</p>
-                    <ul class="mission-list">
-                        <li>Make AI technology accessible to businesses of all sizes</li>
-                        <li>Provide solutions that deliver real, measurable value</li>
-                        <li>Offer ongoing support and education to help our clients succeed</li>
-                        <li>Continually innovate and improve our offerings</li>
-                    </ul>
-                    <p>We're committed to being a trusted partner in your business growth journey, helping you harness the power of AI without the complexity.</p>
                 </div>
             </div>
         </section>
 
         <!-- Our Core Values -->
-        <section id="our-values">
-            <div class="container">
-                <h2>Our Core Values</h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Accessibility</h3>
-                        <p>We believe AI technology should be accessible to businesses of all sizes. We remove technical barriers and create solutions that are easy to implement and use.</p>
+        <section id="our-values" class="terminal-section py-16 bg-dark">
+            <canvas id="matrixCanvas4" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-lightbulb"></i>
+                    <div class="terminal-title">values.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-6 text-center terminal-text">Our Core <span class="terminal-gradient">Values</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="terminal-card p-6 text-center">
+                            <i class="fas fa-handshake text-4xl text-terminal-cyan mb-4"></i>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Accessibility</h3>
+                            <p class="text-terminal-green">We believe AI technology should be accessible to businesses of all sizes. We remove technical barriers and create solutions that are easy to implement and use.</p>
                         </div>
-                        <h3>Innovation</h3>
-                        <p>We stay at the forefront of AI development, continuously exploring new ways to apply cutting-edge technology to solve real business challenges.</p>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="terminal-card p-6 text-center">
+                            <i class="fas fa-lightbulb text-4xl text-terminal-cyan mb-4"></i>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Innovation</h3>
+                            <p class="text-terminal-green">We stay at the forefront of AI development, continuously exploring new ways to apply cutting-edge technology to solve real business challenges.</p>
                         </div>
-                        <h3>Results-Driven</h3>
-                        <p>We focus on creating solutions that deliver measurable, tangible results. Every AI implementation we design is focused on driving real business growth.</p>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
+                        <div class="terminal-card p-6 text-center">
+                            <i class="fas fa-chart-line text-4xl text-terminal-cyan mb-4"></i>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Results-Driven</h3>
+                            <p class="text-terminal-green">We focus on creating solutions that deliver measurable, tangible results. Every AI implementation we design is focused on driving real business growth.</p>
                         </div>
-                        <h3>Partnership</h3>
-                        <p>We see ourselves as your business partner, not just a service provider. Your success is our success, and we're committed to helping you thrive.</p>
+                        <div class="terminal-card p-6 text-center">
+                            <i class="fas fa-users text-4xl text-terminal-cyan mb-4"></i>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Partnership</h3>
+                            <p class="text-terminal-green">We see ourselves as your business partner, not just a service provider. Your success is our success, and we're committed to helping you thrive.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Our Approach -->
-        <section id="our-approach">
-            <div class="container">
-                <h2>Our Approach</h2>
-                <p class="section-intro">We follow a proven methodology to deliver AI solutions that create real business impact with minimal disruption to your operations.</p>
-                <div class="approach-grid">
-                    <div class="approach-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Discovery</h3>
-                            <p>We begin by understanding your business goals, challenges, and processes to identify where AI can create the most value.</p>
-                        </div>
+        <section id="our-approach" class="terminal-section py-16 bg-darker">
+            <canvas id="matrixCanvas5" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="approach-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Solution Design</h3>
-                            <p>Our team creates a tailored solution that addresses your specific needs, integrating seamlessly with your existing systems.</p>
+                    <div class="terminal-title">approach.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-6 text-center terminal-text">Our <span class="terminal-gradient">Approach</span></h2>
+                    <p class="text-terminal-green text-center mb-8">We follow a proven methodology to deliver AI solutions that create real business impact with minimal disruption to your operations.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="terminal-card p-6 relative">
+                            <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-terminal-dark flex items-center justify-center border border-terminal-green">
+                                <span class="text-terminal-green font-bold">1</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Discovery</h3>
+                            <p class="text-terminal-green">We begin by understanding your business goals, challenges, and processes to identify where AI can create the most value.</p>
                         </div>
-                    </div>
-                    <div class="approach-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Implementation</h3>
-                            <p>We handle the technical aspects of deployment, ensuring a smooth transition with minimal disruption to your operations.</p>
+                        <div class="terminal-card p-6 relative">
+                            <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-terminal-dark flex items-center justify-center border border-terminal-green">
+                                <span class="text-terminal-green font-bold">2</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Solution Design</h3>
+                            <p class="text-terminal-green">Our team creates a tailored solution that addresses your specific needs, integrating seamlessly with your existing systems.</p>
                         </div>
-                    </div>
-                    <div class="approach-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Ongoing Support</h3>
-                            <p>We provide continuous support, optimization, and refinement to ensure your AI solution delivers maximum value over time.</p>
+                        <div class="terminal-card p-6 relative">
+                            <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-terminal-dark flex items-center justify-center border border-terminal-green">
+                                <span class="text-terminal-green font-bold">3</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Implementation</h3>
+                            <p class="text-terminal-green">We handle the technical aspects of deployment, ensuring a smooth transition with minimal disruption to your operations.</p>
+                        </div>
+                        <div class="terminal-card p-6 relative">
+                            <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-terminal-dark flex items-center justify-center border border-terminal-green">
+                                <span class="text-terminal-green font-bold">4</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Ongoing Support</h3>
+                            <p class="text-terminal-green">We provide continuous support, optimization, and refinement to ensure your AI solution delivers maximum value over time.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Transform Your Business with AI?</h2>
-                <p>Let's discuss how our solutions can address your unique challenges.</p>
-                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+        <!-- Contact CTA -->
+        <section id="contact-cta" class="terminal-section py-16 bg-darker">
+            <canvas id="matrixCanvas5" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">contact.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-6 terminal-text">Ready to <span class="terminal-gradient">Get Started</span>?</h2>
+                    <p class="text-terminal-green mb-8 text-lg">Let's discuss how AI can transform your business</p>
+                    <a href="contact.html" class="terminal-button-primary px-8 py-3 rounded-lg text-lg hover:brightness-110 transition-all">Contact Us</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/chatbots.html">AI Chatbots</a></li>
-                        <li><a href="services/analytics.html">Predictive Analytics</a></li>
-                        <li><a href="services/automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:ai.unplugged11@gmail.com">ai.unplugged11@gmail.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:2397458189">(239) 745-8189</a></p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="assessment/index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services/chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="services/analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="services/automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Mobile navigation toggle function
+        function initMobileNav() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded',
+                    hamburger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+
+            // Close menu when a link is clicked
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize matrix rain for all canvas elements with matrix-bg class
+            document.querySelectorAll('.matrix-bg').forEach((canvas, index) => {
+                if (canvas.id) {
+                    initMatrixRain(canvas.id);
+                } else {
+                    canvas.id = `matrix-canvas-${index}`;
+                    initMatrixRain(`matrix-canvas-${index}`);
+                }
+            });
+
+            // Initialize other terminal effects
+            initTerminalEffects();
+            initScrollAnimations();
+            initMobileNav();
+        });
+    </script>
+
+    <!-- Terminal Theme Scripts -->
+    <script src="js/terminal-init.js"></script>
+    <script src="js/terminal-effects.js"></script>
+
+    <!-- Chatbot Script -->
+    <script src="js/chatbot.js"></script>
+
+    <!-- Logo Enhancer Script -->
+    <script src="js/logo-enhancer.js"></script>
 </body>
 </html>

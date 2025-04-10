@@ -1,123 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- AI Unplugged Website - Optimized for Performance, Accessibility, and Mobile Experience -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Unplugged Chatbots - AI-powered chatbot solutions for small businesses">
-    <title>AI Chatbots | AI Unplugged</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="AI Unplugged Chatbots - AI-powered chatbot solutions for small businesses. Our intelligent chatbots provide 24/7 customer support with natural language processing.">
+    <title>AI Chatbots | AI Solutions for Small Businesses | AI Unplugged</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aiunplugged.pro/services/chatbots.html" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="AI Chatbots | AI Solutions for Small Businesses | AI Unplugged">
+    <meta property="og:description" content="AI Unplugged provides intelligent chatbot solutions for small businesses. Our AI chatbots deliver 24/7 customer support with natural language processing.">
+    <meta property="og:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+    <meta property="og:url" content="https://aiunplugged.pro/services/chatbots.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Chatbots | AI Solutions for Small Businesses | AI Unplugged">
+    <meta name="twitter:description" content="AI Unplugged provides intelligent chatbot solutions for small businesses. Our AI chatbots deliver 24/7 customer support with natural language processing.">
+    <meta name="twitter:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI Chatbots",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "AI Unplugged",
+        "url": "https://aiunplugged.pro"
+      },
+      "description": "AI-powered chatbot solutions for small businesses providing 24/7 customer support with natural language processing.",
+      "url": "https://aiunplugged.pro/services/chatbots.html"
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Terminal Theme CSS -->
+    <link rel="stylesheet" href="../css/terminal-theme.css">
+
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="../css/chatbot.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="../css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="../css/logo.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a12, #0f111a);
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+            text-shadow: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--terminal-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-cyan);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            border: 2px solid var(--terminal-cyan);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .terminal-window {
+            border: 1px solid var(--terminal-border);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: rgba(10, 10, 18, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terminal-header {
+            background-color: #1a1a2e;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-border);
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--terminal-red);
+        }
+
+        .terminal-button.close {
+            background-color: #ff5f56;
+        }
+
+        .terminal-button.minimize {
+            background-color: #ffbd2e;
+        }
+
+        .terminal-button.maximize {
+            background-color: #27c93f;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--terminal-green);
+            font-size: 0.875rem;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+        }
+
+        .terminal-text {
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite;
+        }
+
+        @keyframes logo-pulse {
+            0% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5)); }
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="../index.html"><img src="../images/ai-unplugged.png" alt="AI Unplugged Logo - Affordable AI Chatbot Solutions" loading="eager"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about.html">About Us</a></li>
-                    <li><a href="../services.html" class="active">Services</a></li>
-                    <li><a href="../how-it-works.html">How It Works</a></li>
-                    <li><a href="../blog.html">Blog</a></li>
-                    <li><a href="../contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="../index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="../images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="48" height="48" class="logo-rotate-3d">
+                            <span class="logo-text ml-2 text-xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="../services.html" class="text-terminal-green font-medium" aria-current="page">Services</a></li>
+                        <li><a href="../how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="../contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" class="pt-20">
         <!-- Breadcrumbs with schema.org structured data -->
-        <div class="breadcrumbs">
-            <div class="container">
-                <ol class="breadcrumb-list" vocab="https://schema.org/" typeof="BreadcrumbList">
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <a property="item" typeof="WebPage" href="../index.html">
+        <div class="bg-gray-900 py-2">
+            <div class="container mx-auto px-4">
+                <ol class="flex text-sm text-gray-400" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../index.html" class="hover:text-terminal-cyan">
                             <span property="name">Home</span>
                         </a>
                         <meta property="position" content="1">
+                        <span class="mx-2">/</span>
                     </li>
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <a property="item" typeof="WebPage" href="../services.html">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../services.html" class="hover:text-terminal-cyan">
                             <span property="name">Services</span>
                         </a>
                         <meta property="position" content="2">
+                        <span class="mx-2">/</span>
                     </li>
-                    <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
-                        <span property="name">AI Chatbots</span>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <span property="name" class="font-medium text-terminal-green">AI Chatbots</span>
                         <meta property="position" content="3">
                     </li>
                 </ol>
             </div>
         </div>
-        
+
         <!-- Page Header -->
-        <section id="page-header" class="service-header chatbot-header">
-            <div class="container">
-                <h1>AI Chatbots</h1>
-                <p>Provide 24/7 customer support and engagement with intelligent, customizable chatbots.</p>
+        <section id="page-header" class="terminal-section py-16 bg-dark text-terminal-green relative overflow-hidden">
+            <canvas id="matrixCanvas1" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">chatbots.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h1 class="text-4xl font-bold mb-4 terminal-text">AI <span class="terminal-gradient">Chatbots</span></h1>
+                    <p class="text-xl terminal-text">Intelligent conversational AI for 24/7 customer support</p>
+                </div>
             </div>
         </section>
 
         <!-- Service Overview -->
-        <section id="service-overview">
-            <div class="container">
-                <div class="service-intro">
-                    <div class="service-image">
-                        <div class="chatbot-animation">
-                            <div class="chat-interface">
-                                <div class="interface-header">
-                                    <div class="header-dot red"></div>
-                                    <div class="header-dot yellow"></div>
-                                    <div class="header-dot green"></div>
-                                    <div class="header-title">AI Chatbot</div>
-                                </div>
-                                <div class="chat-messages">
-                                    <div class="timestamp">Today, 10:42 AM</div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-bubble user">
-                                            <div class="bubble-content">Hello! I need help with my order.</div>
-                                            <div class="bubble-timestamp">10:42 AM</div>
+        <section id="service-overview" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas2" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">overview.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="md:w-1/2 relative">
+                            <div class="terminal-card p-4 bg-terminal-bg bg-opacity-70 border border-terminal-green rounded-lg shadow-lg">
+                                <div class="chat-interface">
+                                    <div class="interface-header flex items-center p-2 border-b border-terminal-border">
+                                        <div class="flex space-x-2">
+                                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
+                                        <div class="ml-4 text-terminal-green font-mono text-sm">AI Chatbot Terminal</div>
                                     </div>
-                                    
-                                    <div class="message-group">
-                                        <div class="chat-avatar">
-                                            <div class="avatar-circle">
-                                                <i class="fas fa-robot"></i>
+                                    <div class="chat-messages p-4 space-y-4">
+                                        <div class="text-xs text-gray-500 text-center">Today, 10:42 AM</div>
+
+                                        <div class="flex justify-end">
+                                            <div class="chat-bubble max-w-xs bg-gray-700 text-white p-3 rounded-lg rounded-tr-none">
+                                                <div class="text-sm">Hello! I need help with my order.</div>
+                                                <div class="text-xs text-gray-400 mt-1 text-right">10:42 AM</div>
                                             </div>
-                                            <div class="avatar-pulse"></div>
                                         </div>
-                                        <div class="chat-bubble bot">
-                                            <div class="bubble-content">Hi there! I'd be happy to help with your order. Could you please provide your order number?</div>
-                                            <div class="bubble-timestamp">10:42 AM</div>
+
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 rounded-full bg-terminal-green flex items-center justify-center mr-2">
+                                                <i class="fas fa-robot text-terminal-bg"></i>
+                                            </div>
+                                            <div class="chat-bubble max-w-xs bg-terminal-bg border border-terminal-green text-terminal-green p-3 rounded-lg rounded-tl-none">
+                                                <div class="text-sm">Hi there! I'd be happy to help with your order. Could you please provide your order number?</div>
+                                                <div class="text-xs text-gray-400 mt-1">10:42 AM</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="chat-input">
-                                    <input type="text" placeholder="Type your message..." disabled>
-                                    <button class="send-button">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
+                                    <div class="chat-input flex p-3 border-t border-terminal-border">
+                                        <input type="text" placeholder="Type your message..." disabled class="flex-grow bg-gray-800 text-gray-300 p-2 rounded-l-lg border-none focus:outline-none">
+                                        <button class="bg-terminal-green text-terminal-bg p-2 rounded-r-lg">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="service-description">
-                        <h2>Provide 24/7 Customer Support with AI Chatbots</h2>
-                        <p>Our AI chatbots provide your customers with instant responses to their inquiries, 24 hours a day, 7 days a week. Whether they need information about your products, help with orders, or answers to common questions, our chatbots deliver a seamless customer experience.</p>
-                        <p>Using advanced natural language processing (NLP) technology, our chatbots understand customer queries and respond in a natural, conversational manner. They continuously learn from interactions to improve their responses over time.</p>
-                        <div class="cta-buttons">
-                            <a href="../contact.html" class="btn btn-primary">Get Started</a>
-                            <a href="../assessment/index.html" class="btn btn-secondary">Take Assessment</a>
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-bold mb-6 terminal-text">Provide <span class="terminal-gradient">24/7</span> Customer Support</h2>
+                            <p class="text-terminal-green mb-4">Our AI chatbots provide your customers with instant responses to their inquiries, 24 hours a day, 7 days a week. Whether they need information about your products, help with orders, or answers to common questions, our chatbots deliver a seamless customer experience.</p>
+                            <p class="text-terminal-green mb-6">Using advanced natural language processing (NLP) technology, our chatbots understand customer queries and respond in a natural, conversational manner. They continuously learn from interactions to improve their responses over time.</p>
+                            <div class="flex space-x-4">
+                                <a href="../contact.html" class="btn-primary">Get Started</a>
+                                <a href="../assessment/index.html" class="btn-secondary">Take Assessment</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,113 +368,147 @@
         </section>
 
         <!-- Benefits -->
-        <section id="service-benefits">
-            <div class="container">
-                <h2>Benefits of AI Chatbots</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>24/7 Availability</h3>
-                        <p>Provide round-the-clock customer support without the cost of hiring additional staff or extending business hours.</p>
+        <section id="service-benefits" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas3" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-bolt"></i>
+                    <div class="terminal-title">benefits.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Benefits of <span class="terminal-gradient">AI Chatbots</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">24/7 Availability</h3>
+                            <p class="text-terminal-green">Provide round-the-clock customer support without the cost of hiring additional staff or extending business hours.</p>
                         </div>
-                        <h3>Instant Responses</h3>
-                        <p>Deliver immediate answers to customer questions, eliminating wait times and improving satisfaction.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Instant Responses</h3>
+                            <p class="text-terminal-green">Deliver immediate answers to customer questions, eliminating wait times and improving satisfaction.</p>
                         </div>
-                        <h3>Cost Reduction</h3>
-                        <p>Reduce customer service costs by automating responses to common inquiries and freeing up your team for complex tasks.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Cost Reduction</h3>
+                            <p class="text-terminal-green">Reduce customer service costs by automating responses to common inquiries and freeing up your team for complex tasks.</p>
                         </div>
-                        <h3>Scalability</h3>
-                        <p>Handle unlimited conversations simultaneously, ensuring consistent service during peak times.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-user-check"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Scalability</h3>
+                            <p class="text-terminal-green">Handle unlimited conversations simultaneously, ensuring consistent service during peak times.</p>
                         </div>
-                        <h3>Personalized Experience</h3>
-                        <p>Deliver tailored recommendations and responses based on customer history and preferences.</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
-                            <i class="fas fa-database"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Personalized Experience</h3>
+                            <p class="text-terminal-green">Deliver tailored recommendations and responses based on customer history and preferences.</p>
                         </div>
-                        <h3>Data Collection</h3>
-                        <p>Gather valuable insights about customer needs, preferences, and pain points to inform business decisions.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text">Data Collection</h3>
+                            <p class="text-terminal-green">Gather valuable insights about customer needs, preferences, and pain points to inform business decisions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features -->
-        <section id="service-features">
-            <div class="container">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Natural Language Processing</h3>
-                            <p>Our chatbots understand natural language and conversational nuances, providing human-like interactions with your customers.</p>
-                        </div>
+        <section id="service-features" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas4" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-language"></i>
+                    <div class="terminal-title">features.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Key <span class="terminal-gradient">Features</span></h2>
+                    <div class="space-y-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Natural Language Processing</h3>
+                                    <p class="text-terminal-green">Our chatbots understand natural language and conversational nuances, providing human-like interactions with your customers.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Multi-language Support</h3>
-                            <p>Communicate with customers in multiple languages, expanding your global reach without additional resources.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Multi-language Support</h3>
+                                    <p class="text-terminal-green">Communicate with customers in multiple languages, expanding your global reach without additional resources.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-sync-alt"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Continuous Learning</h3>
+                                    <p class="text-terminal-green">Our AI chatbots improve over time by learning from interactions and adapting to your specific business context.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Continuous Learning</h3>
-                            <p>Our AI chatbots improve over time by learning from interactions and adapting to your specific business context.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-sitemap"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Seamless Integration</h3>
+                                    <p class="text-terminal-green">Easily integrate with your website, mobile app, social media platforms, and other business systems.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-sitemap"></i>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Human Handoff</h3>
+                                    <p class="text-terminal-green">Smartly escalate complex inquiries to human agents while maintaining context for a seamless transition.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature-content">
-                            <h3>Seamless Integration</h3>
-                            <p>Easily integrate with your website, mobile app, social media platforms, and other business systems.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Human Handoff</h3>
-                            <p>Smartly escalate complex inquiries to human agents while maintaining context for a seamless transition.</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>Advanced Analytics</h3>
-                            <p>Gain insights into customer interactions, common questions, and satisfaction levels with comprehensive reporting.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="text-terminal-cyan text-4xl md:text-5xl">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Advanced Analytics</h3>
+                                    <p class="text-terminal-green">Gain insights into customer interactions, common questions, and satisfaction levels with comprehensive reporting.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -239,229 +516,294 @@
         </section>
 
         <!-- How It Works -->
-        <section id="how-it-works">
-            <div class="container">
-                <h2>How Our AI Chatbots Work</h2>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Discovery & Customization</h3>
-                            <p>We work with you to understand your business, customer needs, and common inquiries to customize the chatbot accordingly.</p>
-                        </div>
+        <section id="how-it-works" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas5" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Knowledge Base Creation</h3>
-                            <p>We build a comprehensive knowledge base for your chatbot, incorporating product information, FAQs, policies, and procedures.</p>
+                    <div class="terminal-title">process.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">How Our <span class="terminal-gradient">AI Chatbots</span> Work</h2>
+                    <div class="space-y-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    1
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Discovery & Customization</h3>
+                                    <p class="text-terminal-green">We work with you to understand your business, customer needs, and common inquiries to customize the chatbot accordingly.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Integration & Deployment</h3>
-                            <p>We integrate the chatbot with your existing systems and deploy it across your chosen channels (website, app, social media).</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    2
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Knowledge Base Creation</h3>
+                                    <p class="text-terminal-green">We build a comprehensive knowledge base for your chatbot, incorporating product information, FAQs, policies, and procedures.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Training & Optimization</h3>
-                            <p>We monitor early interactions, make adjustments, and fine-tune the chatbot to improve its responses and effectiveness.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    3
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Integration & Deployment</h3>
+                                    <p class="text-terminal-green">We integrate the chatbot with your existing systems and deploy it across your chosen channels (website, app, social media).</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3>Ongoing Support & Enhancement</h3>
-                            <p>We provide continuous support and regular updates to ensure your chatbot remains effective and up-to-date.</p>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    4
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Training & Optimization</h3>
+                                    <p class="text-terminal-green">We monitor early interactions, make adjustments, and fine-tune the chatbot to improve its responses and effectiveness.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="flex flex-col md:flex-row items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-terminal-green flex items-center justify-center text-terminal-bg font-bold text-xl">
+                                    5
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2 terminal-text">Ongoing Support & Enhancement</h3>
+                                    <p class="text-terminal-green">We provide continuous support and regular updates to ensure your chatbot remains effective and up-to-date.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Case Studies -->
-        <section id="case-studies">
-            <div class="container">
-                <h2>Success Stories</h2>
-                <div class="case-study-grid">
-                    <div class="case-study">
-                        <div class="case-study-content">
-                            <div class="industry-tag">Retail</div>
-                            <h3>Better Shoes</h3>
-                            <p>Better Shoes implemented our AI chatbot on their e-commerce website to handle customer inquiries about products, sizing, and order status. Within three months, they experienced:</p>
-                            <ul class="results-list">
-                                <li>73% reduction in customer service response time</li>
-                                <li>42% decrease in support ticket volume</li>
-                                <li>28% increase in conversion rate from chatbot interactions</li>
-                            </ul>
-                            <a href="../blog/case-study-better-shoes.html" class="btn btn-secondary">Read Full Case Study</a>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../images/case-study-retail.jpg" alt="Retail success story: 24/7 customer support with AI chatbot reducing response time by 80%" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="case-study reverse">
-                        <div class="case-study-content">
-                            <div class="industry-tag">Financial Services</div>
-                            <h3>Metro Credit Union</h3>
-                            <p>Metro Credit Union deployed our AI chatbot to assist customers with account inquiries, transaction history, and financial product information. The results after six months included:</p>
-                            <ul class="results-list">
-                                <li>85% of routine inquiries successfully handled by the chatbot</li>
-                                <li>62% reduction in call center volume</li>
-                                <li>94% positive customer feedback on chatbot interactions</li>
-                            </ul>
-                            <a href="../blog/case-study-metro-credit-union.html" class="btn btn-secondary">Read Full Case Study</a>
-                        </div>
-                        <div class="case-study-image">
-                            <img src="../images/case-study-finance.jpg" alt="Financial services success story: AI chatbot handling 75% of customer inquiries automatically" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Pricing -->
-        <section id="pricing">
-            <div class="container">
-                <h2>Chatbot Pricing Plans</h2>
-                <p class="section-intro">Choose the right plan for your business needs. All plans include setup, training, and ongoing support.</p>
-                
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Starter</h3>
-                            <div class="price">
-                                <span class="amount">$99</span>
-                                <span class="period">/month</span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Basic chatbot with pre-built templates</li>
-                                <li><i class="fas fa-check"></i> Up to 100 conversations per day</li>
-                                <li><i class="fas fa-check"></i> Website integration</li>
-                                <li><i class="fas fa-check"></i> Basic customer data collection</li>
-                                <li><i class="fas fa-check"></i> Email support</li>
-                                <li><i class="fas fa-check"></i> Monthly performance report</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-secondary">Get Started</a>
-                        </div>
+        <section id="pricing" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas6" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Most Popular</div>
-                        <div class="pricing-header">
-                            <h3>Professional</h3>
-                            <div class="price">
-                                <span class="amount">$249</span>
-                                <span class="period">/month</span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Custom-trained AI chatbot</li>
-                                <li><i class="fas fa-check"></i> Up to 500 conversations per day</li>
-                                <li><i class="fas fa-check"></i> Website and social media integration</li>
-                                <li><i class="fas fa-check"></i> Advanced data collection and analytics</li>
-                                <li><i class="fas fa-check"></i> Human handoff capability</li>
-                                <li><i class="fas fa-check"></i> Priority email & phone support</li>
-                                <li><i class="fas fa-check"></i> Weekly performance reports</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-primary">Get Started</a>
-                        </div>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3>Enterprise</h3>
-                            <div class="price">
-                                <span class="amount">Custom</span>
-                                <span class="period"></span>
-                            </div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li><i class="fas fa-check"></i> Fully customized AI solution</li>
-                                <li><i class="fas fa-check"></i> Unlimited conversations</li>
-                                <li><i class="fas fa-check"></i> Omnichannel integration</li>
-                                <li><i class="fas fa-check"></i> Full CRM integration</li>
-                                <li><i class="fas fa-check"></i> Advanced NLP capabilities</li>
-                                <li><i class="fas fa-check"></i> 24/7 premium support</li>
-                                <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                                <li><i class="fas fa-check"></i> Custom reporting and analytics</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="../contact.html" class="btn btn-secondary">Contact Us</a>
-                        </div>
-                    </div>
+                    <div class="terminal-title">pricing.sh</div>
                 </div>
-                
-                <div class="pricing-note">
-                    <p>All plans include a 14-day free trial. No credit card required to start.</p>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-4 text-center terminal-text">Chatbot <span class="terminal-gradient">Pricing Plans</span></h2>
+                    <p class="text-center text-terminal-green mb-10">Choose the right plan for your business needs. All plans include setup, training, and ongoing support.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Starter</h3>
+                                <div class="text-3xl font-bold text-terminal-green mb-1">$99</div>
+                                <div class="text-sm text-gray-400">/month</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Basic chatbot with pre-built templates</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Up to 100 conversations per day</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Website integration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Basic customer data collection</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Email support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Monthly performance report</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-secondary">Get Started</a>
+                            </div>
+                        </div>
+
+                        <div class="terminal-card p-6 border-2 border-terminal-cyan bg-terminal-bg bg-opacity-70 rounded-lg relative transform hover:scale-105 transition-all duration-300 z-10">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-terminal-cyan text-terminal-bg text-xs font-bold py-1 px-4 rounded-full">Most Popular</div>
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Professional</h3>
+                                <div class="text-3xl font-bold text-terminal-cyan mb-1">$249</div>
+                                <div class="text-sm text-gray-400">/month</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Custom-trained AI chatbot</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Up to 500 conversations per day</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Website and social media integration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Advanced data collection and analytics</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Human handoff capability</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Priority email & phone support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Weekly performance reports</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-primary">Get Started</a>
+                            </div>
+                        </div>
+
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold terminal-text mb-4">Enterprise</h3>
+                                <div class="text-3xl font-bold text-terminal-green mb-1">Custom</div>
+                                <div class="text-sm text-gray-400">pricing</div>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Fully customized AI solution</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Unlimited conversations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Omnichannel integration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Full CRM integration</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Advanced NLP capabilities</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">24/7 premium support</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Dedicated account manager</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-terminal-cyan mr-2 mt-1"></i>
+                                    <span class="text-terminal-green">Custom reporting and analytics</span>
+                                </li>
+                            </ul>
+                            <div class="text-center">
+                                <a href="../contact.html" class="btn-secondary">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <p class="text-terminal-green">All plans include a 14-day free trial. No credit card required to start.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How long does it take to set up a chatbot?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Basic chatbots can be up and running within 1-2 weeks. More complex, custom solutions may take 3-4 weeks, depending on the level of customization and integration required.</p>
-                        </div>
+        <section id="faq" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas7" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Will the chatbot understand my industry-specific terminology?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    <div class="terminal-title">faq.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-10 text-center terminal-text">Frequently Asked <span class="terminal-gradient">Questions</span></h2>
+                    <div class="space-y-4">
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">How long does it take to set up a chatbot?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">Basic chatbots can be up and running within 1-2 weeks. More complex, custom solutions may take 3-4 weeks, depending on the level of customization and integration required.</p>
+                            </div>
                         </div>
-                        <div class="faq-answer">
-                            <p>Yes! We train each chatbot on your industry-specific terms and business vocabulary. The more you use it, the better it gets at understanding and responding to specialized terminology.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">Will the chatbot understand my industry-specific terminology?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">Yes! We train each chatbot on your industry-specific terms and business vocabulary. The more you use it, the better it gets at understanding and responding to specialized terminology.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Can the chatbot handle complex customer inquiries?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">Can the chatbot handle complex customer inquiries?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">Our chatbots are designed to handle a wide range of inquiries, from simple FAQs to more complex interactions. For very complex issues, the chatbot can seamlessly transfer the conversation to a human agent while maintaining context.</p>
+                            </div>
                         </div>
-                        <div class="faq-answer">
-                            <p>Our chatbots are designed to handle a wide range of inquiries, from simple FAQs to more complex interactions. For very complex issues, the chatbot can seamlessly transfer the conversation to a human agent while maintaining context.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">How do I update the chatbot's knowledge base?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">We provide an easy-to-use administrative dashboard where you can update information, add new responses, and refine existing ones. Our team is also available to assist with larger updates or modifications.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>How do I update the chatbot's knowledge base?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>We provide an easy-to-use administrative dashboard where you can update information, add new responses, and refine existing ones. Our team is also available to assist with larger updates or modifications.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Will the chatbot work on mobile devices?</h3>
-                            <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes, our chatbots are fully responsive and work seamlessly across all devices, including smartphones, tablets, and desktop computers.</p>
+
+                        <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                            <div class="faq-question cursor-pointer flex justify-between items-center">
+                                <h3 class="text-xl font-bold terminal-text">Will the chatbot work on mobile devices?</h3>
+                                <span class="text-terminal-cyan text-xl"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="faq-answer hidden mt-4">
+                                <p class="text-terminal-green">Yes, our chatbots are fully responsive and work seamlessly across all devices, including smartphones, tablets, and desktop computers.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -469,59 +811,90 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Transform Your Customer Service?</h2>
-                <p>Schedule a free consultation to discuss how our AI chatbots can help your business.</p>
-                <a href="../contact.html" class="btn btn-primary">Get Started Today</a>
+        <section id="cta" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas8" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">get_started.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-4 terminal-text">Ready to <span class="terminal-gradient">Transform</span> Your Customer Service?</h2>
+                    <p class="text-terminal-green text-xl mb-8">Schedule a free consultation to discuss how our AI chatbots can help your business.</p>
+                    <div class="inline-flex">
+                        <a href="../contact.html" class="btn-primary text-lg px-8 py-3">Get Started Today</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../services.html">Services</a></li>
-                        <li><a href="../blog.html">Blog</a></li>
-                        <li><a href="../contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="chatbots.html">AI Chatbots</a></li>
-                        <li><a href="analytics.html">Predictive Analytics</a></li>
-                        <li><a href="automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> ai.unplugged11@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> 2397458189</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="../services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="../assessment/index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="../contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="../privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="../terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -529,31 +902,87 @@
 
     <script src="../js/script.js"></script>
     <script>
+        // Matrix Rain Animation
+        function initMatrixRain() {
+            const canvases = document.querySelectorAll('.matrix-bg');
+
+            canvases.forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+
+                // Characters to use in the rain
+                const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+                const columns = Math.floor(canvas.width / 20); // Character width
+                const drops = [];
+
+                // Initialize drops at random positions
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.floor(Math.random() * canvas.height / 20); // Start at random positions
+                }
+
+                function draw() {
+                    // Semi-transparent black background to create fade effect
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#0f0'; // Green text
+                    ctx.font = '15px monospace';
+
+                    // Draw characters
+                    for (let i = 0; i < drops.length; i++) {
+                        // Random character
+                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+
+                        // Draw the character
+                        ctx.fillText(text, i * 20, drops[i] * 20);
+
+                        // Move the drop down
+                        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                // Run the animation
+                setInterval(draw, 50);
+            });
+        }
+
         // FAQ Accordion Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
+        function initFaqAccordion() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
-                    const answer = item.querySelector('.faq-answer');
-                    const icon = item.querySelector('.faq-icon i');
-                    
-                    // Toggle the active class
-                    item.classList.toggle('active');
-                    
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+
+                    // Toggle the answer visibility
+                    answer.classList.toggle('hidden');
+
                     // Toggle the icon
-                    if (item.classList.contains('active')) {
-                        icon.classList.remove('fa-plus');
-                        icon.classList.add('fa-minus');
-                        answer.style.maxHeight = answer.scrollHeight + 'px';
-                    } else {
+                    if (answer.classList.contains('hidden')) {
                         icon.classList.remove('fa-minus');
                         icon.classList.add('fa-plus');
-                        answer.style.maxHeight = null;
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
                     }
                 });
+            });
+        }
+
+        // Initialize everything when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initMatrixRain();
+            initFaqAccordion();
+
+            // Handle window resize for matrix rain
+            window.addEventListener('resize', function() {
+                // Reinitialize matrix rain after a short delay
+                setTimeout(initMatrixRain, 300);
             });
         });
     </script>

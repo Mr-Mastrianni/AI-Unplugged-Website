@@ -5,151 +5,328 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="How AI Unplugged works - Our process for implementing AI solutions for small businesses">
     <title>How It Works | AI Unplugged</title>
-    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="css/logo.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--terminal-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            transition: all 0.3s ease;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-shadow: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-green);
+            border: 2px solid var(--terminal-green);
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-shadow: var(--text-shadow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 0, 0.1);
+            transform: translateY(-3px);
+            border-color: var(--terminal-cyan);
+            color: var(--terminal-cyan);
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            cursor: pointer;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger .w-6 {
+                background-color: var(--terminal-green);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--terminal-bg);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 20px;
+                transition: all 0.5s ease;
+                z-index: 99;
+                border-top: 1px solid var(--terminal-green);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html"><img src="images/ai-unplugged.png" alt="AI Unplugged Logo"></a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="how-it-works.html" class="active">How It Works</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
+                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-terminal-cyan">Services</a></li>
+                        <li><a href="how-it-works.html" class="text-terminal-green font-medium" aria-current="page">How It Works</a></li>
+                        <li><a href="contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="pt-32">
         <!-- Page Header -->
-        <section id="page-header" class="hiw-header">
-            <div class="container">
-                <h1>How It Works</h1>
-                <p>A simple, streamlined process to bring AI solutions to your business.</p>
+        <section id="page-header" class="py-16 hero-bg relative overflow-hidden">
+            <canvas id="header-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl font-bold mb-4 glitch" data-text="How It Works">How It <span class="gradient-text">Works</span></h1>
+                <p class="text-xl animate-fade-up">A simple, streamlined process to bring AI solutions to your business.</p>
             </div>
         </section>
 
         <!-- Process Overview -->
-        <section id="process-overview">
-            <div class="container">
-                <h2>Our Implementation Process</h2>
-                <p class="section-intro">At AI Unplugged, we've developed a straightforward, efficient process to get you up and running with the right AI solutions for your business. We handle the complexity so you can focus on what matters most—growing your business.</p>
+        <section id="process-overview" class="py-16 bg-dark">
+            <div class="container mx-auto px-4">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="section-terminal-title">implementation_process.sh</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-center mb-6">Our <span class="gradient-text">Implementation</span> Process</h2>
+                <p class="text-gray-400 text-center max-w-3xl mx-auto mb-12 animate-fade-up">At AI Unplugged, we've developed a straightforward, efficient process to get you up and running with the right AI solutions for your business. We handle the complexity so you can focus on what matters most—growing your business.</p>
             </div>
         </section>
 
         <!-- Process Steps -->
-        <section id="process-steps">
-            <div class="container">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-number">1</div>
+        <section id="process-steps" class="py-16 bg-darker relative overflow-hidden">
+            <canvas id="process-matrix" class="matrix-bg opacity-30"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="timeline space-y-12">
+                    <div class="timeline-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-right">
+                        <div class="timeline-number bg-terminal-green text-terminal-bg rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl shadow-glow">1</div>
                         <div class="timeline-content">
-                            <div class="timeline-icon">
-                                <i class="fas fa-comments"></i>
+                            <div class="timeline-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow">
+                                <i class="fas fa-comments text-2xl text-terminal-cyan"></i>
                             </div>
-                            <h3>Consultation</h3>
-                            <p>We start with a free, no-obligation consultation to understand your business, challenges, and goals. Our team listens carefully to identify where AI can make the biggest impact.</p>
-                            <div class="timeline-details">
-                                <h4>What to Expect:</h4>
-                                <ul>
-                                    <li>A 30-45 minute discussion with our solution experts</li>
-                                    <li>Questions about your current processes and pain points</li>
-                                    <li>Exploration of your business goals and objectives</li>
-                                    <li>Initial recommendations for AI solutions that may help</li>
+                            <h3 class="text-2xl font-bold mb-4 gradient-text">Consultation</h3>
+                            <p class="text-gray-300 mb-6">We start with a free, no-obligation consultation to understand your business, challenges, and goals. Our team listens carefully to identify where AI can make the biggest impact.</p>
+                            <div class="timeline-details bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green">
+                                <h4 class="text-lg font-bold mb-3 text-terminal-cyan">What to Expect:</h4>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> A 30-45 minute discussion with our solution experts</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Questions about your current processes and pain points</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Exploration of your business goals and objectives</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Initial recommendations for AI solutions that may help</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-number">2</div>
+                    <div class="timeline-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-left">
+                        <div class="timeline-number bg-terminal-green text-terminal-bg rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl shadow-glow">2</div>
                         <div class="timeline-content">
-                            <div class="timeline-icon">
-                                <i class="fas fa-pencil-ruler"></i>
+                            <div class="timeline-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow">
+                                <i class="fas fa-pencil-ruler text-2xl text-terminal-cyan"></i>
                             </div>
-                            <h3>Customization</h3>
-                            <p>Based on our consultation, we design a tailored solution that addresses your specific needs. We configure our AI tools to integrate seamlessly with your existing systems and workflows.</p>
-                            <div class="timeline-details">
-                                <h4>What to Expect:</h4>
-                                <ul>
-                                    <li>A detailed proposal outlining recommended solutions</li>
-                                    <li>Customization of AI tools to match your business requirements</li>
-                                    <li>Integration planning with your existing systems</li>
-                                    <li>Timeline and implementation roadmap</li>
+                            <h3 class="text-2xl font-bold mb-4 gradient-text">Customization</h3>
+                            <p class="text-gray-300 mb-6">Based on our consultation, we design a tailored solution that addresses your specific needs. We configure our AI tools to integrate seamlessly with your existing systems and workflows.</p>
+                            <div class="timeline-details bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green">
+                                <h4 class="text-lg font-bold mb-3 text-terminal-cyan">What to Expect:</h4>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> A detailed proposal outlining recommended solutions</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Customization of AI tools to match your business requirements</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Integration planning with your existing systems</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Timeline and implementation roadmap</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-number">3</div>
+                    <div class="timeline-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-right">
+                        <div class="timeline-number bg-terminal-green text-terminal-bg rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl shadow-glow">3</div>
                         <div class="timeline-content">
-                            <div class="timeline-icon">
-                                <i class="fas fa-cogs"></i>
+                            <div class="timeline-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow">
+                                <i class="fas fa-cogs text-2xl text-terminal-cyan"></i>
                             </div>
-                            <h3>Implementation</h3>
-                            <p>Our technical team handles the setup and deployment of your AI solutions. We work efficiently to minimize disruption to your business operations while ensuring everything is properly configured.</p>
-                            <div class="timeline-details">
-                                <h4>What to Expect:</h4>
-                                <ul>
-                                    <li>Dedicated implementation manager to oversee the process</li>
-                                    <li>Technical setup handled by our expert team</li>
-                                    <li>Regular updates on progress and timeline</li>
-                                    <li>Initial testing and quality assurance</li>
+                            <h3 class="text-2xl font-bold mb-4 gradient-text">Implementation</h3>
+                            <p class="text-gray-300 mb-6">Our technical team handles the setup and deployment of your AI solutions. We work efficiently to minimize disruption to your business operations while ensuring everything is properly configured.</p>
+                            <div class="timeline-details bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green">
+                                <h4 class="text-lg font-bold mb-3 text-terminal-cyan">What to Expect:</h4>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Dedicated implementation manager to oversee the process</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Technical setup handled by our expert team</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Regular updates on progress and timeline</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Initial testing and quality assurance</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-number">4</div>
+                    <div class="timeline-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-left">
+                        <div class="timeline-number bg-terminal-green text-terminal-bg rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl shadow-glow">4</div>
                         <div class="timeline-content">
-                            <div class="timeline-icon">
-                                <i class="fas fa-graduation-cap"></i>
+                            <div class="timeline-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow">
+                                <i class="fas fa-graduation-cap text-2xl text-terminal-cyan"></i>
                             </div>
-                            <h3>Training</h3>
-                            <p>We provide comprehensive training to ensure you and your team can effectively use and manage your new AI tools. Our training is hands-on and focused on practical application in your business context.</p>
-                            <div class="timeline-details">
-                                <h4>What to Expect:</h4>
-                                <ul>
-                                    <li>Interactive training sessions for your team</li>
-                                    <li>Customized user guides and documentation</li>
-                                    <li>Video tutorials for future reference</li>
-                                    <li>Q&A sessions to address specific questions</li>
+                            <h3 class="text-2xl font-bold mb-4 gradient-text">Training</h3>
+                            <p class="text-gray-300 mb-6">We provide comprehensive training to ensure you and your team can effectively use and manage your new AI tools. Our training is hands-on and focused on practical application in your business context.</p>
+                            <div class="timeline-details bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green">
+                                <h4 class="text-lg font-bold mb-3 text-terminal-cyan">What to Expect:</h4>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Interactive training sessions for your team</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Customized user guides and documentation</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Video tutorials for future reference</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Q&A sessions to address specific questions</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item">
-                        <div class="timeline-number">5</div>
+                    <div class="timeline-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-right">
+                        <div class="timeline-number bg-terminal-green text-terminal-bg rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl shadow-glow">5</div>
                         <div class="timeline-content">
-                            <div class="timeline-icon">
-                                <i class="fas fa-headset"></i>
+                            <div class="timeline-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow">
+                                <i class="fas fa-headset text-2xl text-terminal-cyan"></i>
                             </div>
-                            <h3>Ongoing Support</h3>
-                            <p>Our relationship doesn't end with implementation. We provide ongoing support, regular check-ins, and continuous optimization to ensure your AI solutions deliver maximum value over time.</p>
-                            <div class="timeline-details">
-                                <h4>What to Expect:</h4>
-                                <ul>
-                                    <li>Dedicated support team available via email, phone, or chat</li>
-                                    <li>Regular performance reviews and optimization suggestions</li>
-                                    <li>System updates and improvements</li>
-                                    <li>Quarterly strategy consultations (depending on your plan)</li>
+                            <h3 class="text-2xl font-bold mb-4 gradient-text">Ongoing Support</h3>
+                            <p class="text-gray-300 mb-6">Our relationship doesn't end with implementation. We provide ongoing support, regular check-ins, and continuous optimization to ensure your AI solutions deliver maximum value over time.</p>
+                            <div class="timeline-details bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green">
+                                <h4 class="text-lg font-bold mb-3 text-terminal-cyan">What to Expect:</h4>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Dedicated support team available via email, phone, or chat</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Regular performance reviews and optimization suggestions</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> System updates and improvements</li>
+                                    <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Quarterly strategy consultations (depending on your plan)</li>
                                 </ul>
                             </div>
                         </div>
@@ -159,95 +336,121 @@
         </section>
 
         <!-- Timeline -->
-        <section id="timeline-overview">
-            <div class="container">
-                <h2>Implementation Timeline</h2>
-                <p class="section-intro">Most small business AI implementations can be completed within 2-4 weeks, depending on complexity and scope. Here's a typical timeline for getting started with AI Unplugged:</p>
-                
-                <div class="timeline-chart">
-                    <div class="timeline-week">
-                        <h3>Week 1</h3>
-                        <ul>
-                            <li>Initial consultation</li>
-                            <li>Requirements gathering</li>
-                            <li>Solution design</li>
-                            <li>Proposal and agreement</li>
+        <section id="timeline-overview" class="py-16 bg-dark relative overflow-hidden">
+            <canvas id="timeline-matrix" class="matrix-bg opacity-30"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="section-terminal-title">implementation_timeline.dat</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-center mb-6">Implementation <span class="gradient-text">Timeline</span></h2>
+                <p class="text-gray-400 text-center max-w-3xl mx-auto mb-12 animate-fade-up">Most small business AI implementations can be completed within 2-4 weeks, depending on complexity and scope. Here's a typical timeline for getting started with AI Unplugged:</p>
+
+                <div class="timeline-chart grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                    <div class="timeline-week service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up">
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Week 1</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Initial consultation</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Requirements gathering</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Solution design</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Proposal and agreement</li>
                         </ul>
                     </div>
-                    <div class="timeline-week">
-                        <h3>Week 2</h3>
-                        <ul>
-                            <li>Configuration setup</li>
-                            <li>Integration with existing systems</li>
-                            <li>Initial deployment</li>
-                            <li>Basic testing</li>
+                    <div class="timeline-week service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.2s;">
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Week 2</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Configuration setup</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Integration with existing systems</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Initial deployment</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Basic testing</li>
                         </ul>
                     </div>
-                    <div class="timeline-week">
-                        <h3>Week 3</h3>
-                        <ul>
-                            <li>Comprehensive testing</li>
-                            <li>Refinements and adjustments</li>
-                            <li>Team training sessions</li>
-                            <li>Documentation delivery</li>
+                    <div class="timeline-week service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.4s;">
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Week 3</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Comprehensive testing</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Refinements and adjustments</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Team training sessions</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Documentation delivery</li>
                         </ul>
                     </div>
-                    <div class="timeline-week">
-                        <h3>Week 4</h3>
-                        <ul>
-                            <li>Full launch</li>
-                            <li>Extended team training</li>
-                            <li>Initial performance review</li>
-                            <li>Support transition</li>
+                    <div class="timeline-week service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.6s;">
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Week 4</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Full launch</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Extended team training</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Initial performance review</li>
+                            <li class="flex items-center"><span class="text-terminal-green mr-2">></span> Support transition</li>
                         </ul>
                     </div>
                 </div>
-                
-                <div class="timeline-note">
-                    <p>Note: Timeline may vary based on solution complexity and specific business requirements. Some straightforward implementations can be completed in as little as 1-2 weeks.</p>
+
+                <div class="timeline-note bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green mt-8 max-w-3xl mx-auto animate-fade-up" style="animation-delay: 0.8s;">
+                    <p class="text-gray-300 flex items-start"><span class="text-terminal-cyan mr-2 text-xl"><i class="fas fa-info-circle"></i></span> <span>Note: Timeline may vary based on solution complexity and specific business requirements. Some straightforward implementations can be completed in as little as 1-2 weeks.</span></p>
                 </div>
             </div>
         </section>
 
         <!-- Technology Stack -->
-        <section id="technology">
-            <div class="container">
-                <h2>Our Technology Stack</h2>
-                <p class="section-intro">We leverage cutting-edge AI technologies and make them accessible and practical for small businesses. Our solutions are built on robust, proven platforms that ensure reliability, scalability, and performance.</p>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Machine Learning</h3>
-                        <p>Advanced algorithms that learn from your business data to make predictions, identify patterns, and provide actionable insights.</p>
+        <section id="technology" class="py-16 bg-darker relative overflow-hidden">
+            <canvas id="tech-matrix" class="matrix-bg opacity-30"></canvas>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="section-terminal-header mx-auto mb-8" style="max-width: 600px;">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
                     </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-comment-dots"></i>
-                        </div>
-                        <h3>Natural Language Processing</h3>
-                        <p>Technology that enables our chatbots to understand and respond naturally to customer queries in multiple languages.</p>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h3>Predictive Analytics</h3>
-                        <p>Data analysis tools that forecast trends, customer behavior, and business outcomes to support decision-making.</p>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3>Robotic Process Automation</h3>
-                        <p>Automation technology that mimics human actions to handle repetitive tasks and workflows with precision and efficiency.</p>
+                    <div class="section-terminal-title">tech_stack.json</div>
+                    <div class="terminal-buttons opacity-0">
+                        <div class="terminal-button"></div>
                     </div>
                 </div>
-                
-                <div class="tech-note">
-                    <p>All of our technologies are deployed through secure, cloud-based platforms that ensure data privacy and compliance with relevant regulations. We prioritize security and reliability in every solution we deliver.</p>
+
+                <h2 class="text-3xl font-bold text-center mb-6">Our <span class="gradient-text">Technology</span> Stack</h2>
+                <p class="text-gray-400 text-center max-w-3xl mx-auto mb-12 animate-fade-up">We leverage cutting-edge AI technologies and make them accessible and practical for small businesses. Our solutions are built on robust, proven platforms that ensure reliability, scalability, and performance.</p>
+
+                <div class="tech-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+                    <div class="tech-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up">
+                        <div class="tech-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow mx-auto">
+                            <i class="fas fa-brain text-2xl text-terminal-cyan"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text text-center">Machine Learning</h3>
+                        <p class="text-gray-300 text-center">Advanced algorithms that learn from your business data to make predictions, identify patterns, and provide actionable insights.</p>
+                    </div>
+                    <div class="tech-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.2s;">
+                        <div class="tech-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow mx-auto">
+                            <i class="fas fa-comment-dots text-2xl text-terminal-cyan"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text text-center">Natural Language Processing</h3>
+                        <p class="text-gray-300 text-center">Technology that enables our chatbots to understand and respond naturally to customer queries in multiple languages.</p>
+                    </div>
+                    <div class="tech-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.4s;">
+                        <div class="tech-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow mx-auto">
+                            <i class="fas fa-chart-bar text-2xl text-terminal-cyan"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text text-center">Predictive Analytics</h3>
+                        <p class="text-gray-300 text-center">Data analysis tools that forecast trends, customer behavior, and business outcomes to support decision-making.</p>
+                    </div>
+                    <div class="tech-item service-card rounded-xl overflow-hidden border border-terminal-green bg-darker p-6 transform transition-all duration-500 hover:scale-105 hover:border-terminal-cyan animate-fade-up" style="animation-delay: 0.6s;">
+                        <div class="tech-icon bg-darker p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 shadow-glow mx-auto">
+                            <i class="fas fa-robot text-2xl text-terminal-cyan"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text text-center">Robotic Process Automation</h3>
+                        <p class="text-gray-300 text-center">Automation technology that mimics human actions to handle repetitive tasks and workflows with precision and efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="tech-note bg-black bg-opacity-30 p-4 rounded-lg border-l-4 border-terminal-green mt-12 max-w-3xl mx-auto animate-fade-up" style="animation-delay: 0.8s;">
+                    <p class="text-gray-300 flex items-start"><span class="text-terminal-cyan mr-2 text-xl"><i class="fas fa-shield-alt"></i></span> <span>All of our technologies are deployed through secure, cloud-based platforms that ensure data privacy and compliance with relevant regulations. We prioritize security and reliability in every solution we deliver.</span></p>
                 </div>
             </div>
         </section>
@@ -257,7 +460,7 @@
             <div class="container">
                 <h2>Seamless Integration</h2>
                 <p class="section-intro">Our AI solutions integrate smoothly with the tools and platforms your business already uses. We support a wide range of popular business systems to ensure a cohesive workflow.</p>
-                
+
                 <div class="integration-logos">
                     <div class="logo-item">
                         <i class="fab fa-shopify fa-3x" title="Shopify"></i>
@@ -292,7 +495,7 @@
                         <p>Office 365</p>
                     </div>
                 </div>
-                
+
                 <div class="integration-note">
                     <p>Don't see your platform listed? Contact us to discuss your specific integration needs. Our flexible API allows us to connect with most modern business systems.</p>
                 </div>
@@ -354,64 +557,199 @@
         </section>
 
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Get Started with AI?</h2>
-                <p>Schedule your free consultation today and take the first step toward transforming your business.</p>
-                <a href="contact.html" class="btn btn-primary">Book Your Consultation</a>
+        <section id="cta" class="py-16 bg-gradient relative overflow-hidden">
+            <canvas id="cta-matrix" class="matrix-bg"></canvas>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h2 class="text-3xl font-bold mb-6 glitch" data-text="Ready to Get Started with AI?">Ready to <span class="gradient-text">Get Started</span> with AI?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto animate-fade-up">Schedule your free consultation today and take the first step toward transforming your business.</p>
+                <div class="flex justify-center">
+                    <a href="contact.html" class="btn-primary inline-block text-center px-8 py-4 rounded-lg font-bold text-lg transform transition hover:-translate-y-1 animate-pulse">Book Your Consultation</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/chatbots.html">AI Chatbots</a></li>
-                        <li><a href="services/analytics.html">Predictive Analytics</a></li>
-                        <li><a href="services/automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI Unplugged</h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:ai.unplugged11@gmail.com">ai.unplugged11@gmail.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:2397458189">(239) 745-8189</a></p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services/chatbots.html" class="text-gray-400 hover:text-white transition-colors">AI Chatbots</a></li>
+                        <li><a href="services/analytics.html" class="text-gray-400 hover:text-white transition-colors">Predictive Analytics</a></li>
+                        <li><a href="services/automation.html" class="text-gray-400 hover:text-white transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-white transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-blue-400"></i>
+                            <a href="tel:2397458189" class="hover:text-white transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="privacy-policy.html" class="text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-500 hover:text-white transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // Matrix rain effect for all matrix canvases
+        function initMatrixRain() {
+            document.querySelectorAll('.matrix-bg').forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                const parent = canvas.parentElement;
+
+                // Set canvas size
+                canvas.width = parent.offsetWidth;
+                canvas.height = parent.offsetHeight;
+
+                // Characters to use in the rain
+                const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+                // Prepare droplets
+                const fontSize = 14;
+                const columns = Math.floor(canvas.width / fontSize);
+                const drops = [];
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.floor(Math.random() * -canvas.height);
+                }
+
+                // Draw function
+                function draw() {
+                    ctx.fillStyle = 'rgba(10, 10, 18, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#0f0';
+                    ctx.font = fontSize + 'px monospace';
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = chars[Math.floor(Math.random() * chars.length)];
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                            drops[i] = 0;
+                        }
+
+                        drops[i]++;
+                    }
+
+                    requestAnimationFrame(draw);
+                }
+
+                // Start animation
+                draw();
+            });
+        }
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const animatedElements = [
+                { selector: '.animate-fade-right', animation: { opacity: [0, 1], translateX: [-20, 0] } },
+                { selector: '.animate-fade-left', animation: { opacity: [0, 1], translateX: [20, 0] } },
+                { selector: '.animate-fade-up', animation: { opacity: [0, 1], translateY: [20, 0] } },
+                { selector: '.animate-scale', animation: { opacity: [0, 1], scale: [0.8, 1] } }
+            ];
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-fade-up, .animate-fade-right, .animate-fade-left, .animate-scale').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Mobile navigation toggle function
+        function initMobileNav() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded',
+                    hamburger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+                );
+            });
+
+            // Close menu when a link is clicked
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initMatrixRain();
+            initScrollAnimations();
+            initMobileNav();
+            console.log('How It Works page initialized with cyber terminal theme!');
+        });
+    </script>
+
+    <!-- Chatbot Script -->
+    <script src="js/chatbot.js"></script>
+
+    <!-- Logo Enhancer Script -->
+    <script src="js/logo-enhancer.js"></script>
 </body>
 </html>

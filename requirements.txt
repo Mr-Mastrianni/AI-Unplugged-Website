@@ -32,3 +32,6 @@ opentelemetry-exporter-otlp==0.40b0
 opentelemetry-instrumentation-flask==0.40b0
 opentelemetry-instrumentation-requests==0.40b0
 opentelemetry-semantic-conventions==0.40b0
+pydantic>=2.0.0
+agency-swarm>=0.1.0
+python-dotenv>=1.0.0

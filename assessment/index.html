@@ -1,459 +1,989 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- AI Unplugged Website - Optimized for Performance, Accessibility, and Mobile Experience -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Readiness Assessment for Small Businesses - Evaluate how ready your business is for AI implementation">
-    <title>AI Readiness Assessment | AI Unplugged</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="assessment.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Merriweather&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="AI Readiness Assessment for Small Businesses - Evaluate how ready your business is for AI implementation and discover tailored solutions for your specific needs.">
+    <title>AI Readiness Assessment | AI Solutions for Small Businesses | AI Unplugged</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aiunplugged.pro/assessment/index.html" />
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="AI Readiness Assessment | AI Solutions for Small Businesses | AI Unplugged">
+    <meta property="og:description" content="Take our comprehensive AI Readiness Assessment to evaluate how AI can transform your business. Get personalized recommendations and ROI analysis.">
+    <meta property="og:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+    <meta property="og:url" content="https://aiunplugged.pro/assessment/index.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Readiness Assessment | AI Solutions for Small Businesses | AI Unplugged">
+    <meta name="twitter:description" content="Take our comprehensive AI Readiness Assessment to evaluate how AI can transform your business. Get personalized recommendations and ROI analysis.">
+    <meta name="twitter:image" content="https://aiunplugged.pro/images/ai-unplugged.png">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "AI Readiness Assessment",
+      "description": "Take our comprehensive AI Readiness Assessment to evaluate how AI can transform your business. Get personalized recommendations and ROI analysis.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "AI Unplugged",
+        "url": "https://aiunplugged.pro"
+      },
+      "url": "https://aiunplugged.pro/assessment/index.html"
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- ThreeJS and AnimeJS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- PDF Generation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Terminal Theme CSS -->
+    <link rel="stylesheet" href="../css/terminal-theme.css">
+
+    <!-- Custom Scrollbar CSS -->
+    <link rel="stylesheet" href="../css/scrollbar.css">
+
+    <!-- Logo CSS -->
+    <link rel="stylesheet" href="../css/logo.css">
+
+    <!-- Assessment CSS -->
+    <link rel="stylesheet" href="assessment-terminal.css">
+    <link rel="stylesheet" href="ai-enhanced-styles.css">
+
+    <style>
+        :root {
+            --terminal-bg: #0a0a12;
+            --terminal-green: #0f0;
+            --terminal-cyan: #0ff;
+            --terminal-purple: #b19cd9;
+            --terminal-red: #f44;
+            --terminal-glow: rgba(0, 255, 0, 0.7);
+            --terminal-border: #333;
+            --text-color: #e0e0e0;
+            --text-shadow: 0 0 8px var(--terminal-glow);
+        }
+
+        body {
+            font-family: 'Inconsolata', monospace;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--terminal-bg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a12, #0f111a);
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            color: var(--terminal-bg);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+            text-shadow: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--terminal-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--terminal-cyan);
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            border: 2px solid var(--terminal-cyan);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .terminal-window {
+            border: 1px solid var(--terminal-border);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: rgba(10, 10, 18, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .terminal-header {
+            background-color: #1a1a2e;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--terminal-border);
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .terminal-button {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--terminal-red);
+        }
+
+        .terminal-button.close {
+            background-color: #ff5f56;
+        }
+
+        .terminal-button.minimize {
+            background-color: #ffbd2e;
+        }
+
+        .terminal-button.maximize {
+            background-color: #27c93f;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--terminal-green);
+            font-size: 0.875rem;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+        }
+
+        .terminal-text {
+            color: var(--text-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        .terminal-gradient {
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Assessment-specific styles */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            border-radius: 1rem;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--terminal-green);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .question-slide {
+            display: none;
+        }
+
+        .question-slide.active {
+            display: block;
+        }
+
+        .checkbox-group, .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-item, .radio-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--terminal-border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover, .radio-item:hover {
+            border-color: var(--terminal-green);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .checkbox-item label, .radio-item label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .checkbox-item input, .radio-item input {
+            margin-right: 0.75rem;
+            accent-color: var(--terminal-green);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .readiness-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--terminal-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--terminal-green);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .score-label {
+            font-size: 0.875rem;
+            color: var(--text-color);
+        }
+
+        .results-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            border: 1px solid var(--terminal-border);
+        }
+
+        .results-section h3 {
+            color: var(--terminal-cyan);
+            margin-bottom: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .step-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--terminal-border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--terminal-green);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(90deg, var(--terminal-green), var(--terminal-cyan));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--terminal-bg);
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip navigation link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
-        <nav id="main-nav">
-            <div class="container">
-                <div class="logo">
-                    <a href="../index.html">AI Unplugged</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about.html">About Us</a></li>
-                    <li><a href="../services.html">Services</a></li>
-                    <li><a href="../how-it-works.html">How It Works</a></li>
-                    <li><a href="../case-studies.html">Case Studies</a></li>
-                    <li><a href="../blog.html">Blog</a></li>
-                    <li><a href="../contact.html" class="btn-contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
+        <nav id="main-nav" role="navigation" aria-label="Main Navigation" class="fixed w-full top-0 z-50 bg-black shadow-md">
+            <div class="container mx-auto px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <a href="../index.html" aria-label="AI Unplugged Home" class="flex items-center">
+                            <img src="../images/ai-unplugged.png" alt="AI Unplugged Logo - AI Solutions for Small Businesses" loading="eager" width="150" height="150" class="logo-rotate-3d">
+                            <span class="logo-text ml-3 text-2xl font-bold">AI<span class="gradient-text">Unplugged</span></span>
+                        </a>
+                    </div>
+                    <ul class="nav-links hidden md:flex items-center space-x-6">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-terminal-cyan">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-300 hover:text-terminal-cyan">About Us</a></li>
+                        <li><a href="../services.html" class="text-gray-300 hover:text-terminal-cyan">Services</a></li>
+                        <li><a href="../how-it-works.html" class="text-gray-300 hover:text-terminal-cyan">How It Works</a></li>
+                        <li><a href="../contact.html" class="btn-primary">Contact</a></li>
+                    </ul>
+                    <div class="hamburger md:hidden" tabindex="0" role="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                        <div class="w-6 h-0.5 bg-terminal-green my-1.5"></div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" class="pt-32">
+        <!-- Breadcrumbs with schema.org structured data -->
+        <div class="bg-gray-900 py-2">
+            <div class="container mx-auto px-4">
+                <ol class="flex text-sm text-gray-400" vocab="https://schema.org/" typeof="BreadcrumbList">
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <a property="item" typeof="WebPage" href="../index.html" class="hover:text-terminal-cyan">
+                            <span property="name">Home</span>
+                        </a>
+                        <meta property="position" content="1">
+                        <span class="mx-2">/</span>
+                    </li>
+                    <li class="flex items-center" property="itemListElement" typeof="ListItem">
+                        <span property="name" class="font-medium text-terminal-green">AI Readiness Assessment</span>
+                        <meta property="position" content="2">
+                    </li>
+                </ol>
+            </div>
+        </div>
+
         <!-- Page Header -->
-        <section id="page-header" class="assessment-header">
-            <div class="container">
-                <h1>AI Readiness Assessment</h1>
-                <p>Discover how AI can transform your business with our comprehensive assessment</p>
+        <section id="page-header" class="terminal-section py-16 bg-dark text-terminal-green relative overflow-hidden">
+            <canvas id="matrixCanvas1" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">assessment.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h1 class="text-4xl font-bold mb-4 terminal-text">AI Readiness <span class="terminal-gradient">Assessment</span></h1>
+                    <p class="text-xl terminal-text">Discover how AI can transform your business with our comprehensive assessment</p>
+                </div>
             </div>
         </section>
 
         <!-- Assessment Introduction -->
-        <section id="assessment-intro">
-            <div class="container">
-                <h2>Is Your Business Ready for AI?</h2>
-                <p class="section-intro">This assessment will help you understand your business's readiness for AI implementation. It evaluates your current processes, technologies, and goals to determine which AI solutions would provide the most value for your specific situation.</p>
-                <p class="section-intro">Complete all questions for a detailed analysis and personalized recommendations. The assessment takes approximately 5-7 minutes to complete.</p>
-                
-                <div class="assessment-benefits">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Personalized ROI Analysis</h3>
-                        <p>Receive a detailed breakdown of potential return on investment for AI implementation in your business.</p>
+        <section id="assessment-intro" class="terminal-section py-16 bg-darker relative overflow-hidden">
+            <canvas id="matrixCanvas2" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Custom Solution Recommendations</h3>
-                        <p>Get tailored recommendations for AI solutions that address your specific business challenges.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <h3>Implementation Roadmap</h3>
-                        <p>Receive a strategic plan for implementing AI in your business based on your readiness level.</p>
-                    </div>
+                    <div class="terminal-title">intro.sh</div>
                 </div>
-                
-                <div class="assessment-start">
-                    <a href="#assessment-form" id="start-assessment" class="btn btn-primary" onclick="document.getElementById('assessment-intro').style.display='none'; document.getElementById('assessment-form').style.display='block'; return false;">Start Assessment</a>
+                <div class="terminal-content container mx-auto px-4">
+                    <h2 class="text-3xl font-bold mb-6 text-center terminal-text">Is Your Business <span class="terminal-gradient">Ready for AI?</span></h2>
+                    <p class="text-terminal-green mb-4 text-center max-w-3xl mx-auto">This assessment will help you understand your business's readiness for AI implementation. It evaluates your current processes, technologies, and goals to determine which AI solutions would provide the most value for your specific situation.</p>
+                    <p class="text-terminal-green mb-8 text-center max-w-3xl mx-auto">Complete all questions for a detailed analysis and personalized recommendations. The assessment takes approximately 5-7 minutes to complete.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4 text-center">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text text-center">Personalized ROI Analysis</h3>
+                            <p class="text-terminal-green text-center">Receive a detailed breakdown of potential return on investment for AI implementation in your business.</p>
+                        </div>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4 text-center">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text text-center">Custom Solution Recommendations</h3>
+                            <p class="text-terminal-green text-center">Get tailored recommendations for AI solutions that address your specific business challenges.</p>
+                        </div>
+                        <div class="terminal-card p-6 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                            <div class="text-terminal-cyan text-4xl mb-4 text-center">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 terminal-text text-center">Implementation Roadmap</h3>
+                            <p class="text-terminal-green text-center">Receive a strategic plan for implementing AI in your business based on your readiness level.</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="#assessment-form" id="start-assessment" class="btn-primary text-lg px-8 py-3" onclick="document.getElementById('assessment-intro').style.display='none'; document.getElementById('assessment-form').style.display='block'; return false;">Start Assessment</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Assessment Form -->
-        <section id="assessment-form" style="display: none;">
-            <div class="container">
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 0%;"></div>
+        <section id="assessment-form" class="terminal-section py-16 bg-dark relative overflow-hidden" style="display: none;">
+            <canvas id="matrixCanvas3" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
                     </div>
-                    <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">5</span></div>
+                    <div class="terminal-title">assessment_form.sh</div>
                 </div>
-                
-                <form id="ai-assessment">
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%;"></div>
+                        </div>
+                        <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">5</span></div>
+                    </div>
+
+                    <form id="ai-assessment" onsubmit="event.preventDefault(); return false;">
+                        <!-- Hidden field for ROI calculations -->
+                        <input type="hidden" id="employee-rate" value="35">
                     <!-- Question 1 -->
-                    <div class="question-slide" data-question="1">
-                        <h3>What processes do you want to improve with AI?</h3>
-                        <p class="question-description">Select all that apply to help us identify the best AI solutions for your business.</p>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-customer" name="processes" value="Customer Support">
-                                <label for="process-customer"><strong style="color:#000; font-size:16px;">Customer Support</strong></label>
+                    <div class="question-slide active" data-question="1">
+                        <h3 class="text-xl font-bold mb-4 terminal-text">What processes do you want to improve with AI?</h3>
+                        <p class="text-terminal-green mb-6">Select all that apply to help us identify the best AI solutions for your business.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-customer" name="processes" value="Customer Support" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Customer Support</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-data" name="processes" value="Data Entry & Management">
-                                <label for="process-data"><strong style="color:#000; font-size:16px;">Data Entry & Management</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-data" name="processes" value="Data Entry & Management" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Data Entry & Management</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-scheduling" name="processes" value="Scheduling & Calendar Management">
-                                <label for="process-scheduling"><strong style="color:#000; font-size:16px;">Scheduling & Calendar Management</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-scheduling" name="processes" value="Scheduling & Calendar Management" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Scheduling & Calendar Management</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-inventory" name="processes" value="Inventory Management">
-                                <label for="process-inventory"><strong style="color:#000; font-size:16px;">Inventory Management</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-inventory" name="processes" value="Inventory Management" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Inventory Management</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-sales" name="processes" value="Sales & Marketing">
-                                <label for="process-sales"><strong style="color:#000; font-size:16px;">Sales & Marketing</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-sales" name="processes" value="Sales & Marketing" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Sales & Marketing</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-reporting" name="processes" value="Reporting & Analytics">
-                                <label for="process-reporting"><strong style="color:#000; font-size:16px;">Reporting & Analytics</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-reporting" name="processes" value="Reporting & Analytics" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Reporting & Analytics</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-finance" name="processes" value="Finance & Accounting">
-                                <label for="process-finance"><strong style="color:#000; font-size:16px;">Finance & Accounting</strong></label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-finance" name="processes" value="Finance & Accounting" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Finance & Accounting</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="process-other" name="processes" value="Other">
-                                <label for="process-other"><strong style="color:#000; font-size:16px;">Other</strong></label>
-                                <input type="text" id="process-other-text" name="process-other-text" placeholder="Please specify" class="conditional-input" style="display: none;">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="process-other" name="processes" value="Other" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Other</span>
+                                </label>
+                                <input type="text" id="process-other-text" name="process-other-text" placeholder="Please specify" class="conditional-input mt-2 w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded" style="display: none;">
                             </div>
                         </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-secondary next-question">Next Question</button>
+                        <div class="flex justify-end mt-6">
+                            <button type="button" class="btn-primary next-question">Next Question</button>
                         </div>
                     </div>
-                    
+
                     <!-- Question 2 -->
                     <div class="question-slide" data-question="2" style="display: none;">
-                        <h3>What are your company's main goals for implementing AI?</h3>
-                        <p class="question-description">Select your top business objectives.</p>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-efficiency" name="goals" value="Improve Operational Efficiency">
-                                <label for="goal-efficiency">Improve Operational Efficiency</label>
+                        <h3 class="text-xl font-bold mb-4 terminal-text">What are your company's main goals for implementing AI?</h3>
+                        <p class="text-terminal-green mb-6">Select your top business objectives.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-efficiency" name="goals" value="Improve Operational Efficiency" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Improve Operational Efficiency</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-cost" name="goals" value="Reduce Costs">
-                                <label for="goal-cost">Reduce Costs</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-cost" name="goals" value="Reduce Costs" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Reduce Costs</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-growth" name="goals" value="Increase Revenue/Growth">
-                                <label for="goal-growth">Increase Revenue/Growth</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-growth" name="goals" value="Increase Revenue/Growth" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Increase Revenue/Growth</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-customer" name="goals" value="Enhance Customer Experience">
-                                <label for="goal-customer">Enhance Customer Experience</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-customer" name="goals" value="Enhance Customer Experience" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Enhance Customer Experience</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-quality" name="goals" value="Improve Quality">
-                                <label for="goal-quality">Improve Quality</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-quality" name="goals" value="Improve Quality" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Improve Quality</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-innovation" name="goals" value="Drive Innovation">
-                                <label for="goal-innovation">Drive Innovation</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-innovation" name="goals" value="Drive Innovation" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Drive Innovation</span>
+                                </label>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="goal-other" name="goals" value="Other">
-                                <label for="goal-other">Other</label>
-                                <input type="text" id="goal-other-text" name="goals-other" placeholder="Please specify" class="conditional-input" style="display: none;">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="goal-other" name="goals" value="Other" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Other</span>
+                                </label>
+                                <input type="text" id="goal-other-text" name="goals-other" placeholder="Please specify" class="conditional-input mt-2 w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded" style="display: none;">
                             </div>
                         </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-outline prev-question">Previous</button>
-                            <button type="button" class="btn btn-secondary next-question">Next Question</button>
+                        <div class="flex justify-between mt-6">
+                            <button type="button" class="btn-secondary prev-question">Previous</button>
+                            <button type="button" class="btn-primary next-question">Next Question</button>
                         </div>
                     </div>
-                    
+
                     <!-- Question 3 -->
                     <div class="question-slide" data-question="3" style="display: none;">
-                        <h3>How does your company currently handle data?</h3>
-                        <p class="question-description">Select the option that best describes your current data management.</p>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="data-structured" name="data-management" value="Structured and Centralized">
-                                <label for="data-structured">Structured and Centralized - We have a centralized database with well-organized data</label>
+                        <h3 class="text-xl font-bold mb-4 terminal-text">How does your company currently handle data?</h3>
+                        <p class="text-terminal-green mb-6">Select the option that best describes your current data management.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="data-structured" name="data-management" value="Structured and Centralized" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Structured and Centralized - We have a centralized database with well-organized data</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="data-somewhat" name="data-management" value="Somewhat Organized">
-                                <label for="data-somewhat">Somewhat Organized - We have some systems in place, but data is split across multiple platforms</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="data-somewhat" name="data-management" value="Somewhat Organized" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Somewhat Organized - We have some systems in place, but data is split across multiple platforms</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="data-manual" name="data-management" value="Manual Processes">
-                                <label for="data-manual">Manual Processes - Most of our data is managed through spreadsheets or manual records</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="data-manual" name="data-management" value="Manual Processes" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Manual Processes - Most of our data is managed through spreadsheets or manual records</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="data-minimal" name="data-management" value="Minimal Data Collection">
-                                <label for="data-minimal">Minimal Data Collection - We don't collect or store much data</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="data-minimal" name="data-management" value="Minimal Data Collection" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Minimal Data Collection - We don't collect or store much data</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-outline prev-question">Previous</button>
-                            <button type="button" class="btn btn-secondary next-question">Next Question</button>
+                        <div class="flex justify-between mt-6">
+                            <button type="button" class="btn-secondary prev-question">Previous</button>
+                            <button type="button" class="btn-primary next-question">Next Question</button>
                         </div>
                     </div>
-                    
+
                     <!-- Question 4 -->
                     <div class="question-slide" data-question="4" style="display: none;">
-                        <h3>What is your budget range for AI implementation?</h3>
-                        <p class="question-description">Select your approximate budget range for implementing AI solutions.</p>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="budget-small" name="budget" value="Under $5,000">
-                                <label for="budget-small">Under $5,000</label>
+                        <h3 class="text-xl font-bold mb-4 terminal-text">What is your budget range for AI implementation?</h3>
+                        <p class="text-terminal-green mb-6">Select your approximate budget range for implementing AI solutions.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="budget-small" name="budget" value="Under $5,000" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Under $5,000</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="budget-medium" name="budget" value="$5,000 - $25,000">
-                                <label for="budget-medium">$5,000 - $25,000</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="budget-medium" name="budget" value="$5,000 - $25,000" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">$5,000 - $25,000</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="budget-large" name="budget" value="$25,000 - $100,000">
-                                <label for="budget-large">$25,000 - $100,000</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="budget-large" name="budget" value="$25,000 - $100,000" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">$25,000 - $100,000</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="budget-enterprise" name="budget" value="Over $100,000">
-                                <label for="budget-enterprise">Over $100,000</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="budget-enterprise" name="budget" value="Over $100,000" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Over $100,000</span>
+                                </label>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="budget-undecided" name="budget" value="Not determined yet">
-                                <label for="budget-undecided">Not determined yet</label>
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg hover:border-terminal-green transition-all duration-300">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" id="budget-undecided" name="budget" value="Not determined yet" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">Not determined yet</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-outline prev-question">Previous</button>
-                            <button type="button" class="btn btn-secondary next-question">Next Question</button>
+                        <div class="flex justify-between mt-6">
+                            <button type="button" class="btn-secondary prev-question">Previous</button>
+                            <button type="button" class="btn-primary next-question">Next Question</button>
                         </div>
                     </div>
-                    
+
                     <!-- Question 5 -->
                     <div class="question-slide" data-question="5" style="display: none;">
-                        <h3>What is your company size?</h3>
-                        <p class="question-description">This helps us tailor our recommendations to your organization's scale.</p>
-                        <div class="form-group">
-                            <label for="company-size">Number of employees:</label>
-                            <select id="company-size" name="company-size">
-                                <option value="">Please select</option>
-                                <option value="1-10">1-10</option>
-                                <option value="11-50">11-50</option>
-                                <option value="51-200">51-200</option>
-                                <option value="201-500">201-500</option>
-                                <option value="Over 500">Over 500</option>
-                            </select>
+                        <h3 class="text-xl font-bold mb-4 terminal-text">What is your company size?</h3>
+                        <p class="text-terminal-green mb-6">This helps us tailor our recommendations to your organization's scale.</p>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="company-size" class="block text-terminal-cyan mb-2 font-mono">Number of employees:</label>
+                                <select id="company-size" name="company-size" class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                                    <option value="">Please select</option>
+                                    <option value="1-10">1-10</option>
+                                    <option value="11-50">11-50</option>
+                                    <option value="51-200">51-200</option>
+                                    <option value="201-500">201-500</option>
+                                    <option value="Over 500">Over 500</option>
+                                </select>
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="industry" class="block text-terminal-cyan mb-2 font-mono">Industry:</label>
+                                <select id="industry" name="industry" class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                                    <option value="">Please select</option>
+                                    <option value="Retail">Retail</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Financial Services">Financial Services</option>
+                                    <option value="Manufacturing">Manufacturing</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Professional Services">Professional Services</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Hospitality">Hospitality</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="employee-rate" class="block text-terminal-cyan mb-2 font-mono">Average hourly employee cost ($):</label>
+                                <input type="number" id="employee-rate" name="employee-rate" min="0" placeholder="e.g., 35" class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                                <p class="text-sm text-terminal-green mt-2 opacity-80">This helps with ROI calculation.</p>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="industry">Industry:</label>
-                            <select id="industry" name="industry">
-                                <option value="">Please select</option>
-                                <option value="Retail">Retail</option>
-                                <option value="Healthcare">Healthcare</option>
-                                <option value="Financial Services">Financial Services</option>
-                                <option value="Manufacturing">Manufacturing</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Professional Services">Professional Services</option>
-                                <option value="Education">Education</option>
-                                <option value="Hospitality">Hospitality</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="employee-rate">Average hourly employee cost ($):</label>
-                            <input type="number" id="employee-rate" name="employee-rate" min="0" placeholder="e.g., 35">
-                            <p class="field-help">This helps with ROI calculation.</p>
-                        </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-outline prev-question">Previous</button>
-                            <button type="button" class="btn btn-primary submit-assessment">Submit Assessment</button>
+
+                        <div class="flex justify-between mt-6">
+                            <button type="button" class="btn-secondary prev-question">Previous</button>
+                            <button type="button" class="btn-primary submit-assessment" onclick="document.getElementById('assessment-form').style.display='none'; document.getElementById('assessment-results').style.display='block'; window.scrollTo({top: 0, behavior: 'smooth'});">Submit Assessment</button>
                         </div>
                     </div>
 
                     <!-- Contact Information -->
                     <div class="question-slide" data-question="contact" style="display: none;">
-                        <h3>Almost Done! Please provide your contact information</h3>
-                        <p class="question-description">We'll send your personalized AI readiness analysis to this email address.</p>
-                        <div class="form-group">
-                            <label for="contact-name">Your Name *</label>
-                            <input type="text" id="contact-name" name="contact-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email Address *</label>
-                            <input type="email" id="contact-email" name="contact-email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-company">Company Name *</label>
-                            <input type="text" id="contact-company" name="contact-company" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-phone">Phone Number (optional)</label>
-                            <input type="tel" id="contact-phone" name="contact-phone">
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="contact-consent" name="contact-consent" required>
-                                <label for="contact-consent">I consent to receive my assessment results and related information via email. *</label>
+                        <h3 class="text-xl font-bold mb-4 terminal-text">Almost Done! Please provide your contact information</h3>
+                        <p class="text-terminal-green mb-6">We'll send your personalized AI readiness analysis to this email address.</p>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="contact-name" class="block text-terminal-cyan mb-2 font-mono">Your Name *</label>
+                                <input type="text" id="contact-name" name="contact-name" required class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="contact-email" class="block text-terminal-cyan mb-2 font-mono">Email Address *</label>
+                                <input type="email" id="contact-email" name="contact-email" required class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="contact-company" class="block text-terminal-cyan mb-2 font-mono">Company Name *</label>
+                                <input type="text" id="contact-company" name="contact-company" required class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label for="contact-phone" class="block text-terminal-cyan mb-2 font-mono">Phone Number (optional)</label>
+                                <input type="tel" id="contact-phone" name="contact-phone" class="w-full bg-terminal-bg border border-terminal-border text-terminal-green p-2 rounded focus:border-terminal-green focus:outline-none">
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="contact-consent" name="contact-consent" required class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">I consent to receive my assessment results and related information via email. *</span>
+                                </label>
+                            </div>
+
+                            <div class="terminal-card p-4 border border-terminal-border bg-terminal-bg bg-opacity-70 rounded-lg">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="contact-subscribe" name="contact-subscribe" class="mr-3 h-5 w-5 accent-terminal-green">
+                                    <span class="text-terminal-green">I'd like to receive occasional updates and insights about AI for small businesses.</span>
+                                </label>
                             </div>
                         </div>
-                        <div class="form-group checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="contact-subscribe" name="contact-subscribe">
-                                <label for="contact-subscribe">I'd like to receive occasional updates and insights about AI for small businesses.</label>
-                            </div>
-                        </div>
-                        <div class="question-navigation">
-                            <button type="button" class="btn btn-outline prev-question">Back to Assessment</button>
-                            <button type="submit" class="btn btn-primary">Get My Results</button>
+
+                        <div class="flex justify-between mt-6">
+                            <button type="button" class="btn-secondary prev-question">Back to Assessment</button>
+                            <button type="button" class="btn-primary submit-form">Get My Results</button>
                         </div>
                     </div>
                 </form>
+                </div>
             </div>
         </section>
 
         <!-- Results Section (initially hidden) -->
-        <section id="assessment-results" style="display: none;">
-            <div class="container">
-                <div class="results-header">
-                    <h2>Your AI Readiness Assessment Results</h2>
-                    <p>Based on your responses, we've prepared a personalized analysis of your business's AI readiness.</p>
+        <section id="assessment-results" class="terminal-section py-16 bg-darker relative overflow-hidden" style="display: none; opacity: 1;">
+            <canvas id="matrixCanvas4" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">results.sh</div>
                 </div>
-                
-                <div class="readiness-score">
-                    <div class="score-graphic">
-                        <div class="score-circle">
+                <div class="terminal-content container mx-auto px-4">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4 terminal-text">Your AI Readiness <span class="terminal-gradient">Assessment Results</span></h2>
+                        <p class="text-terminal-green text-lg">Based on your responses, we've prepared a personalized analysis of your business's AI readiness.</p>
+                        <div class="confirmation-message mt-4 p-3 bg-terminal-bg bg-opacity-70 border border-terminal-green rounded-lg">
+                            <p class="text-terminal-green"></p>
+                        </div>
+                    </div>
+
+                    <div class="readiness-score mb-12">
+                        <div class="score-circle mx-auto">
                             <div class="score-value">0</div>
                             <div class="score-label">AI Readiness Score</div>
                         </div>
-                    </div>
-                    <div class="score-description">
-                        <h3>What Your Score Means</h3>
-                        <p id="score-interpretation"></p>
-                    </div>
-                </div>
-                
-                <div class="results-content">
-                    <div class="results-section">
-                        <h3>Key Findings</h3>
-                        <ul id="key-findings"></ul>
-                    </div>
-                    
-                    <div class="results-section">
-                        <h3>Recommended AI Solutions</h3>
-                        <div id="recommended-solutions"></div>
-                    </div>
-                    
-                    <div class="results-section">
-                        <h3>ROI Analysis</h3>
-                        <div id="roi-analysis"></div>
-                    </div>
-                    
-                    <div class="results-section">
-                        <h3>Next Steps</h3>
-                        <div id="next-steps"></div>
-                    </div>
-                </div>
-                
-                <div class="next-steps-cta">
-                    <h3>Your AI Journey Starts Here</h3>
-                    <p>Based on your assessment, you're ready to start implementing AI in your business. Here are your next steps:</p>
-                    
-                    <div class="steps-grid">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <h4>Schedule a Free Consultation</h4>
-                            <p>Talk with our AI specialists to discuss your specific needs and opportunities in detail.</p>
-                            <a href="../contact.html" class="btn btn-primary">Book Your Consultation</a>
-                        </div>
-                        
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <h4>Save Your Results</h4>
-                            <p>Download a copy of your personalized assessment to share with your team.</p>
-                            <button id="download-pdf" class="btn btn-secondary">Download PDF Report</button>
-                        </div>
-                        
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <h4>Explore Our Services</h4>
-                            <p>Learn more about the specific AI solutions recommended for your business.</p>
-                            <a href="../services.html" class="btn btn-outline">View All Services</a>
+                        <div class="mt-6 max-w-2xl mx-auto">
+                            <h3 class="text-xl font-bold mb-2 terminal-text text-center">What Your Score Means</h3>
+                            <p id="score-interpretation" class="text-terminal-green text-center"></p>
                         </div>
                     </div>
-                    
-                    <div class="results-actions">
-                        <p>Need more information? Contact us at <a href="mailto:ai.unplugged11@gmail.com">ai.unplugged11@gmail.com</a> or call <a href="tel:2397458189">2397458189</a></p>
-                        <button id="print-results" class="btn btn-outline">Print Results</button>
+
+                    <div class="space-y-8">
+                        <div class="results-section">
+                            <h3 class="text-xl font-bold mb-4 terminal-text">Key Findings</h3>
+                            <ul id="key-findings" class="text-terminal-green space-y-2"></ul>
+                            <div class="ai-insight mt-4">
+                                <p>AI analysis of your assessment data reveals patterns similar to businesses that have successfully implemented AI solutions in your industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="results-section">
+                            <h3 class="text-xl font-bold mb-4 terminal-text">Recommended AI Solutions</h3>
+                            <div id="recommended-solutions" class="text-terminal-green"></div>
+                        </div>
+
+                        <div class="results-section">
+                            <h3 class="text-xl font-bold mb-4 terminal-text">ROI Analysis</h3>
+                            <div id="roi-analysis" class="text-terminal-green"></div>
+                        </div>
+
+                        <div class="results-section">
+                            <h3 class="text-xl font-bold mb-4 terminal-text">Next Steps</h3>
+                            <div id="next-steps" class="text-terminal-green"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold mb-4 terminal-text text-center">Your AI Journey <span class="terminal-gradient">Starts Here</span></h3>
+                        <p class="text-terminal-green text-center mb-8">Based on your assessment, you're ready to start implementing AI in your business. Here are your next steps:</p>
+
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <h4 class="text-lg font-bold mb-2 terminal-text">Schedule a Free Consultation</h4>
+                                <p class="text-terminal-green mb-4">Talk with our AI specialists to discuss your specific needs and opportunities in detail.</p>
+                                <a href="../contact.html" class="btn-primary">Book Your Consultation</a>
+                            </div>
+
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <h4 class="text-lg font-bold mb-2 terminal-text">Save Your Results</h4>
+                                <p class="text-terminal-green mb-4">Download a copy of your personalized assessment to share with your team.</p>
+                                <button id="download-pdf" class="btn-secondary">Download PDF Report</button>
+                            </div>
+
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <h4 class="text-lg font-bold mb-2 terminal-text">Explore Our Services</h4>
+                                <p class="text-terminal-green mb-4">Learn more about the specific AI solutions recommended for your business.</p>
+                                <a href="../services.html" class="btn-secondary">View All Services</a>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 text-center">
+                            <p class="text-terminal-green mb-4">Need more information? Contact us at <a href="mailto:ai.unplugged11@gmail.com" class="text-terminal-cyan hover:underline">ai.unplugged11@gmail.com</a> or call <a href="tel:2397458189" class="text-terminal-cyan hover:underline">2397458189</a></p>
+                            <button id="print-results" class="btn-secondary">Print Results</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section id="cta">
-            <div class="container">
-                <h2>Ready to Harness the Power of AI?</h2>
-                <p>After completing your assessment, schedule a free consultation to discuss your results in detail.</p>
-                <a href="../contact.html" class="btn btn-primary">Contact Us</a>
+        <section id="cta" class="terminal-section py-16 bg-dark relative overflow-hidden">
+            <canvas id="matrixCanvas5" class="matrix-bg"></canvas>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                    </div>
+                    <div class="terminal-title">get_started.sh</div>
+                </div>
+                <div class="terminal-content container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-4 terminal-text">Ready to <span class="terminal-gradient">Harness the Power</span> of AI?</h2>
+                    <p class="text-terminal-green text-xl mb-8">After completing your assessment, schedule a free consultation to discuss your results in detail.</p>
+                    <div class="inline-flex">
+                        <a href="../contact.html" class="btn-primary text-lg px-8 py-3">Contact Us</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>AI Unplugged</h3>
-                    <p>Making AI accessible and practical for small businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../about.html">About Us</a></li>
-                        <li><a href="../services.html">Services</a></li>
-                        <li><a href="../blog.html">Blog</a></li>
-                        <li><a href="../contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="../services/chatbots.html">AI Chatbots</a></li>
-                        <li><a href="../services/analytics.html">Predictive Analytics</a></li>
-                        <li><a href="../services/automation.html">Business Automation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AI <span class="gradient-text">Unplugged</span></h3>
+                    <p class="text-gray-400 mb-4">Making AI accessible and practical for small businesses.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="https://www.linkedin.com" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://x.com/AiUnplugge80544" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61572847089889" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/aiunpluggedofficial/" class="text-gray-400 hover:text-terminal-cyan transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
                     </div>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> ai.unplugged11@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> 2397458189</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-terminal-green transition-colors">Home</a></li>
+                        <li><a href="../about.html" class="text-gray-400 hover:text-terminal-green transition-colors">About Us</a></li>
+                        <li><a href="../services.html" class="text-gray-400 hover:text-terminal-green transition-colors">Services</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Assessment</a></li>
+                        <li><a href="../contact.html" class="text-gray-400 hover:text-terminal-green transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../services/chatbots.html" class="text-gray-400 hover:text-terminal-green transition-colors">AI Chatbots</a></li>
+                        <li><a href="../services/analytics.html" class="text-gray-400 hover:text-terminal-green transition-colors">Predictive Analytics</a></li>
+                        <li><a href="../services/automation.html" class="text-gray-400 hover:text-terminal-green transition-colors">Business Automation</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-3 text-terminal-cyan"></i>
+                            <a href="mailto:ai.unplugged11@gmail.com" class="hover:text-terminal-green transition-colors">ai.unplugged11@gmail.com</a>
+                        </p>
+                        <p class="flex items-center text-gray-400">
+                            <i class="fas fa-phone mr-3 text-terminal-cyan"></i>
+                            <a href="tel:2397458189" class="hover:text-terminal-green transition-colors">(239) 745-8189</a>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AI Unplugged. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-of-service.html">Terms of Service</a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-500">&copy; 2025 AI Unplugged. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="../privacy-policy.html" class="text-gray-500 hover:text-terminal-green transition-colors">Privacy Policy</a>
+                    <a href="../terms-of-service.html" class="text-gray-500 hover:text-terminal-green transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -465,31 +995,31 @@
         const startButton = document.getElementById('start-assessment');
         const assessmentIntro = document.getElementById('assessment-intro');
         const assessmentForm = document.getElementById('assessment-form');
-        
+
         if (startButton) {
             startButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 if (assessmentIntro) assessmentIntro.style.display = 'none';
                 if (assessmentForm) assessmentForm.style.display = 'block';
-                
+
                 // Update progress bar
                 const progressBar = document.querySelector('.progress');
                 if (progressBar) progressBar.style.width = '20%';
-                
+
                 // Update question counter
                 const currentQuestionSpan = document.getElementById('current-question');
                 if (currentQuestionSpan) currentQuestionSpan.textContent = '1';
-                
+
                 // Scroll to the form
                 window.scrollTo({
                     top: assessmentForm.offsetTop - 100,
                     behavior: 'smooth'
                 });
-                
+
                 return false;
             });
         }
-        
+
         // Handle navigation buttons
         const nextButtons = document.querySelectorAll('.next-question');
         nextButtons.forEach(button => {
@@ -498,19 +1028,19 @@
                 const currentNum = parseInt(currentSlide.dataset.question);
                 const nextNum = currentNum + 1;
                 const nextSlide = document.querySelector(`.question-slide[data-question="${nextNum}"]`);
-                
+
                 currentSlide.style.display = 'none';
-                
+
                 if (nextSlide) {
                     nextSlide.style.display = 'block';
-                    
+
                     // Update progress
                     const progressBar = document.querySelector('.progress');
                     if (progressBar) {
                         const percentage = (nextNum / 5) * 100;
                         progressBar.style.width = `${percentage}%`;
                     }
-                    
+
                     // Update question counter
                     const currentQuestionSpan = document.getElementById('current-question');
                     if (currentQuestionSpan) currentQuestionSpan.textContent = nextNum;
@@ -521,34 +1051,34 @@
                 }
             });
         });
-        
+
         // Handle previous buttons
         const prevButtons = document.querySelectorAll('.prev-question');
         prevButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const currentSlide = this.closest('.question-slide');
                 let currentNum = parseInt(currentSlide.dataset.question);
-                
+
                 // Handle the contact slide which doesn't have a number
                 if (isNaN(currentNum)) {
                     currentNum = 6; // After the last question
                 }
-                
+
                 const prevNum = currentNum - 1;
                 const prevSlide = document.querySelector(`.question-slide[data-question="${prevNum}"]`);
-                
+
                 currentSlide.style.display = 'none';
-                
+
                 if (prevSlide) {
                     prevSlide.style.display = 'block';
-                    
+
                     // Update progress
                     const progressBar = document.querySelector('.progress');
                     if (progressBar) {
                         const percentage = (prevNum / 5) * 100;
                         progressBar.style.width = `${percentage}%`;
                     }
-                    
+
                     // Update question counter
                     const currentQuestionSpan = document.getElementById('current-question');
                     if (currentQuestionSpan) currentQuestionSpan.textContent = prevNum;
@@ -559,5 +1089,93 @@
 </script>
 <script src="../js/script.js"></script>
 <script src="assessment.js"></script>
+<script>
+    // Matrix Rain Animation
+    function initMatrixRain() {
+        const canvases = document.querySelectorAll('.matrix-bg');
+
+        canvases.forEach(canvas => {
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+
+            // Characters to use in the rain
+            const characters = '01\u30a2\u30a4\u30a6\u30a8\u30aa\u30ab\u30ad\u30af\u30b1\u30b3\u30b5\u30b7\u30b9\u30bb\u30bd\u30bf\u30c1\u30c4\u30c6\u30c8\u30ca\u30cb\u30cc\u30cd\u30ce\u30cf\u30d2\u30d5\u30d8\u30db\u30de\u30df\u30e0\u30e1\u30e2\u30e4\u30e6\u30e8\u30e9\u30ea\u30eb\u30ec\u30ed\u30ef\u30f2\u30f3';
+            const columns = Math.floor(canvas.width / 20); // Character width
+            const drops = [];
+
+            // Initialize drops at random positions
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * canvas.height / 20); // Start at random positions
+            }
+
+            function draw() {
+                // Semi-transparent black background to create fade effect
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#0f0'; // Green text
+                ctx.font = '15px monospace';
+
+                // Draw characters
+                for (let i = 0; i < drops.length; i++) {
+                    // Random character
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+
+                    // Draw the character
+                    ctx.fillText(text, i * 20, drops[i] * 20);
+
+                    // Move the drop down
+                    if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            // Run the animation
+            setInterval(draw, 50);
+        });
+    }
+
+    // Initialize 3D Logo Rotation
+    function init3DLogo() {
+        const logo = document.querySelector('.logo-rotate-3d');
+        if (logo) {
+            anime({
+                targets: logo,
+                rotateY: '360deg',
+                duration: 4000,
+                loop: true,
+                easing: 'linear'
+            });
+        }
+    }
+
+    // Initialize everything when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initMatrixRain();
+        init3DLogo();
+
+        // Handle window resize for matrix rain
+        window.addEventListener('resize', function() {
+            // Reinitialize matrix rain after a short delay
+            setTimeout(initMatrixRain, 300);
+        });
+    });
+</script>
+
+<!-- Assessment JS -->
+<script src="assessment.js"></script>
+
+<!-- Form Fix Script -->
+<script src="form-fix.js"></script>
+
+<!-- AI-Enhanced Assessment Scripts -->
+<script src="ai-enhanced-assessment.js"></script>
+<script src="ai-results-generator.js"></script>
+<script src="dynamic-scoring.js"></script>
+<script src="ai-roi-calculator.js"></script>
+<script src="ai-assessment-integration.js"></script>
 </body>
 </html>
